@@ -6,7 +6,7 @@
 
 TL;DR
 
-Arquivo de configuração para o Emacs para ser utilizado em uma instalação nova ou substituir uma antiga. Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado/melhorado facilmente.
+Arquivo de configuração para o Emacs para ser utilizado em uma instalação nova ou substituir uma antiga. Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado/melhorado facilmente. Baixe o arquivo [.emacs](.emacs), coloque no seu diretório *home* e abra o Emacs.
 
 -------------------------------------------------------------------------------
 
@@ -123,150 +123,129 @@ Não gosto do tamanho inicial da janela. Acho que antiquado, meio do tempo quand
 
 Para evitar que o usuário tenha que recorrer ao *Ctrl+O* para se mover entre as janelas ou retirar a mão do teclado para mover o ponteiro até a janela desejada e clicar, o processo se dá pelo pressionamento de *Alt+setas*. O foco irá passar para o frame adequado. O padrão em caso de omissão é *Shift+setas* porém iria conflitar com o CUA que utiliza estas sequencias para selecionar um texto. 
 
-;;------------------------------------------
-;; ## Realçar linha do cursor
-;;
-(global-hl-line-mode t)
+## Realçar linha do cursor ##
 
-;;------------------------------------------
-;; ## Numeração de linhas
-;;
-(global-linum-mode t)
+    (global-hl-line-mode t)
 
-;;-----------------------------------------
-;; ## Realça numeração da linha do cursor
-;;
-(require 'hlinum)
-(hlinum-activate)
+## Numeração de linhas ##
 
-;;-----------------------------------------
-;; ## Realçar parentesis
-;;
-(show-paren-mode)
+    (global-linum-mode t)
 
-;;-----------------------------------------
-;; ## Ativa smartparens
-(smartparens-global-mode t)
+## Realça numeração da linha do cursor ##
 
-;;-----------------------------------------
-;; ## Esconte barra de rolamento
-;;
-(scroll-bar-mode nil)
+    (require 'hlinum)
+    (hlinum-activate)
 
-;;-----------------------------------------
-;; ## Salva estado atual ao sair
-;;
-(require 'saveplace)
-(setq-default save-place t)
-(setq save-place-file "~/.emacs.d/saved-places")
+## Realçar parentesis ##
 
-;;-----------------------------------------
-;; ## Desabilita buffer de mensagem inicial
-;;
-(setq initial-buffer-choice
-    t)
+    (show-paren-mode)
 
-;;-----------------------------------------
-;; ## Troca mensagem do buffer de rascunho
-;;
-(setq initial-scratch-message
-    ";; Nada neste buffer será salvo. Use Ctrl+X Ctrl+F para ler um arquivo.")
+## Ativa smartparens ##
 
-;;-----------------------------------------
-;; ## Realça frame ativo
-;;
-(require 'hiwin)
-(hiwin-activate)
-(set-face-background 'hiwin-face "black")
+    (smartparens-global-mode t)
+
+## Esconte barra de rolamento ##
+
+    (scroll-bar-mode nil)
+
+## Salva estado atual ao sair ##
+
+    (require 'saveplace)
+    (setq-default save-place t)
+    (setq save-place-file "~/.emacs.d/saved-places")
+
+## Desabilita buffer de mensagem inicial ##
+
+    (setq initial-buffer-choice
+        t)
+
+## Troca mensagem do buffer de rascunho ##
+
+    (setq initial-scratch-message
+        ";; Nada neste buffer será salvo. Use Ctrl+X Ctrl+F para ler um arquivo.")
+
+## Realça frame ativo ##
+
+    (require 'hiwin)
+    (hiwin-activate)
+    (set-face-background 'hiwin-face "black")
 
 
-;;-----------------------------------------
-;; ## Configura powerline
-;;
-(powerline-center-theme)
-(setq powerline-default-separator
-      'wave)
+## Configura powerline ##
 
-;;-----------------------------------------
-;; ## ido no modo grade
-;;
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode t)
-(ido-grid-mode t)
+    (powerline-center-theme)
+    (setq powerline-default-separator
+          'wave)
 
-;;-----------------------------------------
-;; ## Configura atalho *Ctrl+.* para imenu-anywhere
-;;
-(global-set-key (kbd "C-.") 'imenu-anywhere)
+## ido no modo grade ##
 
-;;-----------------------------------------
-;; ## Configura atalhos *Alt+x* e *Alt+X* para smex
-;;
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+    (setq ido-enable-flex-matching t)
+    (setq ido-everywhere t)
+    (ido-mode t)
+    (ido-grid-mode t)
 
-;;-----------------------------------------
-;; ## Configura o markdown
-;;
-(autoload 'markdown-mode "markdown-mode"
-  "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+## Configura atalho *Ctrl+.* para imenu-anywhere ##
 
-;;-----------------------------------------
-;; ## Configura o autocomplete
-;;
-(ac-config-default)
-(ac-linum-workaround)
+    (global-set-key (kbd "C-.") 'imenu-anywhere)
 
-;;-----------------------------------------
-;; ## Configura pandoc
-(load "pandoc-mode")
-(add-hook 'markdown-mode-hook 'pandoc-mode)
+## Configura atalhos *Alt+x* e *Alt+X* para smex ##
 
-;;-----------------------------------------
-;; ## Configura theme-looper
-(theme-looper-set-theme-set '(adwaita
-                              deeper-blue
-                              dichromacy
-                              misterioso
-                              tango-dark
-			      tango
-			      tsdh-dark
-                              wheatgrass
-                              wombat))
+    (global-set-key (kbd "M-x") 'smex)
+    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
-(theme-looper-set-customizations 'powerline-reset)
-(global-set-key (kbd "C-\"") 'theme-looper-enable-next-theme)
+## Configura o markdown ##
 
-;;-----------------------------------------
-;; ## Arquivos recentes
-;;
-(require 'recentf)
-(recentf-mode t)
-(setq recentf-max-menu-items 25)
-(defun recentf-ido-find-file ()
-  "Find a recent file using Ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-    (when file
-      (find-file file))))
-(global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
+    (autoload 'markdown-mode "markdown-mode"
+      "Major mode for editing Markdown files" t)
+    (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+    (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+    (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;;-----------------------------------------
-;; ## Cancela alterações no buffer
-;;
-(defun  revert-buffer-preserve-modes  ()
-  (interactive)
-  (revert-buffer  t  nil  t))
-(global-set-key (kbd "<f5>") 'revert-buffer-preserve-modes )
+## Configura o autocomplete ##
 
+    (ac-config-default)
+    (ac-linum-workaround)
 
-;;-----------------------------------------
-;; FIM DO ARQUIVO .emacs
-;;-----------------------------------------
+## Configura pandoc ##
+
+    (load "pandoc-mode")
+    (add-hook 'markdown-mode-hook 'pandoc-mode)
+
+## Configura theme-looper ##
+
+    theme-looper-set-theme-set '(adwaita
+                                 deeper-blue
+                                 dichromacy
+                                 misterioso
+                                 tango-dark
+                                 tango
+                                 tsdh-dark
+                                 wheatgrass
+                                 wombat))
+    (theme-looper-set-customizations 'powerline-reset)
+    (global-set-key (kbd "C-\"") 'theme-looper-enable-next-theme)
+
+## Arquivos recentes ##
+
+    (require 'recentf)
+    (recentf-mode t)
+    (setq recentf-max-menu-items 25)
+    (defun recentf-ido-find-file ()
+      "Find a recent file using Ido."
+      (interactive)
+      (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+        (when file
+          (find-file file))))
+    (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
+
+## Cancela alterações no buffer ##
+
+    (defun  revert-buffer-preserve-modes  ()
+      (interactive)
+      (revert-buffer  t  nil  t))
+    (global-set-key (kbd "<f5>") 'revert-buffer-preserve-modes )
+
+# Considerações finais #
 
 
 
