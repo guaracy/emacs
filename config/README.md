@@ -1,6 +1,11 @@
-# Emacs em 30 segundo
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 
-tl;dr
+Emacs em 30 segundos
+====================
+
+-------------------------------------------------------------------------------
+
+TL;DR
 
 Arquivo de configuração para o emacs para ser utilizado em uma instalação não configurada. Automaticamente configura e baixa pacotes importantes.
 
