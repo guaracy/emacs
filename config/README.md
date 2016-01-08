@@ -6,7 +6,10 @@
 
 TL;DR
 
-Arquivo de configuração para o Emacs para ser utilizado em uma instalação nova ou substituir uma antiga. Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado/melhorado facilmente. Baixe o arquivo [.emacs](.emacs), coloque no seu diretório *home* e abra o Emacs.
+Arquivo de configuração para o Emacs para ser utilizado em uma instalação nova ou substituir uma antiga. Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado/melhorado facilmente. 
+
+1. Baixe o arquivo [.emacs](.emacs), coloque no seu diretório *home* e abra o Emacs.
+2. Baixe e leia a documentação em [epub](README.epub), [docx](README.docx), [pdf](README.pdf) ou [odt](README.odt)
 
 -------------------------------------------------------------------------------
 
@@ -41,7 +44,7 @@ Para instalar deve estar conectado com a internet para que os pacotes necessári
 
 O arquivo *.emacs* poderá ser alterado antes de executar o Emacs pela primeira vez. Use um editor de textos que você esteja acostumado. Se você desejar que o Emacs ignore alguma coisa, basta colocar **;** (ponto e vírgula) no início da linha. Vejamos o que possui em cada etapa da configuração.
 
-## Alteração de opções iniciais ## 
+## Alteração de opções iniciais ##
 
     (custom-set-variables
      '(cua-mode t nil (cua-base))
@@ -95,13 +98,15 @@ Faz exatamente isto. Atualiza a lista de pacotes do MELPA e do ELPA (repositóri
         smartparens
         theme-looper))
     
-Contém uma lista dos pacotes que serão instalados se necessário. A qualquer momento, você poderá incluir na lista qualquer pacote que desejar (desde que existam nos repositórios) e configurá-lo mais no final do arquivo *.emacs*.
+Contém uma lista dos pacotes que serão instalados se necessário. A qualquer momento, você poderá incluir na lista qualquer pacote que desejar (desde que existam nos repositórios) e configurá-lo mais no final do arquivo *.emacs*. Adiante veremos o que cada um faz e as configurações atribuídas a eles.
 
 ## Instalação/atualização dos pacotes ##
 
     (mapc (lambda (p)
            (package-install p))
          gbm-required-packages)
+
+Basicamente irá instalar ou atualizar os pacotes informados anteriormente.
 
 # Configuração da aparência e pacotes #
 
@@ -126,6 +131,8 @@ Para evitar que o usuário tenha que recorrer ao *Ctrl+O* para se mover entre as
 ## Realçar linha do cursor ##
 
     (global-hl-line-mode t)
+	
+
 
 ## Numeração de linhas ##
 
