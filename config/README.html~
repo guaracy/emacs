@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>README.html</title>
+
+</head>
+
+<body>
+
+<p><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></p>
+
+<h1>Emacs em 30 segundos</h1>
+
+<hr />
+
+<p>TL;DR</p>
+
+<p>Arquivo de configuração para o Emacs para ser utilizado em uma instalação nova ou substituir uma antiga. Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado/melhorado facilmente. </p>
+
+<ol>
+<li>Baixe o arquivo <a href=".emacs">.emacs</a>, coloque no seu diretório <em>home</em> e abra o Emacs.</li>
+<li>Baixe e leia a documentação em <a href="README.epub">epub</a>, <a href="README.docx">docx</a>, <a href="README.pdf">pdf</a> ou <a href="README.odt">odt</a></li>
+</ol>
+
+<hr />
+
+<p>Acredito que o maior problema para alguém iniciar com o Emacs está em como ele vem configurado inicialmente. Uma aparência relativamente simples e com teclas de atalhos diferentes das que os usuários estão acostumados (pelo menos as principais).
+Muitas das configurações devem estar no arquivo <em>.emacs</em> o que implica em edição e a primeira decepção do usuário.</p>
+
+<p>Existem algumas soluções para quem deseja iniciar no fabuloso mundo do Emacs. Para quem usa o <em>Vim</em>, uma boa alternativa pode ser o <a href="https://github.com/syl20bnr/spacemacs">spacemacs</a>. Como desvantagem tem a sua complexidade e curva de aprendizado para configurar. Outra opção é o <a href="https://github.com/myTerminal/super-emacs">super-emacs</a> mas acho que também falham em alguns aspectos. Esconder o menu pode não ser uma boa ideia ou sobrepor atalhos CUA com shift setas para selecionar frames também não.</p>
+
+<p>A ideia aqui é que o usuário apenas copie um arquivo e, ao executar o Emacs na primeira vez, o programa já seja apresentado com uma aparência mais agradável e com diversas ferramentas/opções não disponíveis/configuradas. Mas também é necessário que o usuário saiba o que foi feito, possa efetuar as alterações e incluir novas diretrizes. É o que pretendo colocar neste documento.</p>
+
+<p>O arquivo de configuração <em>.emacs</em> ficou estruturado da seguinte forma:</p>
+
+<ol>
+<li>agrupamento das alterações que também são efetuadas pelo menu <strong>Options</strong> para que não causem conflito em futuras alterações pelo menu;</li>
+<li>definição de repositório e pacotes que serão instalados;</li>
+<li>instalação dos pacotes não inclusos no emacs e configuração dos que acompanham a distribuição;</li>
+<li>configuração dos pacotes internos e externos que não pertencem ao item 1.</li>
+</ol>
+
+<p>Inicialmente o Emacs tem uma cara assim:</p>
+
+<p><img src="emacs1.jpg" alt="alt" title="" /></p>
+
+<p>Ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período de uso você usa os atalhos em vez de tirar a mão do teclaro para clicar em um ícone daqueles) e uma tela de abertura com muita informação. Tudo isto irá mudar.</p>
+
+<h1>Instalação</h1>
+
+<p>Para instalar o Emacs, no Linux basta utilizar o comando para instalar pacotes (pacman, apt-get, etc.) e selecionar o Emacs. No Windows, baixe a última versão do Emacs do site <a href="https://ftp.gnu.org/gnu/emacs/windows/">gnu</a>, descompacte para alguma pasta e crie um link simbólico para o programa <strong>runemacs</strong>.</p>
+
+<p>Para instalar deve estar conectado com a internet para que os pacotes necessários sejam baixados. Basta baixar o arquivo <em>.emacs</em> e colocá-lo na pasta do usuário. No Linux é <strong>~/</strong> ou <strong>/home/nomeusuário</strong> e no Windows é <strong>c:\Usuários\nome\AppData\Rooming\</strong> (pelo menos em uma versão do Windows 8 que eu testei; não tenho Windows para saber como são as outras versões nem exatamente o que funciona ou não). </p>
+
+<h1>O arquivo de configuração</h1>
+
+<p>O arquivo <em>.emacs</em> poderá ser alterado antes de executar o Emacs pela primeira vez. Use um editor de textos que você esteja acostumado. Se você desejar que o Emacs ignore alguma coisa, basta colocar <strong>;</strong> (ponto e vírgula) no início da linha. Vejamos o que possui em cada etapa da configuração.</p>
+
+<h2>Alteração de opções iniciais</h2>
+
+<pre><code>(custom-set-variables
+ '(cua-mode t nil (cua-base))
+ '(custom-enabled-themes (quote (deeper-blue)))
+ '(indicate-empty-lines t)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
+</code></pre>
+
+<p>Estas configurações poderiam estar em qualquer parte do arquivo <em>.emacs</em> mas eu resolvi deixar no início pois, quando o usuário efetuar algura alteração pelo menu <strong>Options</strong> e selecionar <strong>Options/Save Options</strong> para torná-las permanentes, o Emacs irá alterar estas variáveis colocando mais informações. </p>
+
+<p>A primeira linha ativa o modo CUA (Common User Access) para que você não precise digitar <em>Alt+w</em> para copiar um texto, por exemplo. Pode utilizar o famoso <em>Crtl+C Ctrl+V</em>. Outra característica interessante que vem com o modo a a seleção em bloco. Você pressiona <em>Ctrl+Enter</em> e utiliza as setas para selecionar. Pode selecionar apenas uma coluna um um bloco maior. Depois pode utilizar as opções normais como copia, colar, excluir, sobrescrever, etc. <em>Ctrl+Enter</em>, novamente, para sair do modo de seleção em bloco.</p>
+
+<p>A segunda linha especifica o tema inicial que será utilizado. Os temas podem ser vistos e alterados utilizando o menu <strong>Options/Customize Emacs/Custom Themes</strong>. Você pode, a qualquer momento alterar o tema e, se desejar, gravar para as próximas sessões.</p>
+
+<p>A terceira opção irá preencher a janela do Emacs com um símbolo para indicar que não existem mais linhas após aquele ponto, mesmo em branco. Você poderá alterar a opção pelo menu <strong>Options/Show/Hide/Fringe/Empty Line Indicators</strong>. Lembre-se que se você fizer alguma alteração nas configurações, você deverá gravá-las pelo menu <strong>Options/Save Options</strong> se quiser que fiquem válidas para sessões futuras e elas irão alterar o arquivo <em>.emacs</em>..</p>
+
+<p>A quarta opção irá salientar parêntesis, colchetes e chaves quando você estiver digitando um programa.</p>
+
+<p>A quinta remove aquela barra de ferramentaas que, em pouco tempo, apenas irá ocupar espaço na tela.</p>
+
+<h2>Inclusão de repositório para pacotes</h2>
+
+<pre><code>(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/")
+             t)
+(package-initialize)
+</code></pre>
+
+<p>Adiciona o repositório MELPA que contém um maior número de pacotes e com uma atualização constante.</p>
+
+<h2>Atualização da lista de pacotes</h2>
+
+<pre><code>(when (not package-archive-contents)
+  (package-refresh-contents))
+</code></pre>
+
+<p>Faz exatamente isto. Atualiza a lista de pacotes do MELPA e do ELPA (repositório padrão do Emacs) para instalação posteior dos pacotes atualizados.</p>
+
+<h2>Lista de pacotes a serem instalados</h2>
+
+<pre><code>(defvar gbm-required-packages
+  '(powerline
+    hlinum
+    hiwin
+    ido-grid-mode
+    imenu-anywhere
+    smex
+    markdown-mode
+    pandoc-mode
+    auto-complete
+    smartparens
+    theme-looper))
+</code></pre>
+
+<p>Contém uma lista dos pacotes que serão instalados se necessário. A qualquer momento, você poderá incluir na lista qualquer pacote que desejar (desde que existam nos repositórios) e configurá-lo mais no final do arquivo <em>.emacs</em>. Adiante veremos o que cada um faz e as configurações atribuídas a eles.</p>
+
+<h2>Instalação/atualização dos pacotes</h2>
+
+<pre><code>(mapc (lambda (p)
+       (package-install p))
+     gbm-required-packages)
+</code></pre>
+
+<p>Basicamente irá instalar ou atualizar os pacotes informados anteriormente.</p>
+
+<h1>Configuração da aparência e pacotes</h1>
+
+<p>Na sequencia vamos ver as cofigurações especificadas para o Emacs e para os diversos pacotes bem como seu significado.</p>
+
+<h2>Tamanho inicial da janela</h2>
+
+<pre><code>(setq initial-frame-alist
+      '(
+        (width . 130) ; characters
+        (height . 40) ; lines
+        ))
+</code></pre>
+
+<p>Não gosto do tamanho inicial da janela. Acho que antiquado, meio do tempo quando os monitores esram restritos a 40/80 colunas. Com a resolução e os monitores wide, uma janela mais larga parece mais adequado.</p>
+
+<h2>Movimentação entre frames</h2>
+
+<pre><code>(windmove-default-keybindings 'meta)
+</code></pre>
+
+<p>Para evitar que o usuário tenha que recorrer ao <em>Ctrl+O</em> para se mover entre as janelas ou retirar a mão do teclado para mover o ponteiro até a janela desejada e clicar, o processo se dá pelo pressionamento de <em>Alt+setas</em>. O foco irá passar para o frame adequado. O padrão em caso de omissão é <em>Shift+setas</em> porém iria conflitar com o CUA que utiliza estas sequencias para selecionar um texto. </p>
+
+<h2>Realçar linha do cursor</h2>
+
+<pre><code>(global-hl-line-mode t)
+</code></pre>
+
+<h2>Numeração de linhas</h2>
+
+<pre><code>(global-linum-mode t)
+</code></pre>
+
+<h2>Realça numeração da linha do cursor</h2>
+
+<pre><code>(require 'hlinum)
+(hlinum-activate)
+</code></pre>
+
+<h2>Realçar parentesis</h2>
+
+<pre><code>(show-paren-mode)
+</code></pre>
+
+<h2>Ativa smartparens</h2>
+
+<pre><code>(smartparens-global-mode t)
+</code></pre>
+
+<h2>Esconte barra de rolamento</h2>
+
+<pre><code>(scroll-bar-mode nil)
+</code></pre>
+
+<h2>Salva estado atual ao sair</h2>
+
+<pre><code>(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file "~/.emacs.d/saved-places")
+</code></pre>
+
+<h2>Desabilita buffer de mensagem inicial</h2>
+
+<pre><code>(setq initial-buffer-choice
+    t)
+</code></pre>
+
+<h2>Troca mensagem do buffer de rascunho</h2>
+
+<pre><code>(setq initial-scratch-message
+    ";; Nada neste buffer será salvo. Use Ctrl+X Ctrl+F para ler um arquivo.")
+</code></pre>
+
+<h2>Realça frame ativo</h2>
+
+<pre><code>(require 'hiwin)
+(hiwin-activate)
+(set-face-background 'hiwin-face "black")
+</code></pre>
+
+<h2>Configura powerline</h2>
+
+<pre><code>(powerline-center-theme)
+(setq powerline-default-separator
+      'wave)
+</code></pre>
+
+<h2>ido no modo grade</h2>
+
+<pre><code>(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode t)
+(ido-grid-mode t)
+</code></pre>
+
+<h2>Configura atalho <em>Ctrl+.</em> para imenu-anywhere</h2>
+
+<pre><code>(global-set-key (kbd "C-.") 'imenu-anywhere)
+</code></pre>
+
+<h2>Configura atalhos <em>Alt+x</em> e <em>Alt+X</em> para smex</h2>
+
+<pre><code>(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+</code></pre>
+
+<h2>Configura o markdown</h2>
+
+<pre><code>(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+</code></pre>
+
+<h2>Configura o autocomplete</h2>
+
+<pre><code>(ac-config-default)
+(ac-linum-workaround)
+</code></pre>
+
+<h2>Configura pandoc</h2>
+
+<pre><code>(load "pandoc-mode")
+(add-hook 'markdown-mode-hook 'pandoc-mode)
+</code></pre>
+
+<h2>Configura theme-looper</h2>
+
+<pre><code>theme-looper-set-theme-set '(adwaita
+                             deeper-blue
+                             dichromacy
+                             misterioso
+                             tango-dark
+                             tango
+                             tsdh-dark
+                             wheatgrass
+                             wombat))
+(theme-looper-set-customizations 'powerline-reset)
+(global-set-key (kbd "C-\"") 'theme-looper-enable-next-theme)
+</code></pre>
+
+<h2>Arquivos recentes</h2>
+
+<pre><code>(require 'recentf)
+(recentf-mode t)
+(setq recentf-max-menu-items 25)
+(defun recentf-ido-find-file ()
+  "Find a recent file using Ido."
+  (interactive)
+  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+    (when file
+      (find-file file))))
+(global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
+</code></pre>
+
+<h2>Cancela alterações no buffer</h2>
+
+<pre><code>(defun  revert-buffer-preserve-modes  ()
+  (interactive)
+  (revert-buffer  t  nil  t))
+(global-set-key (kbd "&lt;f5&gt;") 'revert-buffer-preserve-modes )
+</code></pre>
+
+<h1>Considerações finais</h1>
+
+<!--  LocalWords:  http-equiv Content-Type content text html charset
+ -->
+<!--  LocalWords:  utf Emacs TL emacs Options spacemacs super-emacs
+ -->
+<!--  LocalWords:  CUA shift frames Windows AppData Rooming
+ -->
+
+</body>
+</html>
