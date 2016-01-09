@@ -12,7 +12,7 @@ TL;DR
 Arquivo de configuração para o Emacs para ser utilizado em uma instalação nova ou substituir uma antiga. Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado/melhorado facilmente. 
 
 1. Baixe o arquivo [.emacs](.emacs), coloque no seu diretório *home* e abra o Emacs.
-2. Baixe e leia a documentação em [epub](README.epub), [docx](README.docx), [pdf](README.pdf), [html](README.html) ou [odt](README.odt)
+2. Baixe e leia a documentação em [epub](docs/README.epub), [docx](docs/README.docx), [pdf](docs/README.pdf), [html](docs/README.html) ou [odt](docs/README.odt)
 
 -------------------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ O arquivo de configuração *.emacs* ficou estruturado da seguinte forma:
 
 Inicialmente o Emacs tem uma cara assim:
 
-![Tela inicial do Emacs](emacs1.jpg)
+![Tela inicial do Emacs](images/emacs1.jpg)
 
 Ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período de uso você usa os atalhos em vez de tirar a mão do teclado para clicar em um ícone daqueles) e uma tela de abertura com muita informação. Tudo isto irá mudar.
 
@@ -223,7 +223,7 @@ Modifica a barra de status do Emacs deixando-a mais atraente e permite diversas 
 
 Formata as informações do IDO (InterativelyDoThings) em forma de grade e não linhas. Quando você vai abrir um arquivo (*Ctrl+X Ctrl+F*), os arquivos são mostrados em colunas. Basicamente irá maximizar a visualização dos itens. Existem diversos complementos para o pacote. Outros concorrentes para a função são o **helm** e **ivy**. Por enquanto o **ido** está de bom tamanho para o meu uso. Se você quiser saber um pouco mais sobre o *ido*, pode dar uma olhada em [Introduction to Ido Mode](https://www.masteringemacs.org/article/introduction-to-ido-mode).
 
-![ido](ido.jpg)
+![ido](images/ido.jpg)
 
 Se o usuário digitar *Ctrl+x Ctrl+f* para abrir um arquivo, aparecerá um frame igual ao da imagem. É possível selecionar o arquivo utilizando as setas ou digitando-se o nome. Neste caso, os que não coincidirem com a pesquisa será escondidos facilitando a localização. Não é necessário digitar o inicio. Se digitar *yaml* salta direto para o arquivo com a extensão informada.
 
@@ -247,7 +247,7 @@ Atribui atalhos para a utilização do *smex*. Faz com que *Alt+X* mostre as op�
 
 Bom para programadores pois irá completando automaticamente ou melhor, mostra um menu com as possibilidades mais prováveis, agilizando a digitação do programa. Possui diversos módulos para diversas linguagens. Muitos possuem ainda uma ajuda para a função. Como foi definida a numeração automática de linha em todos os buffers, a segunda linha evita que o menu seja numerado automaticamente. Por exemplo, em elisp:
 
-![Auto complete](autocomplete.jpg)
+![Auto complete](images/autocomplete.jpg)
 
 ## Configura o markdown ##
 
@@ -321,7 +321,7 @@ Algumas vezes efetuamos alterações em algum arquivo e desistimos. Pressionando
 
 Ao término, o Emacs pode ter ficado com uma aparência assim (ou mais ao seu gosto).
 
-![Emacs final](emacs2.jpg)
+![Emacs final](images/emacs2.jpg)
 
 # Considerações finais #
 
@@ -346,9 +346,9 @@ Apesar do CUA facilitar a memorização de alguns atalhos para quem vem de outro
 
 ### *Alt+x occur* ###
 
-Permite que você informe um texto (pode ser expressão regular) e será aberto um frame informando todas as ocorrência no seu arquivo para que você tenha acesso rápido aos diversos pontos.
+Permite que você informe um texto (pode ser expressão regular) e será aberto um frame informando todas as ocorrência no seu arquivo para que você tenha acesso rápido aos diversos pontos. Na realidade, acabei de usar aqui. Reestruturei os diretórios e precisava incluir *images/* antes de todas as imagens. Como eram poucas imagens, foi mais fácil *Alt+x occurs*, procurar as ocorrencias de *jpg* e incluir/copiar *images/*. Sim, poderia fazer uma pesquisa e substituição usando expressões regulares.
 
-![Alt+x occur](occur.jpg)
+![Alt+x occur](images/occur.jpg)
 
 <!--  LocalWords:  http-equiv Content-Type content text html charset
  -->
