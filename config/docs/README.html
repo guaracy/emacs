@@ -6,7 +6,7 @@
 <p>Arquivo de configuração para o Emacs para ser utilizado em uma instalação nova ou substituir uma antiga. Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado/melhorado facilmente.</p>
 <ol style="list-style-type: decimal">
 <li>Baixe o arquivo <a href=".emacs" class="uri">.emacs</a>, coloque no seu diretório <em>home</em> e abra o Emacs.</li>
-<li>Baixe e leia a documentação em <a href="README.epub">epub</a>, <a href="README.docx">docx</a>, <a href="README.pdf">pdf</a>, <a href="README.html">html</a> ou <a href="README.odt">odt</a></li>
+<li>Baixe e leia a documentação em <a href="docs/README.epub">epub</a>, <a href="docs/README.docx">docx</a>, <a href="docs/README.pdf">pdf</a>, <a href="docs/README.html">html</a> ou <a href="docs/README.odt">odt</a></li>
 </ol>
 <hr />
 <p>Acredito que o maior problema para alguém iniciar com o Emacs está em como ele vem configurado inicialmente. Uma aparência relativamente simples e com teclas de atalhos diferentes das que os usuários estão acostumados (pelo menos as principais). Muitas das configurações devem estar no arquivo <em>.emacs</em> o que implica em edição e a primeira decepção do usuário.</p>
@@ -21,7 +21,7 @@
 </ol>
 <p>Inicialmente o Emacs tem uma cara assim:</p>
 <div class="figure">
-<img src="emacs1.jpg" alt="Tela inicial do Emacs" />
+<img src="images/emacs1.jpg" alt="Tela inicial do Emacs" />
 <p class="caption">Tela inicial do Emacs</p>
 </div>
 <p>Ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período de uso você usa os atalhos em vez de tirar a mão do teclado para clicar em um ícone daqueles) e uma tela de abertura com muita informação. Tudo isto irá mudar.</p>
@@ -142,7 +142,7 @@
 (ido-grid-mode t)</code></pre>
 <p>Formata as informações do IDO (InterativelyDoThings) em forma de grade e não linhas. Quando você vai abrir um arquivo (<em>Ctrl+X Ctrl+F</em>), os arquivos são mostrados em colunas. Basicamente irá maximizar a visualização dos itens. Existem diversos complementos para o pacote. Outros concorrentes para a função são o <strong>helm</strong> e <strong>ivy</strong>. Por enquanto o <strong>ido</strong> está de bom tamanho para o meu uso. Se você quiser saber um pouco mais sobre o <em>ido</em>, pode dar uma olhada em <a href="https://www.masteringemacs.org/article/introduction-to-ido-mode">Introduction to Ido Mode</a>.</p>
 <div class="figure">
-<img src="ido.jpg" alt="ido" />
+<img src="images/ido.jpg" alt="ido" />
 <p class="caption">ido</p>
 </div>
 <p>Se o usuário digitar <em>Ctrl+x Ctrl+f</em> para abrir um arquivo, aparecerá um frame igual ao da imagem. É possível selecionar o arquivo utilizando as setas ou digitando-se o nome. Neste caso, os que não coincidirem com a pesquisa será escondidos facilitando a localização. Não é necessário digitar o inicio. Se digitar <em>yaml</em> salta direto para o arquivo com a extensão informada.</p>
@@ -158,7 +158,7 @@
 (ac-linum-workaround)</code></pre>
 <p>Bom para programadores pois irá completando automaticamente ou melhor, mostra um menu com as possibilidades mais prováveis, agilizando a digitação do programa. Possui diversos módulos para diversas linguagens. Muitos possuem ainda uma ajuda para a função. Como foi definida a numeração automática de linha em todos os buffers, a segunda linha evita que o menu seja numerado automaticamente. Por exemplo, em elisp:</p>
 <div class="figure">
-<img src="autocomplete.jpg" alt="Auto complete" />
+<img src="images/autocomplete.jpg" alt="Auto complete" />
 <p class="caption">Auto complete</p>
 </div>
 <h2 id="configura-o-markdown">Configura o markdown</h2>
@@ -214,7 +214,7 @@ language: pt-BR
 <h2 id="finalmente">Finalmente</h2>
 <p>Ao término, o Emacs pode ter ficado com uma aparência assim (ou mais ao seu gosto).</p>
 <div class="figure">
-<img src="emacs2.jpg" alt="Emacs final" />
+<img src="images/emacs2.jpg" alt="Emacs final" />
 <p class="caption">Emacs final</p>
 </div>
 <h1 id="considerações-finais">Considerações finais</h1>
@@ -235,9 +235,9 @@ language: pt-BR
 </ol>
 <h2 id="comandos">comandos</h2>
 <h3 id="altx-occur"><em>Alt+x occur</em></h3>
-<p>Permite que você informe um texto (pode ser expressão regular) e será aberto um frame informando todas as ocorrência no seu arquivo para que você tenha acesso rápido aos diversos pontos.</p>
+<p>Permite que você informe um texto (pode ser expressão regular) e será aberto um frame informando todas as ocorrência no seu arquivo para que você tenha acesso rápido aos diversos pontos. Na realidade, acabei de usar aqui. Reestruturei os diretórios e precisava incluir <em>images/</em> antes de todas as imagens. Como eram poucas imagens, foi mais fácil <em>Alt+x occurs</em>, procurar as ocorrencias de <em>jpg</em> e incluir/copiar <em>images/</em>. Sim, poderia fazer uma pesquisa e substituição usando expressões regulares.</p>
 <div class="figure">
-<img src="occur.jpg" alt="Alt+x occur" />
+<img src="images/occur.jpg" alt="Alt+x occur" />
 <p class="caption">Alt+x occur</p>
 </div>
 <!--  LocalWords:  http-equiv Content-Type content text html charset
