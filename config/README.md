@@ -12,7 +12,7 @@ TL;DR
 Arquivo de configuração para o Emacs para ser utilizado em uma instalação nova ou substituir uma antiga. Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado/melhorado facilmente. 
 
 1. Baixe o arquivo [.emacs](.emacs), coloque no seu diretório *home* e abra o Emacs.
-2. Baixe e leia a documentação em [epub](docs/README.epub), [docx](docs/README.docx), [pdf](docs/README.pdf), [html](docs/README.html) ou [odt](docs/README.odt)
+2. Baixe e leia a documentação em [epub](docs/README.epub?raw=true), [docx](docs/README.docx?raw=true), [pdf](docs/README.pdf?raw=true), [html](docs/README.html?raw=true) ou [odt](docs/README.odt?raw=true)
 
 -------------------------------------------------------------------------------
 
