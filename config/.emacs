@@ -51,7 +51,6 @@
     smartparens
     goto-chg
     indent-guide
-    ;paradox
     theme-looper))
 
 ;;-----------------------------------------
@@ -321,6 +320,8 @@
 ;;-----------------------------------------
 ;; Shuffle lines around
 ;;
+;; TODO: verificar conflitos
+;;
 (defun move-line-down ()
   (interactive)
   (let ((col (current-column)))
@@ -359,6 +360,10 @@
 (global-set-key (kbd "C-x C-<up>") 'open-line-above)
 
 
+;;-----------------------------------------
+;; Se o arquivo .myemacs existe, carregar
+;; configurações do usuário
+;;
 (setq myconfig "~/.myemacs")
 (if (file-exists-p myconfig)
     (load-file myconfig))
