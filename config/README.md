@@ -51,11 +51,11 @@ O arquivo *.emacs* poderá ser alterado antes de executar o Emacs pela primeira 
 
     (custom-set-variables
      '(cua-mode t nil (cua-base))
-     '(custom-enabled-themes (quote (deeper-blue)))
+     '(custom-enabled-themes (quote (misterioso)))
      '(indicate-empty-lines t)
      '(show-paren-mode t)
      '(tool-bar-mode nil))
-	 
+
 Estas configurações poderiam estar em qualquer parte do arquivo *.emacs* mas eu resolvi deixar no início pois, quando o usuário efetuar alguma alteração pelo menu **Options** e selecionar **Options/Save Options** para torná-las permanentes, o Emacs irá alterar estas variáveis colocando mais informações. 
 
 A primeira linha ativa o modo CUA (Common User Access) para que você não precise digitar *Alt+w* para copiar um texto, por exemplo. Pode utilizar o famoso *Crtl+C Ctrl+V*. Outra característica interessante que vem com o modo a a seleção em bloco. Você pressiona *Ctrl+Enter* e utiliza as setas para selecionar. Pode selecionar apenas uma coluna um um bloco maior. Depois pode utilizar as opções normais como copia, colar, excluir, sobrescrever, etc. *Ctrl+Enter*, novamente, para sair do modo de seleção em bloco.
@@ -89,7 +89,9 @@ Faz exatamente isto. Atualiza a lista de pacotes do MELPA e do ELPA (repositóri
 ## Lista de pacotes a serem instalados ##
 
     (defvar gbm-required-packages
-      '(powerline
+      '(which-key
+        hl-line+
+        powerline
         hlinum
         hiwin
         ido-grid-mode
@@ -99,8 +101,10 @@ Faz exatamente isto. Atualiza a lista de pacotes do MELPA e do ELPA (repositóri
         pandoc-mode
         auto-complete
         smartparens
+        goto-chg
+        indent-guide
         theme-looper))
-    
+
 Contém uma lista dos pacotes que serão instalados se necessário. A qualquer momento, você poderá incluir na lista qualquer pacote que desejar (desde que existam nos repositórios) e configurá-lo mais no final do arquivo *.emacs*. Adiante veremos o que cada um faz e as configurações atribuídas a eles.
 
 ## Instalação/atualização dos pacotes ##
@@ -125,7 +129,20 @@ Na sequencia vamos ver as configurações especificadas para o Emacs e para os d
 
 Não gosto do tamanho inicial da janela. Acho que antiquado, meio do tempo quando os monitores eram restritos a 40/80 colunas. Com a resolução e os monitores wide, uma janela mais larga parece mais adequado.
 
+## Which-key ##
+
+    (which-key-mode)
+    (which-key-setup-minibuffer)
+    (setq max-mini-window-height 10)
+    (setq which-key-idle-delay 0.5)
+    (set-face-attribute 'which-key-local-map-description-face nil :weight 'bold)
+
+
+Quando o usuário digitar um prefixo de comando *Ctrl+x*, *Ctrl+c* ou *Ctrl+h*, por exemplo, e aguardar 0.5 segundos, será apresentado um frame com os complementos disponíveis. Os complementos aparecerão em negrito se forem específicos do modo do buffer atual. Poderá ser necessário mais de uma página para mostrar os complementos do prefixo. Pressionando *Ctrl+h* será mostrado uma ajuda onde o usuário poderá digita *n* para ir para a próxima página, *p* para ir para a anterior, *u* para cancelar a última sequencia do comando, *a* para abortar o *which key*. Especifiquei o número de linhas do minibuffer para 10, pelo menos temporariamente, pois em determinadas ocasiões 
+
+
 ## Movimentação entre frames ##
+
 
     (windmove-default-keybindings 'meta)
 
@@ -139,9 +156,12 @@ Informamos ao Emacs para numerar as linhas do buffer em qualquer frame aberto. S
 
 ## Realçar linha do cursor ##
 
-    (global-hl-line-mode t)
-	
-Informamos ao Emacs para realçar toda a linha onde encontra-se o cursor.
+    (hl-line-mode t)
+    (toggle-hl-line-when-idle)
+    (set-face-attribute hl-line-face nil :background "Navy")
+    (set-cursor-color "yellow")
+
+Se quisermos que a linha onde encontra-se o cursor permaneça sempre realçada, basta trocar as duas primeiras linhas por `(global-hl-line-mode t)`. Como está, a linha só é realçada quando o Emacs está em repouso. Prefiro assim pois o realce da sintaxe pode ficar muito ruim com a linha realçada quando estamos digitando. Com a linha sempre realada, perdemos o detalhe. As duas últimas linhas foram incluídas pois o `hl-line+` altera a cor de fundo da linha realçada e a cor do cursor. Fica bom para funcos claros mas como estou usando um fundo escuro, deixo mais visível 
 
 
 ## Realça numeração da linha do cursor ##
@@ -180,7 +200,7 @@ Não vejo muita necessidade da barra de rolamento. Quando você está no início
 
     (require 'saveplace)
     (setq-default save-place t)
-    (setq save-place-file "~/.emacs.d/saved-places")
+    (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
 Informa ao Emacs para salva a posição do cursor dos arquivos abertos. Na próxima vez que você abrir o arquivo, ele estará na posição que você estava.
 
@@ -277,6 +297,13 @@ Agora a coisa ficou mais legal. Apesar da documentação meio sofrível, o *pand
 
 Para a produção de um livro mais sofisticado é necessário que o usuário utilize alguns arquivos/programas de suporte. O livro [Pro Git](https://progit.org/), por exemplo, foi feito utilizando *markdown* e diversos utilitários. Para produzir a versão em *pdf*, foi utilizado o *pandoc* para gerar o LaTeX. Você pode ver/baixar os [fontes](https://github.com/progit/progit) no GitHub e adaptar para o seu projeto.
 
+## Configura goto last change
+
+    (global-set-key (kbd "C-x .") 'goto-last-change)
+    (global-set-key (kbd "C-x ,") 'goto-last-change-reverse)
+
+Configura *goto-chg* com os atalhos *Ctrl+x .* e *Ctrl+x ,* para ir para a última alteração ou a anterior. Note que *<* e *>* mapeira com os especificados pelo atalho. Caso o arquivo já tenha sido gravado, o usuário será informado que a alteração já foi salva. 
+
 ## Configura theme-looper ##
 
     theme-looper-set-theme-set '(adwaita
@@ -308,14 +335,135 @@ Apenas para facilitar a visualização dos temas para ver qual fica melhor ou lh
 
 Aqui dizemos ao Emacs para lembra-se dos últimos 25 arquivos abertos (poderia ser outro número). Os arquivos ficarão acessíveis no menu **File/Open Recent** ou pelo atalho *Ctrl+x Ctrl+r* onde abrirá um frame do *ido* colocando o nome dos arquivos, facilitando a reabertura de qualquer um deles. 
 
-## Cancela alterações no buffer ##
+# Funções #
+
+Algumas funções que podem ser úteis e seus atalhos.
+
+## Recarregar arquivo ##
 
     (defun  revert-buffer-preserve-modes  ()
       (interactive)
       (revert-buffer  t  nil  t))
     (global-set-key (kbd "<f5>") 'revert-buffer-preserve-modes )
 
-Algumas vezes efetuamos alterações em algum arquivo e desistimos. Pressionando *F5* fará com que o Emacs reabra a última versão salva. 
+Basicamente ignora as alterações feitas pelo usuário e reabre o arquivo do disco. 
+
+## Rotaciona frames ##
+
+    (defun rotate-windows ()
+      "Rotate your windows"
+      (interactive)
+      (cond ((not (> (count-windows)1))
+             (message "You can't rotate a single window!"))
+            (t
+             (setq i 1)
+             (setq numWindows (count-windows))
+             (while  (< i numWindows)
+               (let* (
+                      (w1 (elt (window-list) i))
+                      (w2 (elt (window-list) (+ (% i numWindows) 1)))
+                      (b1 (window-buffer w1))
+                      (b2 (window-buffer w2))
+                      (s1 (window-start w1))
+                      (s2 (window-start w2))
+                      )
+                 (set-window-buffer w1  b2)
+                 (set-window-buffer w2 b1)
+                 (set-window-start w1 s2)
+                 (set-window-start w2 s1)
+                 (setq i (1+ i)
+				 (other-window)))))))
+    (global-set-key (kbd "<f6>") 'rotate-windows)
+
+Faz uma rotação do conteúdo dos frames
+
+## Fechar buffer e remove arquivo do disco ##
+
+    (defun delete-current-buffer-file ()
+      "Removes file connected to current buffer and kills buffer."
+      (interactive)
+      (let ((filename (buffer-file-name))
+            (buffer (current-buffer))
+            (name (buffer-name)))
+        (if (not (and filename (file-exists-p filename)))
+            (ido-kill-buffer)
+          (when (yes-or-no-p "Are you sure you want to remove this file fom disk? ")
+            (delete-file filename)
+            (kill-buffer buffer)
+            (message "File '%s' successfully removed" filename)))))
+     
+    (global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
+
+Fecha o buffer atual e remove o arquivo em disco. Para fechar o buffer é utilizado *Ctrl+x k*. Para não confundir muito o atalho ficou *Ctrl+x Ctrl+k*. Pede confirmação antes de excluir o arquivo.
+
+## Renomeia buffer e arquivo no disco ##
+
+    (defun rename-current-buffer-file ()
+          "Renames current buffer and file it is visiting."
+          (interactive)
+          (let ((name (buffer-name))
+                (filename (buffer-file-name)))
+            (if (not (and filename (file-exists-p filename)))
+                (error "Buffer '%s' is not visiting a file!" name)
+              (let ((new-name (read-file-name "New name: " filename)))
+                (if (get-buffer new-name)
+                    (error "A buffer named '%s' already exists!" new-name)
+                  (rename-file filename new-name 1)
+                  (rename-buffer new-name)
+                  (set-visited-file-name new-name)
+                  (set-buffer-modified-p nil)
+                  (message "File '%s' successfully renamed to '%s'"
+                           name (file-name-nondirectory new-name)))))))
+    (global-set-key (kbd "C-x r C-f") 'rename-current-buffer-file)
+	
+Verificar erros
+
+## troca linhas ##
+
+    (defun move-line-down ()
+      (interactive)
+      (let ((col (current-column)))
+        (save-excursion
+          (forward-line)
+          (transpose-lines 1))
+        (forward-line)
+        (move-to-column col)))
+     
+    (defun move-line-up ()
+      (interactive)
+      (let ((col (current-column)))
+        (save-excursion
+          (forward-line)
+          (transpose-lines -1))
+        (move-to-column col)))
+    (global-set-key (kbd "<C-S-down>") 'move-line-down)
+    (global-set-key (kbd "<C-S-up>") 'move-line-up)
+
+Troca a linha atual com a anterior *Ctrl+Shift+up* ou posterior *Ctrl+Shift+down*. 
+
+## Nova linha antes/depois ##
+
+    ;;-----------------------------------------
+    ;; Nova linha abixo/acima do cursos
+    ;;
+    (defun open-line-below ()
+      (interactive)
+      (end-of-line)
+      (newline)
+      (indent-for-tab-command))
+     
+    (defun open-line-above ()
+      (interactive)
+      (beginning-of-line)
+      (newline)
+      (forward-line -1)
+      (indent-for-tab-command))
+     
+    (global-set-key (kbd "<M-return>") 'open-line-below)
+    (global-set-key (kbd "<M-S-return>") 'open-line-above)
+
+ERROR: Conflitando com mardown *Alt+Enter*
+
 
 ## Finalmente ##
 
@@ -332,6 +480,7 @@ O que vem a seguir não é referente ao arquivo de configuração *.emacs*.
 Apesar do CUA facilitar a memorização de alguns atalhos para quem vem de outros editores, outros ainda podem causar confusão. Vejamos alguns atalhos (entre dezenas de milhares mas não se preocupe pois ninguém sabe todos) úteis ou que podem ser utilizados para outras finalidades.
 
 1. **Ctrl+s** é utilizado para pesquisar (*Search*) no Emacs e não para salvar um arquivo. Pressionando *Ctrl+s* novamente, o cursor irá para a próxima ocorrência. Para gravar o arquivo é utilizado *Ctrl+x Ctrl+s*. Nada impede que você defina *Ctrl+s* para gravar, *Ctrl+f* para pesquisar e *Ctrl+r* para pesquisar e trocar. Mas você deverá ter cuidado com os conflitos.
+2. **Ctrl+x Ctrl+s** grava o arquivo do buffer atual, **Ctrl+x Ctrl+w** grava o buffer atual com outro nome e **Ctrl+x Ctrl+f** abre um arquivo para edição.
 2. **Ctrl+g** é a salvação para todos os males. Se alguma coisa der errado, pressione a sequencia até que se normalize. Algumas vezes não basta pressionar apenas uma vez. Digitou *Ctrl+s* para gravar e iniciou uma pesquisa? *Ctrl+g*. ;-)
 3. **Ctrl+x Ctrl+c** para fechar o programa. Se algum programa foi alterado, você será questionado se deseja gravar, ignorar ou cancelar. Ou .... *Ctrl+g* é claro.
 4. **Ctrl+2** divide verticalmente o buffer onde está o cursor em dois frames.
@@ -341,6 +490,7 @@ Apesar do CUA facilitar a memorização de alguns atalhos para quem vem de outro
 8. **Ctrl+x b** abre um frame (*ido*) para que o usuário selecione outro buffer.
 9. **Ctrl+x k** fecha o buffer atual. Se o arquivo foi alterado, o usuário será perguntado se deseja salvar/etc. ou **Ctrl+g**.
 10. **Home** e **End** servem para ir ao início ou final da linha, precedidos de **Ctrl** para o início ou final do arquivo, precedidos de **Shift** da posição atual até o início ou final da linha ou do arquivo se o **Ctrl** também for pressionado.
+11. **Ctrl+x Ctrl+q** alterna o buffer atual para somenete leitura para garantir que não seja efetuada nenhuma alteração. Pressione novamente para edição normal.
 
 ## comandos ##
 
