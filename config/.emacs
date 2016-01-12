@@ -1,4 +1,13 @@
 ;;------------------------------------------
+;; versão: 1.0
+;; autor: Guaracy Monteiro
+;; data: jan/16
+;;
+;; Configuração automática do Emacs
+;; Para ser utilizado em uma instalação nova
+;; ou excluir/move .emacs e .emacs.d e
+;; usar este arquivo.
+;;------------------------------------------
 ;; # Configurações iniciais
 ;;------------------------------------------
 ;; ## Alteração das opções iniciais
@@ -102,7 +111,7 @@
 (hlinum-activate)
 
 ;;-----------------------------------------
-;; ## Realçar parentesis
+;; ## Realçar parêntesis
 ;;
 (show-paren-mode)
 
