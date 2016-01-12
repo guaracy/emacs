@@ -139,7 +139,7 @@
 ;; ## Troca mensagem do buffer de rascunho
 ;;
 (setq initial-scratch-message
-    ";; Nada neste buffer será salvo. Use:\n;; Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.")
+    ";; Nada neste buffer será salvo. Use:\n;; Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.\n")
 
 ;;-----------------------------------------
 ;; ## Realça frame ativo
@@ -342,7 +342,7 @@
 (global-set-key (kbd "<C-S-up>") 'move-line-up)
 
 ;;-----------------------------------------
-;; Nova linha abixo/acima do cursos
+;; Nova linha abaixo/acima do cursor
 ;;
 (defun open-line-below ()
   (interactive)
