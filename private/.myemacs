@@ -1,0 +1,16 @@
+;; https://github.com/Skrylar/red.el
+;;(add-to-list 'load-path "~/.emacs.d/modes/red.el")
+;;(require 'red)
+
+;;-----------------------------------------
+;; ## Instalação/atualização dos pacotes
+;;
+
+
+(package-refresh-contents)
+(mapc (lambda (p)
+	(package-install p))
+      '(magit
+	paradox
+	))
+(global-set-key (kbd "C-x g") 'magit-status)
