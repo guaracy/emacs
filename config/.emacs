@@ -4,10 +4,6 @@
 ;; ## Alteração das opções iniciais
 ;;
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (misterioso)))
  '(indicate-empty-lines t)
@@ -199,12 +195,6 @@
 (add-hook 'markdown-mode-hook 'pandoc-mode)
 
 ;;-----------------------------------------
-;; ## Configura goto last change
-;;
-(global-set-key (kbd "C-x .") 'goto-last-change)
-(global-set-key (kbd "C-x ,") 'goto-last-change-reverse)
-
-;;-----------------------------------------
 ;; ## Indent guide
 ;;
 (indent-guide-global-mode)
@@ -226,7 +216,13 @@
 (global-set-key (kbd "C-\"") 'theme-looper-enable-next-theme)
 
 ;;-----------------------------------------
-;; ## Arquivos recentes
+;; ## Configura goto last change
+;;
+(global-set-key (kbd "C-x .") 'goto-last-change)
+(global-set-key (kbd "C-x ,") 'goto-last-change-reverse)
+
+;;-----------------------------------------
+;; ## Ctrl+x Ctrl+r abre lista de arquivos recentes
 ;;
 (require 'recentf)
 (recentf-mode t)
