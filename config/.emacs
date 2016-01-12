@@ -253,6 +253,19 @@
 (if (file-exists-p myconfig)
     (load-file myconfig))
 
+
+;;-----------------------------------------
+;; Define F3 para pesquisar e Shift+F3 para pesquisar próxima
+(global-set-key (kbd "S-<f3>") 'isearch-backward)
+
+;;-----------------------------------------
+;; Define F3 para iniciar busca
+;; F3 novamente para próxima ocorrência
+;; Shift+F3 para ocorrência anterior
+(global-set-key (kbd "<f3>") 'isearch-forward)
+(define-key isearch-mode-map (kbd "<f3>") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "S-<f3>") 'isearch-repeat-backward)
+
 ;;-----------------------------------------
 ;; FIM DO ARQUIVO .emacs
 ;;-----------------------------------------
