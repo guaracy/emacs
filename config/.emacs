@@ -50,8 +50,10 @@
     ido-select-window
     imenu-anywhere
     smex
-    markdown-mode
+    ;markdown-mode
     pandoc-mode
+    org-cua-dwim
+    org-pandoc
     auto-complete
     smartparens
     goto-chg
@@ -192,16 +194,16 @@
 ;;-----------------------------------------
 ;; ## Configura o markdown
 ;;
-(autoload 'markdown-mode "markdown-mode"
-  "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;;(autoload 'markdown-mode "markdown-mode"
+;;  "Major mode for editing Markdown files" t)
+;;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;;(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;;(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;-----------------------------------------
 ;; ## Configura pandoc
-(load "pandoc-mode")
-(add-hook 'markdown-mode-hook 'pandoc-mode)
+;;(load "pandoc-mode")
+;;(add-hook 'org-mode-hook 'pandoc-mode)
 
 ;;-----------------------------------------
 ;; ## Indent guide

@@ -4,7 +4,7 @@ O arquivo /.myemacs/ será carregado ao final do arquivo de configuração /.ema
 
 
 
-#+ begin_src lisp
+#+begin_src lisp
 ;;-----------------------------------------
 ;; ## Cancela alterações no buffer
 ;;
@@ -12,5 +12,5 @@ O arquivo /.myemacs/ será carregado ao final do arquivo de configuração /.ema
   (interactive)
   (revert-buffer  t  nil  t))
 (global-set-key (kbd "<f5>") 'revert-buffer-preserve-modes )
-#+ end_src
+#+end_src
 
