@@ -1,3 +1,11 @@
+
+
+#+TITLE: Título do Documento
+#+AUTHOR: Guaracy Monteiro
+#+EXPORT_FILE_NAME: README
+
+Por enquanto, apenas para testes.
+
 * Arquivos
 
 O arquivo /.myemacs/ será carregado ao final do arquivo de configuração /.emacs/. É importante que as alterações sejam efetuadas neste arquivo e não no arquivo /.emacs/.

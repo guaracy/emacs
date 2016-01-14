@@ -1,0 +1,13 @@
+* emacs
+
+Documentos, dicas, tutoriais, etc.
+
+** config
+
+ Contém um arquivo *.emacs* para ser utilizado em uma instalação nova ou refazer uma antiga.
+
+** private
+
+ Contém o meu arquivo *.myemacs* para ser utilizado com o arquivo de configuração (*.emacs*).
+
+
