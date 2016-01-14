@@ -1,0 +1,28 @@
+#+TITLE:     Emacs em 30 Segundos
+#+AUTHOR:    Guaracy Monteiro
+
+------
+
+*TL;DR*
+
+Arquivo de configuração para ser utilizado em uma instalação nova do Emacs ou substituir uma antiga (excluir *.emacs* e *.emacs.d*). Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado/melhorado facilmente. 
+
+Grave o arquivo [[https://raw.githubusercontent.com/guaracy/emacs/master/config/.emacs][.emacs]], no seu diretório *home*. Se desejar, grave também o arquivo [[https://raw.githubusercontent.com/guaracy/emacs/master/config/.myemacs][.myemacs]] no seu diretório *home*. Abra o Emacs e espere a configuração terminar.
+2. Baixe e leia a documentação */TBD/* .
+
+------
+
+* Emacs em 30 segundos
+
+A ideia base deste projeto é a possível dificuldade de instalação e configuração do Emacs por parte dos usuários. A instalação é simples mas, conforme o programa sai de /fábrica/, muitas pessoas encontram uma pequena dificuldade inicial e, com consideram: /"- Ah, é só mais um editor de textos. Vou continuar com o que eu já conheço."/. 
+
+** Versão 1
+
+
+** Versão 2
+
+* Introdução
+
+** Motivação
+
+

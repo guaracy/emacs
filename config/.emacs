@@ -89,11 +89,6 @@
 (set-face-attribute 'which-key-local-map-description-face nil :weight 'bold)
 
 ;;------------------------------------------
-;; ## Movimentação entre frames
-;;
-(windmove-default-keybindings 'meta)
-
-;;------------------------------------------
 ;; ## Numeração de linhas
 ;;
 (global-linum-mode t)
@@ -127,7 +122,7 @@
 ;; ## Ativa smartparens
 (show-smartparens-global-mode t)
 (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
-(add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
+;(add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 
 ;;-----------------------------------------
 ;; ## Salva estado atual ao sair
@@ -267,6 +262,21 @@
 (global-set-key (kbd "<f3>") 'isearch-forward)
 (define-key isearch-mode-map (kbd "<f3>") 'isearch-repeat-forward)
 (define-key isearch-mode-map (kbd "S-<f3>") 'isearch-repeat-backward)
+
+;;------------------------------------------
+;; ## Movimentação entre frames
+;;
+(windmove-default-keybindings) ;; 'meta);
+;; Make windmove work in org-mode:
+(add-hook 'org-shiftup-final-hook 'windmove-up)
+(add-hook 'org-shiftleft-final-hook 'windmove-left)
+(add-hook 'org-shiftdown-final-hook 'windmove-down)
+(add-hook 'org-shiftright-final-hook 'windmove-right)
+
+(setq org-CUA-compatible t)
+(setq org-support-shift-select t)
+(setq org-src-fontify-natively t)
+(setq org-startup-truncated nil)
 
 ;;-----------------------------------------
 ;; FIM DO ARQUIVO .emacs
