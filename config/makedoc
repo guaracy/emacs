@@ -1,13 +1,15 @@
 #!/usr/bin/sh
 
 echo "Gerando pdf"
-pandoc -S --toc -o docs/README.pdf title.yaml README.md
+pandoc -S --toc -o docs/README.pdf README.org
 echo "Gerando docx"
-pandoc -S --toc -o docs/README.docx title.yaml README.md
+pandoc -S --toc -o docs/README.docx README.org
 echo "Gerando epub"
-pandoc -S --toc -o docs/README.epub title.yaml README.md
+pandoc -S --toc -o docs/README.epub README.org
 echo "Gerando odt"
-pandoc -S --toc -o docs/README.odt title.yaml README.md
+pandoc -S --toc -o docs/README.odt README.org
 echo "Gerando html"
-pandoc -S --toc -o docs/README.html title.yaml README.md
+pandoc -S --toc -o docs/README.html README.org
+echo "Gerando tex"
+pandoc -S --toc -o docs/README.tex README.org
 
