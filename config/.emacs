@@ -276,6 +276,7 @@
 (setq org-src-fontify-natively t)
 (setq org-startup-truncated nil)
 
+
 (delete-other-windows)
 
 ;;-----------------------------------------
