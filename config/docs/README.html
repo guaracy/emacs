@@ -1,70 +1,377 @@
-<p></p>
-<hr />
-<p><strong>TL;DR</strong></p>
-<p>Arquivo de configuração para ser utilizado em uma instalação nova do Emacs ou substituir uma antiga (excluir <strong>.emacs</strong> e <strong>.emacs.d</strong>). Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado//melhorado facilmente.</p>
-<ol>
-<li>Grave o arquivo <a href="https://raw.githubusercontent.com/guaracy/emacs/master/config/.emacs">.emacs</a>, no seu diretório <strong>home</strong>. Se desejar, grave também o arquivo <a href="https://raw.githubusercontent.com/guaracy/emacs/master/config/.myemacs">.myemacs</a> no seu diretório <strong>home</strong>. Abra o Emacs e espere a configuração terminar.</li>
-<li>Baixe e leia a documentação <strong>TBD</strong> .</li>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt_br" xml:lang="pt_br">
+<head>
+<!-- 2016-01-15 Sex 01:10 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs em 30 Segundos</title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Guaracy Monteiro" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Emacs em 30 Segundos</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline4">1. Emacs em 30 segundos</a>
+<ul>
+<li><a href="#orgheadline1">1.1. Alternativas</a></li>
+<li><a href="#orgheadline2">1.2. Características do projeto</a></li>
+<li><a href="#orgheadline3">1.3. org-mode</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline12">2. Arquivo .emacs</a>
+<ul>
+<li><a href="#orgheadline5">2.1. Configurações iniciais</a></li>
+<li><a href="#orgheadline6">2.2. Pacotes</a></li>
+<li><a href="#orgheadline7">2.3. Alterações das opções iniciais</a></li>
+<li><a href="#orgheadline8">2.4. Inclusão e atualização de fonte de pacotes</a></li>
+<li><a href="#orgheadline9">2.5. Seleção e instalação dos pacotes pelo Emacs30</a></li>
+<li><a href="#orgheadline11">2.6. Configurações da aparência e dos pacotes</a>
+<ul>
+<li><a href="#orgheadline10">2.6.1. Tamanho da janela</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline13">3. Arquivo .myemacs</a></li>
+</ul>
+</div>
+</div>
+<p>
+\pagebreak
+</p>
+
+<hr  />
+
+<p>
+<b>TL;DR</b>
+</p>
+
+<p>
+Arquivo de configuração para ser utilizado em uma instalação nova do Emacs ou substituir uma antiga (excluir <b>.emacs</b> e <b>.emacs.d</b>). Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado//melhorado facilmente. 
+</p>
+
+<ol class="org-ol">
+<li>Grave o arquivo <a href="https://raw.githubusercontent.com/guaracy/emacs/master/config/.emacs">.emacs</a>, no seu diretório <b>home</b>. Se desejar, grave também o arquivo <a href="https://raw.githubusercontent.com/guaracy/emacs/master/config/.myemacs">.myemacs</a> no seu diretório <b>home</b>. Abra o Emacs e espere a configuração terminar.</li>
+<li>Baixe e leia a documentação <b>TBD</b> .</li>
 </ol>
-<hr />
-<p></p>
-<h1 id="emacs-em-30-segundos">Emacs em 30 segundos</h1>
-<p>A ideia base deste projeto é a possível dificuldade de instalação e configuração do Emacs por parte dos usuários. A instalação é simples mas, conforme o programa sai de <em>fábrica</em>, muitas pessoas encontram uma pequena dificuldade inicial e, como pensam: “- <em>Ah, é só mais um editor de textos. Vou continuar com o que eu já conheço</em>.”, e perdem uma ferramenta das mais poderosas que poderiam usar. Apesar de ser possível efetuar algumas alterações pelo menu, muitas necessitam que o usuário edite um arquivo de configuração (<strong>.emacs</strong>). A instalação de novos pacotes, por exemplo, já foi uma tarefa bem mais complicada.</p>
-<h2 id="alternativas">Alternativas</h2>
-<p>Existem algumas opções que possuem um Emacs configurado para o usuário final. É possível citar:</p>
-<ol>
-<li><a href="https://github.com/syl20bnr/spacemacs">Spacemacs</a> : É uma ótima alternativa e bastante indicada para usuários do Vim. Existem pessoas que tentaram usar o Emacs mas voltaram para o Vim. Depois de instalar o Spacemacs, estão usando é achando ótimo. Basicamente é uma cópia do diretório <strong>.emacs.d</strong> com toda a configuração automática. O usuário precisará ler a documentação se desejar fazer alguma alteração na configuração.</li>
-<li><a href="https://github.com/myTerminal/super-emacs">super-emacs</a> : Também é uma cópia do diretório <strong>.emacs.d</strong> porém com uma configuração mais simples que o Spacemacs.</li>
+
+<hr  />
+
+<p>
+\pagebreak
+</p>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4"><span class="section-number-2">1</span> Emacs em 30 segundos</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A ideia base deste projeto é a possível dificuldade de instalação e configuração do Emacs por parte dos usuários. A instalação é simples mas, conforme o programa sai de <i>fábrica</i>, muitas pessoas encontram uma pequena dificuldade inicial e, como pensam: "- <i>Ah, é só mais um editor de textos. Vou continuar com o que eu já conheço</i>.", e perdem uma ferramenta das mais poderosas que poderiam usar. Apesar de ser possível efetuar algumas alterações pelo menu, muitas necessitam que o usuário edite um arquivo de configuração (<b>.emacs</b>). A instalação de novos pacotes, por exemplo, já foi uma tarefa bem mais complicada. 
+</p>
+</div>
+
+<div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Alternativas</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Existem algumas opções que possuem um Emacs configurado para o usuário final. É possível citar:
+</p>
+
+<ol class="org-ol">
+<li><a href="https://github.com/syl20bnr/spacemacs">Spacemacs</a> : É uma ótima alternativa e bastante indicada para usuários do Vim. Existem pessoas que tentaram usar o Emacs mas voltaram para o Vim. Depois de instalar o Spacemacs, estão usando é achando ótimo. Basicamente é uma cópia do diretório <b>.emacs.d</b> com toda a configuração automática. O usuário precisará ler a documentação se desejar fazer alguma alteração na configuração.</li>
+<li><a href="https://github.com/myTerminal/super-emacs">super-emacs</a> : Também é uma cópia do diretório <b>.emacs.d</b> porém com uma configuração mais simples que o Spacemacs.</li>
 <li><a href="https://github.com/ergoemacs/ergoemacs-mode">Ergoemacs</a> : Deve ser uma ótima configuração para o Windows. No Linux é difícil de testar pois muitos atalhos conflitam com o desktop (KDE, Gnome, etc).</li>
-<li><a href="https://github.com/guaracy/emacs/tree/master/config">Emacs30</a> : Este que você está lendo. Baseia-se apenas em uma arquivo de configuração (<strong>.emacs</strong>) que deve ser gravado no diretório home do usuário. Ele irá baixar e configurar os diversos pacotes. Ao término, ele verifica se existe o arquivo (<strong>.myemacs</strong>). Se existir, continua a configuração por este arquivo.</li>
+<li><a href="https://github.com/guaracy/emacs/tree/master/config">Emacs30</a> : Este que você está lendo. Baseia-se apenas em uma arquivo de configuração (<b>.emacs</b>) que deve ser gravado no diretório home do usuário. Ele irá baixar e configurar os diversos pacotes. Ao término, ele verifica se existe o arquivo (<b>.myemacs</b>). Se existir, continua a configuração por este arquivo.</li>
 </ol>
-<p>Vejo como principal desvantagem dos itens 1 e 2 a não habilitação do CUA-mode. Esconder o menu principal também pode ser estranho para alguns usuários iniciantes. O item e eu não testei. A habilitação do CUA-mode, entre outras coisas, permite combinações que a maioria dos usuários está acostumada como: <em>Ctrl+c</em> <em>Ctrl+c</em> para copiar, <em>Ctrl+c</em> <em>Ctrl+v</em> para colar e <em>Ctrl+z</em> para desfazer.</p>
-<p>Inicialmente o Emacs possui uma tela assim:</p>
-<pre class="example"><code>[ [[[file:/images/emacs1.jpg]]] ]
-</code></pre>
-<p>ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período de uso você vai achar melhor os atalhos do que tirar a mão do teclado, pegar o mouse e clicar em um botão) e uma tela inicial com muita informção. Mas tudo isto irá mudar.</p>
-<h2 id="características-do-projeto">Características do projeto</h2>
-<ol>
-<li>Habilitação do CUA-mode para que o usuário não precise aprender que <em>Alt+w</em> é usada para copiar um texto, por exemplo.</li>
+
+<p>
+Vejo como principal desvantagem dos itens 1 e 2 a não habilitação do CUA-mode. Esconder o menu principal também pode ser estranho para alguns usuários iniciantes. O item e eu não testei. A habilitação do CUA-mode, entre outras coisas, permite combinações que a maioria dos usuários está acostumada como: <i>Ctrl+c</i> <i>Ctrl+c</i> para copiar, <i>Ctrl+c</i> <i>Ctrl+v</i> para colar e <i>Ctrl+z</i> para desfazer. 
+</p>
+
+<p>
+Inicialmente o Emacs possui uma tela assim:
+</p>
+
+
+<div id="orgparagraph1" class="figure">
+<p><img src="./images/emacs1.jpg" alt="emacs1.jpg" />
+</p>
+<p><span class="figure-number">Figure 1:</span> Tela inicial do Emacs</p>
+</div>
+
+<p>
+ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período de uso você vai achar melhor os atalhos do que tirar a mão do teclado, pegar o mouse e clicar em um botão) e uma tela inicial com muita informção. Mas tudo isto irá mudar.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Características do projeto</h3>
+<div class="outline-text-3" id="text-1-2">
+<ol class="org-ol">
+<li>Habilitação do CUA-mode para que o usuário não precise aprender que <i>Alt+w</i> é usada para copiar um texto, por exemplo.</li>
 <li>Alterar a aparência do Emacs, utilizando um tema com fundo escuro. O usuário poderá optar por um fundo claro a qualquer momento</li>
 <li>Deixar a barra de status com uma aparência mais agradável.</li>
 <li>Alterar diversas opções para deixar o Emacs mais amigável(?).</li>
-<li>Instalar alguns pacotes para facilitar o trabalho do usuário em diversas áreas, podendo inclusive gerar arquivos .docx (Microsoft Word), .odt (LibreOffice), .pdf, .epub (eBook) entre diversos outros de forma simples (pode necessitar da instalação de programas externos como por exemplo, para gerar .pdf é necessário instalar o <strong>MiKTeX</strong> no Windows ou o <strong>texlive</strong> no Linux).</li>
+<li>Instalar alguns pacotes para facilitar o trabalho do usuário em diversas áreas, podendo inclusive gerar arquivos .docx (Microsoft Word), .odt (LibreOffice), .pdf, .epub (eBook) entre diversos outros de forma simples (pode necessitar da instalação de programas externos como por exemplo, para gerar .pdf é necessário instalar o <b>MiKTeX</b> no Windows ou o <b>texlive</b> no Linux).</li>
 </ol>
-<h2 id="org-mode">org-mode</h2>
-<p>Inicialmente estava previsto a instalação do pacote <strong>markdown</strong> para facilitar a criação e transformação de textos em uma linguagem de marcação simples para outros documentos mais complexos. Como o Emacs já vem com o org-mode e muitos usuários utilizam o Emacs basicamente pelo pacote, nada melhor do que utilizá-lo.</p>
-<ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.3</span> org-mode</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Inicialmente estava previsto a instalação do pacote <b>markdown</b> para facilitar a criação e transformação de textos em uma linguagem de marcação simples para outros documentos mais complexos. Como o Emacs já vem com o org-mode e muitos usuários utilizam o Emacs basicamente pelo pacote, nada melhor do que utilizá-lo.
+</p>
+
+<ol class="org-ol">
 <li>Utiliza uma linguagem de marcação relativamente simples.</li>
 <li>É possível utilizar como arquivo de entrada e exportar para diversos formatos.</li>
 <li>De brinde, o usuário ganha um poderoso organizador pessoal que permite até a sincronização dos dados com seu smartphone ou tablet.</li>
 <li>Por último mas não menos importante, o GitHub aceita diretamente um arquivo README.org como o README.md.</li>
 </ol>
-<h1 id="arquivo-.emacs">Arquivo .emacs</h1>
-<h2 id="configurações-iniciais">Configurações iniciais</h2>
-<h2 id="pacotes">Pacotes</h2>
-<p>É onde tudo acontece. Achei que seria melhor explicar com mais detalhes tudo o que acontece durante a execução do arquivo para que o usuário possa efetuar alterações básicas para deixar o Emacs mais ao seu gosto. As linhas que iniciam com ponto e vírgula indicam que são comentários e não serão interpretadas. Para um entendimento melhor, seria interessante que o usuário aprendesse um pouco sobre a linguagem <strong>emacs-lisp</strong> (uma variação de lisp) de onde vem toda a flexibilidade do Emacs.</p>
-<h2 id="alterações-das-opções-iniciais">Alterações das opções iniciais</h2>
-<p>Deixei estas alterações no início pois, se for feita alguma alteração utilizando o menu <strong>Options</strong> e o usuário selecionar <strong>Options/Save Options</strong>, esta parte do arquivo <strong>.emacs</strong> será alterada. Ficando no início é mais fácil de visualizar e não causa tanta confunsão.</p>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp">(custom-set-variables
- &#39;(cua-mode <span class="kw">t</span> <span class="kw">nil</span> (cua-base)) (ref:cua)
- &#39;(custom-enabled-themes (<span class="kw">quote</span> (misterioso))) (ref:theme)
- &#39;(indicate-empty-lines <span class="kw">t</span>) (ref:empty)
- &#39;(show-paren-mode <span class="kw">t</span>) (ref:paren)
- &#39;(tool-bar-mode <span class="kw">nil</span>)) (ref:tool)</code></pre></div>
-<p>Ativamos o CUA-mode <em>(cua)</em>, inicializamos um tema (cores utilizadas para fundo, fontes e salientar diversas sintaxes no texto) diferente do original <em>(theme)</em>, indicamos que linha vazias devem conter um símbolo no início para diferencia de linhas que possuam espaço <em>(empty)</em>, dizemos que queremos uma visualização para abertura e fechamento de chaves, parentesis e colchetes (muito útil para programação)<em>(paren)</em> e, finalmente, que não desejamos ver a barra de ferramentas (as teclas de atalho são mais eficientes e nada que dois níveis do menu não resolvam) <em>(tool)</em>.</p>
-<h2 id="inclusão-e-atualização-de-fonte-de-pacotes">Inclusão e atualização de fonte de pacotes</h2>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp">(<span class="kw">require</span> &#39;package)
-(add-to-list &#39;package-archives
-             &#39;(<span class="st">&quot;melpa&quot;</span> . <span class="st">&quot;http://melpa.milkbox.net/packages/&quot;</span>)
-             <span class="kw">t</span>)
-(package-initialize)</code></pre></div>
-<p>Adiciona o repositório MELPA que contém um maior número de pacotes e com uma atualização constante.</p>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp">(<span class="kw">when</span> (<span class="kw">not</span> package-archive-contents)
-  (package-refresh-contents))</code></pre></div>
-<p>Atualiza o conteúdo das fontes de pacotes se não existe. Para você atualizar os pacotes, utilize o menu <strong>Options/Manage Emacs Packages</strong>. Na janela de gerenciamento de pacotes, pressione <strong>U</strong> para atualizar os pacotes (irá excluir o anterior e instalar a versão nova), <strong>I</strong> para instalar algum pacotes desejado (veja <strong>.myemacs</strong>), <strong>D</strong> para excluir algum pacote (atenção para o que você excluir) e, quando tudo estiver pronto, pressione <strong>X</strong> para executar as ações de inclusão e exclusão.</p>
-<h2 id="seleção-e-instalação-dos-pacotes-pelo-emacs30">Seleção e instalação dos pacotes pelo Emacs30</h2>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp">(<span class="kw">defvar</span><span class="fu"> gbm-required-packages</span>
-  &#39;(which-key
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">2</span> Arquivo .emacs</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.1</span> Configurações iniciais</h3>
+</div>
+
+<div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.2</span> Pacotes</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+É onde tudo acontece. Achei que seria melhor explicar com mais detalhes tudo o que acontece durante a execução do arquivo para que o usuário possa efetuar alterações básicas para deixar o Emacs mais ao seu gosto. As linhas que iniciam com ponto e vírgula indicam que são comentários e não serão interpretadas. Para um entendimento melhor, seria interessante que o usuário aprendesse um pouco sobre a linguagem <b>emacs-lisp</b> (uma variação de lisp) de onde vem toda a flexibilidade do Emacs.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.3</span> Alterações das opções iniciais</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Deixei estas alterações no início pois, se for feita alguma alteração utilizando o menu <b>Options</b> e o usuário selecionar <b>Options/Save Options</b>, esta parte do arquivo <b>.emacs</b> será alterada. Ficando no início é mais fácil de visualizar e não causa tanta confunsão.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span class="linenr">1: </span>(custom-set-variables
+<span id="coderef-cua" class="coderef-off"><span class="linenr">2: </span> '(cua-mode t nil (cua-base))</span>
+<span id="coderef-theme" class="coderef-off"><span class="linenr">3: </span> '(custom-enabled-themes (quote (misterioso)))</span>
+<span id="coderef-empty" class="coderef-off"><span class="linenr">4: </span> '(indicate-empty-lines t)</span>
+<span id="coderef-paren" class="coderef-off"><span class="linenr">5: </span> '(show-paren-mode t)</span>
+<span id="coderef-tool" class="coderef-off"><span class="linenr">6: </span> '(tool-bar-mode nil))</span>
+</pre>
+</div>
+
+<p>
+Ativamos o CUA-mode <a href="#coderef-cua"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-cua');" onmouseout="CodeHighlightOff(this, 'coderef-cua');">2</a>, inicializamos um tema (cores utilizadas para fundo, fontes e salientar diversas sintaxes no texto) diferente do original <a href="#coderef-theme"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-theme');" onmouseout="CodeHighlightOff(this, 'coderef-theme');">3</a>, indicamos que linha vazias devem conter um símbolo no início para diferencia de linhas que possuam espaço <a href="#coderef-empty"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-empty');" onmouseout="CodeHighlightOff(this, 'coderef-empty');">4</a>, dizemos que queremos uma visualização para abertura e fechamento de chaves, parentesis e colchetes (muito útil para programação)<a href="#coderef-paren"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-paren');" onmouseout="CodeHighlightOff(this, 'coderef-paren');">5</a> e, finalmente, que não desejamos ver a barra de ferramentas (as teclas de atalho são mais eficientes e nada que dois níveis do menu não resolvam) <a href="#coderef-tool"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-tool');" onmouseout="CodeHighlightOff(this, 'coderef-tool');">6</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">2.4</span> Inclusão e atualização de fonte de pacotes</h3>
+<div class="outline-text-3" id="text-2-4">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span class="linenr">1: </span>(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">package</span>)
+<span class="linenr">2: </span>(add-to-list 'package-archives
+<span class="linenr">3: </span>             '(<span style="color: #e67128;">"melpa"</span> . <span style="color: #e67128;">"http://melpa.milkbox.net/packages/"</span>)
+<span class="linenr">4: </span>             t)
+<span class="linenr">5: </span>(package-initialize)
+</pre>
+</div>
+
+<p>
+Adiciona o repositório MELPA que contém um maior número de pacotes e com uma atualização constante.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">when</span> (not package-archive-contents)
+  (package-refresh-contents))
+</pre>
+</div>
+
+
+
+<p>
+Atualiza o conteúdo das fontes de pacotes se não existe. Para você atualizar os pacotes, utilize o menu <b>Options/Manage Emacs Packages</b>. Na janela de gerenciamento de pacotes, pressione <b>U</b> para atualizar os pacotes (irá excluir o anterior e instalar a versão nova), <b>I</b> para instalar algum pacotes desejado (veja <b>.myemacs</b>), <b>D</b> para excluir algum pacote (atenção para o que você excluir) e, quando tudo estiver pronto, pressione <b>X</b> para executar as ações de inclusão e exclusão.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">2.5</span> Seleção e instalação dos pacotes pelo Emacs30</h3>
+<div class="outline-text-3" id="text-2-5">
+<div class="org-src-container">
+
+<pre class="src src-lisp">(<span style="color: #ffad29; font-weight: bold;">defvar</span> <span style="color: #dbdb95;">gbm-required-packages</span>
+  '(which-key
     hl-line+
     powerline
     hlinum
@@ -80,193 +387,366 @@
     smartparens
     goto-chg
     indent-guide
-    theme-looper))</code></pre></div>
-<p>Não inclua nenhum pacote neste ponto. Utilize o arquivo <strong>.myemacs</strong> se deseja incluir outros pacotes.</p>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Instalação/atualização dos pacotes</span>
-<span class="co">;;</span>
-(<span class="kw">mapc</span> (<span class="kw">lambda</span> (p)
+    theme-looper))
+</pre>
+</div>
+
+<p>
+Não inclua nenhum pacote neste ponto. Utilize o arquivo <b>.myemacs</b> se deseja incluir outros pacotes.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Instala&#231;&#227;o/atualiza&#231;&#227;o dos pacotes</span>
+<span style="color: #74af68;">;;</span>
+(mapc (<span style="color: #ffad29; font-weight: bold;">lambda</span> (p)
         (package-install p))
-      gbm-required-packages)</code></pre></div>
-<h2 id="configurações-da-aparência-e-dos-pacotes">Configurações da aparência e dos pacotes</h2>
-<h3 id="tamanho-da-janela">Tamanho da janela</h3>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; # Configuração da aparência e pacotes</span>
-<span class="co">;;------------------------------------------</span>
-<span class="co">;; ##Tamanho inicial da janela</span>
-<span class="co">;;</span>
-(<span class="kw">setq</span> initial-frame-alist
-      &#39;(
-        (width . <span class="dv">130</span>) <span class="co">; characters</span>
-        (height . <span class="dv">40</span>) <span class="co">; lines</span>
-        ))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Which-key</span>
-<span class="co">;;</span>
+      gbm-required-packages)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">2.6</span> Configurações da aparência e dos pacotes</h3>
+<div class="outline-text-3" id="text-2-6">
+</div><div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">2.6.1</span> Tamanho da janela</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;"># Configura&#231;&#227;o da apar&#234;ncia e pacotes</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">##Tamanho inicial da janela</span>
+<span style="color: #74af68;">;;</span>
+(setq initial-frame-alist
+      '(
+        (width . 130) <span style="color: #74af68;">; characters</span>
+        (height . 40) <span style="color: #74af68;">; lines</span>
+        ))
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Which-key</span>
+<span style="color: #74af68;">;;</span>
 (which-key-mode)
 (which-key-setup-minibuffer)
-(<span class="kw">setq</span> max-mini-window-height <span class="dv">10</span>)
-(<span class="kw">setq</span> which-key-idle-delay <span class="fl">0.5</span>)
-(set-face-attribute &#39;which-key-local-map-description-face <span class="kw">nil</span> :weight &#39;bold)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;------------------------------------------</span>
-<span class="co">;; ## Numeração de linhas</span>
-<span class="co">;;</span>
-(global-linum-mode <span class="kw">t</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;------------------------------------------</span>
-<span class="co">;; ## Realçar linha do cursor</span>
-<span class="co">;;</span>
-(hl-line-mode <span class="kw">t</span>)
+(setq max-mini-window-height 10)
+(setq which-key-idle-delay 0.5)
+(set-face-attribute 'which-key-local-map-description-face nil <span style="color: #23d7d7;">:weight</span> 'bold)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Numera&#231;&#227;o de linhas</span>
+<span style="color: #74af68;">;;</span>
+(global-linum-mode t)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Real&#231;ar linha do cursor</span>
+<span style="color: #74af68;">;;</span>
+(hl-line-mode t)
 (toggle-hl-line-when-idle)
-(set-face-attribute hl-line-face <span class="kw">nil</span> :background <span class="st">&quot;Grey25&quot;</span>)
-(set-cursor-color <span class="st">&quot;yellow&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Realça numeração da linha do cursor</span>
-<span class="co">;;</span>
-(<span class="kw">require</span> &#39;hlinum)
-(hlinum-activate)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Realçar parêntesis</span>
-<span class="co">;;</span>
-(show-paren-mode)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Esconde barra de rolamento ##</span>
-<span class="co">;;</span>
-(scroll-bar-mode -<span class="dv">1</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Ativa smartparens</span>
-<span class="co">;;(show-smartparens-global-mode t)</span>
-<span class="co">;;(add-hook &#39;prog-mode-hook &#39;turn-on-smartparens-strict-mode)</span>
-<span class="co">;(add-hook &#39;markdown-mode-hook &#39;turn-on-smartparens-strict-mode)</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Salva estado atual ao sair</span>
-<span class="co">;;</span>
-(<span class="kw">require</span> &#39;saveplace)
-(setq-default save-place <span class="kw">t</span>)
-(<span class="kw">setq</span> save-place-file (expand-file-name <span class="st">&quot;.places&quot;</span> user-emacs-directory))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Desabilita buffer de mensagem inicial</span>
-<span class="co">;;</span>
-(<span class="kw">setq</span> initial-buffer-choice
-    <span class="kw">t</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Troca mensagem do buffer de rascunho</span>
-<span class="co">;;</span>
-(<span class="kw">setq</span> initial-scratch-message
-    <span class="st">&quot;;; Nada neste buffer será salvo. Use:</span>\n<span class="st">;; Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.</span>\n<span class="st">&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Realça frame ativo</span>
-<span class="co">;;</span>
-(<span class="kw">require</span> &#39;hiwin)
+(set-face-attribute hl-line-face nil <span style="color: #23d7d7;">:background</span> <span style="color: #e67128;">"Grey25"</span>)
+(set-cursor-color <span style="color: #e67128;">"yellow"</span>)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Real&#231;a numera&#231;&#227;o da linha do cursor</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">hlinum</span>)
+(hlinum-activate)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Real&#231;ar par&#234;ntesis</span>
+<span style="color: #74af68;">;;</span>
+(show-paren-mode)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Esconde barra de rolamento ##</span>
+<span style="color: #74af68;">;;</span>
+(scroll-bar-mode -1)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Ativa smartparens</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(show-smartparens-global-mode t)</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)</span>
+<span style="color: #74af68;">;</span><span style="color: #74af68;">(add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Salva estado atual ao sair</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">saveplace</span>)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name <span style="color: #e67128;">".places"</span> user-emacs-directory))
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Desabilita buffer de mensagem inicial</span>
+<span style="color: #74af68;">;;</span>
+(setq initial-buffer-choice
+    t)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Troca mensagem do buffer de rascunho</span>
+<span style="color: #74af68;">;;</span>
+(setq initial-scratch-message
+    <span style="color: #e67128;">";; Nada neste buffer ser&#225; salvo. Use:\n;; Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.\n"</span>)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Real&#231;a frame ativo</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">hiwin</span>)
 (hiwin-activate)
-(set-face-background &#39;hiwin-face <span class="st">&quot;black&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Configura powerline</span>
-<span class="co">;;</span>
+(set-face-background 'hiwin-face <span style="color: #e67128;">"black"</span>)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Configura powerline</span>
+<span style="color: #74af68;">;;</span>
 (powerline-center-theme)
-(<span class="kw">setq</span> powerline-default-separator
-      &#39;wave)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## ido no modo grade</span>
-<span class="co">;;</span>
-(<span class="kw">setq</span> ido-enable-flex-matching <span class="kw">t</span>)
-(<span class="kw">setq</span> ido-everywhere <span class="kw">t</span>)
-(ido-mode <span class="kw">t</span>)
-(ido-grid-mode <span class="kw">t</span>)
-(global-set-key (kbd <span class="st">&quot;C-x o&quot;</span>) &#39;ido-select-window)
-(global-set-key (kbd <span class="st">&quot;&lt;f4&gt;&quot;</span>) &#39;ido-select-window)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Configura atalho *Ctrl+.* para imenu-anywhere</span>
-<span class="co">;;</span>
-(global-set-key (kbd <span class="st">&quot;C-.&quot;</span>) &#39;imenu-anywhere)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Configura atalhos *Alt+x* e *Alt+X* para smex</span>
-<span class="co">;;</span>
-(global-set-key (kbd <span class="st">&quot;M-x&quot;</span>) &#39;smex)
-(global-set-key (kbd <span class="st">&quot;M-X&quot;</span>) &#39;smex-major-mode-commands)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Configura o autocomplete</span>
-<span class="co">;;</span>
+(setq powerline-default-separator
+      'wave)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## ido no modo grade</span>
+<span style="color: #74af68;">;;</span>
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode t)
+(ido-grid-mode t)
+(global-set-key (kbd <span style="color: #e67128;">"C-x o"</span>) 'ido-select-window)
+(global-set-key (kbd <span style="color: #e67128;">"&lt;f4&gt;"</span>) 'ido-select-window)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Configura atalho *Ctrl+.* para imenu-anywhere</span>
+<span style="color: #74af68;">;;</span>
+(global-set-key (kbd <span style="color: #e67128;">"C-."</span>) 'imenu-anywhere)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Configura atalhos *Alt+x* e *Alt+X* para smex</span>
+<span style="color: #74af68;">;;</span>
+(global-set-key (kbd <span style="color: #e67128;">"M-x"</span>) 'smex)
+(global-set-key (kbd <span style="color: #e67128;">"M-X"</span>) 'smex-major-mode-commands)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Configura o autocomplete</span>
+<span style="color: #74af68;">;;</span>
 (ac-config-default)
-(ac-linum-workaround)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Configura o markdown</span>
-<span class="co">;;</span>
-<span class="co">;;(autoload &#39;markdown-mode &quot;markdown-mode&quot;</span>
-<span class="co">;;  &quot;Major mode for editing Markdown files&quot; t)</span>
-<span class="co">;;(add-to-list &#39;auto-mode-alist &#39;(&quot;\\.text\\&#39;&quot; . markdown-mode))</span>
-<span class="co">;;(add-to-list &#39;auto-mode-alist &#39;(&quot;\\.markdown\\&#39;&quot; . markdown-mode))</span>
-<span class="co">;;(add-to-list &#39;auto-mode-alist &#39;(&quot;\\.md\\&#39;&quot; . markdown-mode))</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Configura pandoc</span>
-<span class="co">;;(load &quot;pandoc-mode&quot;)</span>
-<span class="co">;;(add-hook &#39;org-mode-hook &#39;pandoc-mode)</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Indent guide</span>
-<span class="co">;;</span>
-(indent-guide-global-mode)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Configura theme-looper</span>
-<span class="co">;;</span>
-(theme-looper-set-theme-set &#39;(adwaita
+(ac-linum-workaround)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Configura o markdown</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(autoload 'markdown-mode "markdown-mode"</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">"Major mode for editing Markdown files" t)</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Configura pandoc</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(load "pandoc-mode")</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(add-hook 'org-mode-hook 'pandoc-mode)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Indent guide</span>
+<span style="color: #74af68;">;;</span>
+(indent-guide-global-mode)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Configura theme-looper</span>
+<span style="color: #74af68;">;;</span>
+(theme-looper-set-theme-set '(adwaita
                               deeper-blue
                               dichromacy
                               misterioso
                               tango-dark
-                  tango
-                  tsdh-dark
+                              tango
+                              tsdh-dark
                               wheatgrass
                               wombat))
 
-(theme-looper-set-customizations &#39;powerline-reset)
-(global-set-key (kbd <span class="st">&quot;C-</span>\&quot;<span class="st">&quot;</span>) &#39;theme-looper-enable-next-theme)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Configura goto last change</span>
-<span class="co">;;</span>
-(global-set-key (kbd <span class="st">&quot;C-x .&quot;</span>) &#39;goto-last-change)
-(global-set-key (kbd <span class="st">&quot;C-x ,&quot;</span>) &#39;goto-last-change-reverse)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; ## Ctrl+x Ctrl+r abre lista de arquivos recentes</span>
-<span class="co">;;</span>
-(<span class="kw">require</span> &#39;recentf)
-(recentf-mode <span class="kw">t</span>)
-(<span class="kw">setq</span> recentf-max-menu-items <span class="dv">25</span>)
-(<span class="kw">defun</span><span class="fu"> recentf-ido-find-file </span>()
-  <span class="st">&quot;Find a recent file using Ido.&quot;</span>
-  (interactive)
-  (<span class="kw">let</span> ((file (ido-completing-read <span class="st">&quot;Choose recent file: &quot;</span> recentf-list <span class="kw">nil</span> <span class="kw">t</span>)))
-    (<span class="kw">when</span> file
-      (find-file file))))
-(global-set-key (kbd <span class="st">&quot;C-x C-r&quot;</span>) &#39;recentf-ido-find-file)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; Se o arquivo .myemacs existe, carregar</span>
-<span class="co">;; configurações do usuário</span>
-<span class="co">;;</span>
-(<span class="kw">setq</span> myconfig <span class="st">&quot;~/.myemacs&quot;</span>)
-(<span class="kw">if</span> (file-exists-p myconfig)
-    (load-file myconfig))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; Define F3 para pesquisar e Shift+F3 para pesquisar próxima</span>
-(global-set-key (kbd <span class="st">&quot;S-&lt;f3&gt;&quot;</span>) &#39;isearch-backward)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
-<span class="co">;; Define F3 para iniciar busca</span>
-<span class="co">;; F3 novamente para próxima ocorrência</span>
-<span class="co">;; Shift+F3 para ocorrência anterior</span>
-(global-set-key (kbd <span class="st">&quot;&lt;f3&gt;&quot;</span>) &#39;isearch-forward)
-(define-key isearch-mode-map (kbd <span class="st">&quot;&lt;f3&gt;&quot;</span>) &#39;isearch-repeat-forward)
-(define-key isearch-mode-map (kbd <span class="st">&quot;S-&lt;f3&gt;&quot;</span>) &#39;isearch-repeat-backward)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;------------------------------------------</span>
-<span class="co">;; ## Movimentação entre frames</span>
-<span class="co">;;</span>
-(windmove-default-keybindings) <span class="co">;; &#39;meta);</span>
-<span class="co">;; Make windmove work in org-mode:</span>
-(add-hook &#39;org-shiftup-final-hook &#39;windmove-up)
-(add-hook &#39;org-shiftleft-final-hook &#39;windmove-left)
-(add-hook &#39;org-shiftdown-final-hook &#39;windmove-down)
-(add-hook &#39;org-shiftright-final-hook &#39;windmove-right)
+(theme-looper-set-customizations 'powerline-reset)
+(global-set-key (kbd <span style="color: #e67128;">"C-\""</span>) 'theme-looper-enable-next-theme)
+</pre>
+</div>
 
-(<span class="kw">setq</span> org-CUA-compatible <span class="kw">t</span>)
-(<span class="kw">setq</span> org-support-shift-select <span class="kw">t</span>)
-(<span class="kw">setq</span> org-src-fontify-natively <span class="kw">t</span>)
-(<span class="kw">setq</span> org-startup-truncated <span class="kw">nil</span>)</code></pre></div>
-<p>;;—————————————– ;; FIM DO ARQUIVO .emacs ;;—————————————–</p>
-<h1 id="arquivo-.myemacs">Arquivo .myemacs</h1>
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Configura goto last change</span>
+<span style="color: #74af68;">;;</span>
+(global-set-key (kbd <span style="color: #e67128;">"C-x ."</span>) 'goto-last-change)
+(global-set-key (kbd <span style="color: #e67128;">"C-x ,"</span>) 'goto-last-change-reverse)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Ctrl+x Ctrl+r abre lista de arquivos recentes</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">recentf</span>)
+(recentf-mode t)
+(setq recentf-max-menu-items 25)
+(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">recentf-ido-find-file</span> ()
+  <span style="color: #e67128;">"Find a recent file using Ido."</span>
+  (interactive)
+  (<span style="color: #ffad29; font-weight: bold;">let</span> ((file (ido-completing-read <span style="color: #e67128;">"Choose recent file: "</span> recentf-list nil t)))
+    (<span style="color: #ffad29; font-weight: bold;">when</span> file
+      (find-file file))))
+(global-set-key (kbd <span style="color: #e67128;">"C-x C-r"</span>) 'recentf-ido-find-file)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">Se o arquivo .myemacs existe, carregar</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">configura&#231;&#245;es do usu&#225;rio</span>
+<span style="color: #74af68;">;;</span>
+(setq myconfig <span style="color: #e67128;">"~/.myemacs"</span>)
+(<span style="color: #ffad29; font-weight: bold;">if</span> (file-exists-p myconfig)
+    (load-file myconfig))
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">Define F3 para pesquisar e Shift+F3 para pesquisar pr&#243;xima</span>
+(global-set-key (kbd <span style="color: #e67128;">"S-&lt;f3&gt;"</span>) 'isearch-backward)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">Define F3 para iniciar busca</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">F3 novamente para pr&#243;xima ocorr&#234;ncia</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">Shift+F3 para ocorr&#234;ncia anterior</span>
+(global-set-key (kbd <span style="color: #e67128;">"&lt;f3&gt;"</span>) 'isearch-forward)
+(define-key isearch-mode-map (kbd <span style="color: #e67128;">"&lt;f3&gt;"</span>) 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd <span style="color: #e67128;">"S-&lt;f3&gt;"</span>) 'isearch-repeat-backward)
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">## Movimenta&#231;&#227;o entre frames</span>
+<span style="color: #74af68;">;;</span>
+(windmove-default-keybindings) <span style="color: #74af68;">;; </span><span style="color: #74af68;">'meta);</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">Make windmove work in org-mode:</span>
+(add-hook 'org-shiftup-final-hook 'windmove-up)
+(add-hook 'org-shiftleft-final-hook 'windmove-left)
+(add-hook 'org-shiftdown-final-hook 'windmove-down)
+(add-hook 'org-shiftright-final-hook 'windmove-right)
+
+(setq org-CUA-compatible t)
+(setq org-support-shift-select t)
+(setq org-src-fontify-natively t)
+(setq org-startup-truncated nil)
+</pre>
+</div>
+
+<p>
+;;&#x2013;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;
+;; FIM DO ARQUIVO .emacs
+;;&#x2013;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">3</span> Arquivo .myemacs</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Guaracy Monteiro</p>
+<p class="date">Created: 2016-01-15 Sex 01:10</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
