@@ -1,15 +1,27 @@
 #!/usr/bin/sh
 
-echo "Gerando pdf"
-pandoc -S --toc -o docs/README.pdf README.org
+# - script para linux
+# - bash script para gerar a documentação tendo
+#   como base o arquivo README.org
+# - gostei mais do html gerado pelo orgmode
+#   então apenas movi para ./docs
+# - o .pdf foi gerado tendo como base o .tex
+#   pelo pandoc com algumas modificações
+
+
 echo "Gerando docx"
 pandoc -S --toc -o docs/README.docx README.org
 echo "Gerando epub"
 pandoc -S --toc -o docs/README.epub README.org
 echo "Gerando odt"
 pandoc -S --toc -o docs/README.odt README.org
-echo "Gerando html"
-pandoc -S --toc -o docs/README.html README.org
+echo "Copiando html"
+mv -f README.html ./docs
 echo "Gerando tex"
-pandoc -S --toc -o docs/README.tex README.org
-
+pandoc -S --toc --standalone -o docs/README.tex README.org
+echo "Reconfigurando tex"
+cat docs/README.tex | sed 's/\\usepackage{lmodern}/\\usepackage[brazil]{babel}\n\\usepackage{framed, color}\n\\definecolor{shadecolor}{rgb}{0.93,0.93,0.9}/; s/\\maketitle/\\maketitle\n\\pagebreak/; s/\\begin{Shaded}/\\begin{Shaded}\n\\begin{shaded}/; s/\\end{Shaded}/\\end{shaded}\n\\end{Shaded}/' > temp.tex
+echo "Gerando pdf"
+pdflatex temp.tex $1>/dev/null
+pdflatex temp.tex $1>/dev/null
+mv -f temp.pdf docs/README.pdf
