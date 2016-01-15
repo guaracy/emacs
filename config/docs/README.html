@@ -1,326 +1,272 @@
-<p><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></p>
+<p></p>
+<hr />
+<p><strong>TL;DR</strong></p>
+<p>Arquivo de configuração para ser utilizado em uma instalação nova do Emacs ou substituir uma antiga (excluir <strong>.emacs</strong> e <strong>.emacs.d</strong>). Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado//melhorado facilmente.</p>
+<ol>
+<li>Grave o arquivo <a href="https://raw.githubusercontent.com/guaracy/emacs/master/config/.emacs">.emacs</a>, no seu diretório <strong>home</strong>. Se desejar, grave também o arquivo <a href="https://raw.githubusercontent.com/guaracy/emacs/master/config/.myemacs">.myemacs</a> no seu diretório <strong>home</strong>. Abra o Emacs e espere a configuração terminar.</li>
+<li>Baixe e leia a documentação <strong>TBD</strong> .</li>
+</ol>
+<hr />
+<p></p>
 <h1 id="emacs-em-30-segundos">Emacs em 30 segundos</h1>
-<h1 id="rascunho---em-desenvolvimento"><font color="red"><strong>RASCUNHO - EM DESENVOLVIMENTO</strong></font></h1>
-<hr />
-<p>TL;DR</p>
-<p>Arquivo de configuração para o Emacs para ser utilizado em uma instalação nova ou substituir uma antiga. Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado/melhorado facilmente.</p>
-<ol style="list-style-type: decimal">
-<li>Baixe o arquivo <a href=".emacs" class="uri">.emacs</a>, coloque no seu diretório <em>home</em> e abra o Emacs.</li>
-<li>Baixe e leia a documentação em <a href="docs/README.epub">epub</a>, <a href="docs/README.docx">docx</a>, <a href="docs/README.pdf">pdf</a>, <a href="docs/README.html">html</a> ou <a href="docs/README.odt">odt</a></li>
+<p>A ideia base deste projeto é a possível dificuldade de instalação e configuração do Emacs por parte dos usuários. A instalação é simples mas, conforme o programa sai de <em>fábrica</em>, muitas pessoas encontram uma pequena dificuldade inicial e, como pensam: “- <em>Ah, é só mais um editor de textos. Vou continuar com o que eu já conheço</em>.”, e perdem uma ferramenta das mais poderosas que poderiam usar. Apesar de ser possível efetuar algumas alterações pelo menu, muitas necessitam que o usuário edite um arquivo de configuração (<strong>.emacs</strong>). A instalação de novos pacotes, por exemplo, já foi uma tarefa bem mais complicada.</p>
+<h2 id="alternativas">Alternativas</h2>
+<p>Existem algumas opções que possuem um Emacs configurado para o usuário final. É possível citar:</p>
+<ol>
+<li><a href="https://github.com/syl20bnr/spacemacs">Spacemacs</a> : É uma ótima alternativa e bastante indicada para usuários do Vim. Existem pessoas que tentaram usar o Emacs mas voltaram para o Vim. Depois de instalar o Spacemacs, estão usando é achando ótimo. Basicamente é uma cópia do diretório <strong>.emacs.d</strong> com toda a configuração automática. O usuário precisará ler a documentação se desejar fazer alguma alteração na configuração.</li>
+<li><a href="https://github.com/myTerminal/super-emacs">super-emacs</a> : Também é uma cópia do diretório <strong>.emacs.d</strong> porém com uma configuração mais simples que o Spacemacs.</li>
+<li><a href="https://github.com/ergoemacs/ergoemacs-mode">Ergoemacs</a> : Deve ser uma ótima configuração para o Windows. No Linux é difícil de testar pois muitos atalhos conflitam com o desktop (KDE, Gnome, etc).</li>
+<li><a href="https://github.com/guaracy/emacs/tree/master/config">Emacs30</a> : Este que você está lendo. Baseia-se apenas em uma arquivo de configuração (<strong>.emacs</strong>) que deve ser gravado no diretório home do usuário. Ele irá baixar e configurar os diversos pacotes. Ao término, ele verifica se existe o arquivo (<strong>.myemacs</strong>). Se existir, continua a configuração por este arquivo.</li>
 </ol>
-<hr />
-<p>Acredito que o maior problema para alguém iniciar com o Emacs está em como ele vem configurado inicialmente. Uma aparência relativamente simples e com teclas de atalhos diferentes das que os usuários estão acostumados (pelo menos as principais). Muitas das configurações devem estar no arquivo <em>.emacs</em> o que implica em edição e a primeira decepção do usuário.</p>
-<p>Existem algumas soluções para quem deseja iniciar no fabuloso mundo do Emacs. Para quem usa o <em>Vim</em>, uma boa alternativa pode ser o <a href="https://github.com/syl20bnr/spacemacs">spacemacs</a>. Como desvantagem tem a sua complexidade e curva de aprendizado para configurar. Outra opção é o <a href="https://github.com/myTerminal/super-emacs">super-emacs</a> mas acho que também falham em alguns aspectos. Esconder o menu pode não ser uma boa ideia ou sobrepor atalhos CUA com shift setas para selecionar frames também não.</p>
-<p>A ideia aqui é que o usuário apenas copie um arquivo e, ao executar o Emacs na primeira vez, o programa já seja apresentado com uma aparência mais agradável e com diversas ferramentas/opções não disponíveis/configuradas. Mas também é necessário que o usuário saiba o que foi feito, possa efetuar as alterações e incluir novas diretrizes. É o que pretendo colocar neste documento.</p>
-<p>O arquivo de configuração <em>.emacs</em> ficou estruturado da seguinte forma:</p>
-<ol style="list-style-type: decimal">
-<li>agrupamento das alterações que também são efetuadas pelo menu <strong>Options</strong> para que não causem conflito em futuras alterações pelo menu;</li>
-<li>definição de repositório e pacotes que serão instalados;</li>
-<li>instalação dos pacotes não inclusos no emacs e configuração dos que acompanham a distribuição;</li>
-<li>configuração dos pacotes internos e externos que não pertencem ao item 1.</li>
+<p>Vejo como principal desvantagem dos itens 1 e 2 a não habilitação do CUA-mode. Esconder o menu principal também pode ser estranho para alguns usuários iniciantes. O item e eu não testei. A habilitação do CUA-mode, entre outras coisas, permite combinações que a maioria dos usuários está acostumada como: <em>Ctrl+c</em> <em>Ctrl+c</em> para copiar, <em>Ctrl+c</em> <em>Ctrl+v</em> para colar e <em>Ctrl+z</em> para desfazer.</p>
+<p>Inicialmente o Emacs possui uma tela assim:</p>
+<pre class="example"><code>[ [[[file:/images/emacs1.jpg]]] ]
+</code></pre>
+<p>ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período de uso você vai achar melhor os atalhos do que tirar a mão do teclado, pegar o mouse e clicar em um botão) e uma tela inicial com muita informção. Mas tudo isto irá mudar.</p>
+<h2 id="características-do-projeto">Características do projeto</h2>
+<ol>
+<li>Habilitação do CUA-mode para que o usuário não precise aprender que <em>Alt+w</em> é usada para copiar um texto, por exemplo.</li>
+<li>Alterar a aparência do Emacs, utilizando um tema com fundo escuro. O usuário poderá optar por um fundo claro a qualquer momento</li>
+<li>Deixar a barra de status com uma aparência mais agradável.</li>
+<li>Alterar diversas opções para deixar o Emacs mais amigável(?).</li>
+<li>Instalar alguns pacotes para facilitar o trabalho do usuário em diversas áreas, podendo inclusive gerar arquivos .docx (Microsoft Word), .odt (LibreOffice), .pdf, .epub (eBook) entre diversos outros de forma simples (pode necessitar da instalação de programas externos como por exemplo, para gerar .pdf é necessário instalar o <strong>MiKTeX</strong> no Windows ou o <strong>texlive</strong> no Linux).</li>
 </ol>
-<p>Inicialmente o Emacs tem uma cara assim:</p>
-<div class="figure">
-<img src="images/emacs1.jpg" alt="Tela inicial do Emacs" />
-<p class="caption">Tela inicial do Emacs</p>
-</div>
-<p>Ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período de uso você usa os atalhos em vez de tirar a mão do teclado para clicar em um ícone daqueles) e uma tela de abertura com muita informação. Tudo isto irá mudar.</p>
-<h1 id="instalação">Instalação</h1>
-<p>Para instalar o Emacs, no Linux basta utilizar o comando para instalar pacotes (pacman, apt-get, etc.) e selecionar o Emacs. No Windows, baixe a última versão do Emacs do site <a href="https://ftp.gnu.org/gnu/emacs/windows/">gnu</a>, descompacte para alguma pasta e crie um link simbólico para o programa <strong>runemacs</strong>.</p>
-<p>Para instalar deve estar conectado com a internet para que os pacotes necessários sejam baixados. Basta baixar o arquivo <em>.emacs</em> e colocá-lo na pasta do usuário. No Linux é <strong>~/</strong> ou <strong>/home/nomeusuário</strong> e no Windows é <strong>c:\Usuários\nome\AppData\Rooming\</strong> (pelo menos em uma versão do Windows 8 que eu testei; não tenho Windows para saber como são as outras versões nem exatamente o que funciona ou não).</p>
-<h1 id="o-arquivo-de-configuração">O arquivo de configuração</h1>
-<p>O arquivo <em>.emacs</em> poderá ser alterado antes de executar o Emacs pela primeira vez. Use um editor de textos que você esteja acostumado. Se você desejar que o Emacs ignore alguma coisa, basta colocar <strong>;</strong> (ponto e vírgula) no início da linha. Vejamos o que possui em cada etapa da configuração.</p>
-<h2 id="alteração-de-opções-iniciais">Alteração de opções iniciais</h2>
-<pre><code>(custom-set-variables
- &#39;(cua-mode t nil (cua-base))
- &#39;(custom-enabled-themes (quote (deeper-blue)))
- &#39;(indicate-empty-lines t)
- &#39;(show-paren-mode t)
- &#39;(tool-bar-mode nil))
- </code></pre>
-<p>Estas configurações poderiam estar em qualquer parte do arquivo <em>.emacs</em> mas eu resolvi deixar no início pois, quando o usuário efetuar alguma alteração pelo menu <strong>Options</strong> e selecionar <strong>Options/Save Options</strong> para torná-las permanentes, o Emacs irá alterar estas variáveis colocando mais informações.</p>
-<p>A primeira linha ativa o modo CUA (Common User Access) para que você não precise digitar <em>Alt+w</em> para copiar um texto, por exemplo. Pode utilizar o famoso <em>Crtl+C Ctrl+V</em>. Outra característica interessante que vem com o modo a a seleção em bloco. Você pressiona <em>Ctrl+Enter</em> e utiliza as setas para selecionar. Pode selecionar apenas uma coluna um um bloco maior. Depois pode utilizar as opções normais como copia, colar, excluir, sobrescrever, etc. <em>Ctrl+Enter</em>, novamente, para sair do modo de seleção em bloco.</p>
-<p>A segunda linha especifica o tema inicial que será utilizado. Os temas podem ser vistos e alterados utilizando o menu <strong>Options/Customize Emacs/Custom Themes</strong>. Você pode, a qualquer momento alterar o tema e, se desejar, gravar para as próximas sessões.</p>
-<p>A terceira opção irá preencher a janela do Emacs com um símbolo para indicar que não existem mais linhas após aquele ponto, mesmo em branco. Você poderá alterar a opção pelo menu <strong>Options/Show/Hide/Fringe/Empty Line Indicators</strong>. Lembre-se que se você fizer alguma alteração nas configurações, você deverá gravá-las pelo menu <strong>Options/Save Options</strong> se quiser que fiquem válidas para sessões futuras e elas irão alterar o arquivo <em>.emacs</em>..</p>
-<p>A quarta opção irá salientar parêntesis, colchetes e chaves quando você estiver digitando um programa.</p>
-<p>A quinta remove aquela barra de ferramentas que, em pouco tempo, apenas irá ocupar espaço na tela.</p>
-<h2 id="inclusão-de-repositório-para-pacotes">Inclusão de repositório para pacotes</h2>
-<pre><code>(require &#39;package)
+<h2 id="org-mode">org-mode</h2>
+<p>Inicialmente estava previsto a instalação do pacote <strong>markdown</strong> para facilitar a criação e transformação de textos em uma linguagem de marcação simples para outros documentos mais complexos. Como o Emacs já vem com o org-mode e muitos usuários utilizam o Emacs basicamente pelo pacote, nada melhor do que utilizá-lo.</p>
+<ol>
+<li>Utiliza uma linguagem de marcação relativamente simples.</li>
+<li>É possível utilizar como arquivo de entrada e exportar para diversos formatos.</li>
+<li>De brinde, o usuário ganha um poderoso organizador pessoal que permite até a sincronização dos dados com seu smartphone ou tablet.</li>
+<li>Por último mas não menos importante, o GitHub aceita diretamente um arquivo README.org como o README.md.</li>
+</ol>
+<h1 id="arquivo-.emacs">Arquivo .emacs</h1>
+<h2 id="configurações-iniciais">Configurações iniciais</h2>
+<h2 id="pacotes">Pacotes</h2>
+<p>É onde tudo acontece. Achei que seria melhor explicar com mais detalhes tudo o que acontece durante a execução do arquivo para que o usuário possa efetuar alterações básicas para deixar o Emacs mais ao seu gosto. As linhas que iniciam com ponto e vírgula indicam que são comentários e não serão interpretadas. Para um entendimento melhor, seria interessante que o usuário aprendesse um pouco sobre a linguagem <strong>emacs-lisp</strong> (uma variação de lisp) de onde vem toda a flexibilidade do Emacs.</p>
+<h2 id="alterações-das-opções-iniciais">Alterações das opções iniciais</h2>
+<p>Deixei estas alterações no início pois, se for feita alguma alteração utilizando o menu <strong>Options</strong> e o usuário selecionar <strong>Options/Save Options</strong>, esta parte do arquivo <strong>.emacs</strong> será alterada. Ficando no início é mais fácil de visualizar e não causa tanta confunsão.</p>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp">(custom-set-variables
+ &#39;(cua-mode <span class="kw">t</span> <span class="kw">nil</span> (cua-base)) (ref:cua)
+ &#39;(custom-enabled-themes (<span class="kw">quote</span> (misterioso))) (ref:theme)
+ &#39;(indicate-empty-lines <span class="kw">t</span>) (ref:empty)
+ &#39;(show-paren-mode <span class="kw">t</span>) (ref:paren)
+ &#39;(tool-bar-mode <span class="kw">nil</span>)) (ref:tool)</code></pre></div>
+<p>Ativamos o CUA-mode <em>(cua)</em>, inicializamos um tema (cores utilizadas para fundo, fontes e salientar diversas sintaxes no texto) diferente do original <em>(theme)</em>, indicamos que linha vazias devem conter um símbolo no início para diferencia de linhas que possuam espaço <em>(empty)</em>, dizemos que queremos uma visualização para abertura e fechamento de chaves, parentesis e colchetes (muito útil para programação)<em>(paren)</em> e, finalmente, que não desejamos ver a barra de ferramentas (as teclas de atalho são mais eficientes e nada que dois níveis do menu não resolvam) <em>(tool)</em>.</p>
+<h2 id="inclusão-e-atualização-de-fonte-de-pacotes">Inclusão e atualização de fonte de pacotes</h2>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp">(<span class="kw">require</span> &#39;package)
 (add-to-list &#39;package-archives
-             &#39;(&quot;melpa&quot; . &quot;http://melpa.milkbox.net/packages/&quot;)
-             t)
-(package-initialize)</code></pre>
+             &#39;(<span class="st">&quot;melpa&quot;</span> . <span class="st">&quot;http://melpa.milkbox.net/packages/&quot;</span>)
+             <span class="kw">t</span>)
+(package-initialize)</code></pre></div>
 <p>Adiciona o repositório MELPA que contém um maior número de pacotes e com uma atualização constante.</p>
-<h2 id="atualização-da-lista-de-pacotes">Atualização da lista de pacotes</h2>
-<pre><code>(when (not package-archive-contents)
-  (package-refresh-contents))</code></pre>
-<p>Faz exatamente isto. Atualiza a lista de pacotes do MELPA e do ELPA (repositório padrão do Emacs) para instalação posterior dos pacotes atualizados.</p>
-<h2 id="lista-de-pacotes-a-serem-instalados">Lista de pacotes a serem instalados</h2>
-<pre><code>(defvar gbm-required-packages
-  &#39;(powerline
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp">(<span class="kw">when</span> (<span class="kw">not</span> package-archive-contents)
+  (package-refresh-contents))</code></pre></div>
+<p>Atualiza o conteúdo das fontes de pacotes se não existe. Para você atualizar os pacotes, utilize o menu <strong>Options/Manage Emacs Packages</strong>. Na janela de gerenciamento de pacotes, pressione <strong>U</strong> para atualizar os pacotes (irá excluir o anterior e instalar a versão nova), <strong>I</strong> para instalar algum pacotes desejado (veja <strong>.myemacs</strong>), <strong>D</strong> para excluir algum pacote (atenção para o que você excluir) e, quando tudo estiver pronto, pressione <strong>X</strong> para executar as ações de inclusão e exclusão.</p>
+<h2 id="seleção-e-instalação-dos-pacotes-pelo-emacs30">Seleção e instalação dos pacotes pelo Emacs30</h2>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp">(<span class="kw">defvar</span><span class="fu"> gbm-required-packages</span>
+  &#39;(which-key
+    hl-line+
+    powerline
     hlinum
     hiwin
     ido-grid-mode
+    ido-select-window
     imenu-anywhere
     smex
-    markdown-mode
     pandoc-mode
+    org-cua-dwim
+    org-pandoc
     auto-complete
     smartparens
-    theme-looper))</code></pre>
-<p>Contém uma lista dos pacotes que serão instalados se necessário. A qualquer momento, você poderá incluir na lista qualquer pacote que desejar (desde que existam nos repositórios) e configurá-lo mais no final do arquivo <em>.emacs</em>. Adiante veremos o que cada um faz e as configurações atribuídas a eles.</p>
-<h2 id="instalaçãoatualização-dos-pacotes">Instalação/atualização dos pacotes</h2>
-<pre><code>(mapc (lambda (p)
-       (package-install p))
-     gbm-required-packages)</code></pre>
-<p>Basicamente irá instalar ou atualizar os pacotes informados anteriormente.</p>
-<h1 id="configuração-da-aparência-e-pacotes">Configuração da aparência e pacotes</h1>
-<p>Na sequencia vamos ver as configurações especificadas para o Emacs e para os diversos pacotes bem como seu significado.</p>
-<h2 id="tamanho-inicial-da-janela">Tamanho inicial da janela</h2>
-<pre><code>(setq initial-frame-alist
+    goto-chg
+    indent-guide
+    theme-looper))</code></pre></div>
+<p>Não inclua nenhum pacote neste ponto. Utilize o arquivo <strong>.myemacs</strong> se deseja incluir outros pacotes.</p>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Instalação/atualização dos pacotes</span>
+<span class="co">;;</span>
+(<span class="kw">mapc</span> (<span class="kw">lambda</span> (p)
+        (package-install p))
+      gbm-required-packages)</code></pre></div>
+<h2 id="configurações-da-aparência-e-dos-pacotes">Configurações da aparência e dos pacotes</h2>
+<h3 id="tamanho-da-janela">Tamanho da janela</h3>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; # Configuração da aparência e pacotes</span>
+<span class="co">;;------------------------------------------</span>
+<span class="co">;; ##Tamanho inicial da janela</span>
+<span class="co">;;</span>
+(<span class="kw">setq</span> initial-frame-alist
       &#39;(
-        (width . 130) ; characters
-        (height . 40) ; lines
-        ))</code></pre>
-<p>Não gosto do tamanho inicial da janela. Acho que antiquado, meio do tempo quando os monitores eram restritos a 40/80 colunas. Com a resolução e os monitores wide, uma janela mais larga parece mais adequado.</p>
-<h2 id="movimentação-entre-frames">Movimentação entre frames</h2>
-<pre><code>(windmove-default-keybindings &#39;meta)</code></pre>
-<p>Para evitar que o usuário tenha que recorrer ao <em>Ctrl+O</em> para se mover entre as janelas ou retirar a mão do teclado para mover o ponteiro até a janela desejada e clicar, o processo se dá pelo pressionamento de <em>Alt+setas</em>. O foco irá passar para o frame adequado. O padrão em caso de omissão é <em>Shift+setas</em> porém iria conflitar com o CUA que utiliza estas sequencias para selecionar um texto.</p>
-<h2 id="numeração-de-linhas">Numeração de linhas</h2>
-<pre><code>(global-linum-mode t)</code></pre>
-<p>Informamos ao Emacs para numerar as linhas do buffer em qualquer frame aberto. Se não achar necessário, basta comentar. Quando desejar que um frame numere as linhas, digite <em>Alt-x</em>, <em>line-mode</em> e pressione <em>Enter</em>.</p>
-<h2 id="realçar-linha-do-cursor">Realçar linha do cursor</h2>
-<pre><code>(global-hl-line-mode t)</code></pre>
-<p>Informamos ao Emacs para realçar toda a linha onde encontra-se o cursor.</p>
-<h2 id="realça-numeração-da-linha-do-cursor">Realça numeração da linha do cursor</h2>
-<pre><code>(require &#39;hlinum)
-(hlinum-activate)</code></pre>
-<p>Opção necessário caso haja numeração de linha e realce da linha sob o cursor. Faz com que a numeração também seja realçada.</p>
-<h2 id="realçar-parêntesis">Realçar parêntesis</h2>
-<pre><code>(show-paren-mode)</code></pre>
-<p>Ativa o realce de abertura/fechamento de parêntesis ([{}])[]{}. Importante onde seja necessário confirmar a existência do par como em linguagens de programação. O caractere sob o cursor ficará em um fundo vermelho (se não existir a correspondência) ou azul (caso contrário). Cores dependem do tema escolhido.</p>
-<h2 id="ativa-smartparens">Ativa smartparens</h2>
-<pre><code>(use-package smartparens-config
-    :ensure smartparens
-    :config
-    (progn
-      (show-smartparens-global-mode t)))
- 
-(add-hook &#39;prog-mode-hook &#39;turn-on-smartparens-strict-mode)
-(add-hook &#39;markdown-mode-hook &#39;turn-on-smartparens-strict-mode)</code></pre>
-<p>Modo que inclui automaticamente o fechamento de [({&quot;. No caso de linguagens de programação, se for excluída uma linha contendo, por exemplo, a abertura de uma chave, a chave de fechamento correspondente será automaticamente excluída. O modo possui muitas facilidades. Para saber mais, leia o artigo <a href="https://ebzzry.github.io/emacs-pairs.html">Emacs and Pairs</a>.</p>
-<h2 id="esconde-barra-de-rolamento">Esconde barra de rolamento</h2>
-<pre><code>(scroll-bar-mode -1)</code></pre>
-<p>Não vejo muita necessidade da barra de rolamento. Quando você está no início do arquivo, aparecerá <em>Top</em> na barra de status e quando você estiver no final aparecerá <em>Bottom</em>. Caso contrário será mostrado o percentual do arquivo anterior ao cursor. Se você necessita, comente.</p>
-<h2 id="salva-estado-atual-ao-sair">Salva estado atual ao sair</h2>
-<pre><code>(require &#39;saveplace)
-(setq-default save-place t)
-(setq save-place-file &quot;~/.emacs.d/saved-places&quot;)</code></pre>
-<p>Informa ao Emacs para salva a posição do cursor dos arquivos abertos. Na próxima vez que você abrir o arquivo, ele estará na posição que você estava.</p>
-<h2 id="desabilita-buffer-de-mensagem-inicial">Desabilita buffer de mensagem inicial</h2>
-<pre><code>(setq initial-buffer-choice
-    t)</code></pre>
-<p>Não mostrar o frame inicial com um monte de informações apenas para dizer que o Emacs possui muita coisa. :D</p>
-<h2 id="troca-mensagem-do-buffer-de-rascunho">Troca mensagem do buffer de rascunho</h2>
-<pre><code>(setq initial-scratch-message
-    &quot;;; Nada neste buffer será salvo. Use Ctrl+X Ctrl+F para ler um arquivo.&quot;)</code></pre>
-<p>Troquei a mensagem que aparece no buffer de rascunho. Mesmo que você tenha digitado algo nele, ele não será salvo automaticamente quando o Emacs for encerrado. O buffer é interessante pois permite anotações e avaliações de expressões em <em>elisp</em>. Se você digitar, por exemplo, <em>(* 1 2 3 4 5)</em> e pressionar <em>Ctrl+J</em> terá como resposta <em>120</em>.</p>
-<h2 id="realça-frame-ativo">Realça frame ativo</h2>
-<pre><code>(require &#39;hiwin)
+        (width . <span class="dv">130</span>) <span class="co">; characters</span>
+        (height . <span class="dv">40</span>) <span class="co">; lines</span>
+        ))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Which-key</span>
+<span class="co">;;</span>
+(which-key-mode)
+(which-key-setup-minibuffer)
+(<span class="kw">setq</span> max-mini-window-height <span class="dv">10</span>)
+(<span class="kw">setq</span> which-key-idle-delay <span class="fl">0.5</span>)
+(set-face-attribute &#39;which-key-local-map-description-face <span class="kw">nil</span> :weight &#39;bold)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;------------------------------------------</span>
+<span class="co">;; ## Numeração de linhas</span>
+<span class="co">;;</span>
+(global-linum-mode <span class="kw">t</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;------------------------------------------</span>
+<span class="co">;; ## Realçar linha do cursor</span>
+<span class="co">;;</span>
+(hl-line-mode <span class="kw">t</span>)
+(toggle-hl-line-when-idle)
+(set-face-attribute hl-line-face <span class="kw">nil</span> :background <span class="st">&quot;Grey25&quot;</span>)
+(set-cursor-color <span class="st">&quot;yellow&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Realça numeração da linha do cursor</span>
+<span class="co">;;</span>
+(<span class="kw">require</span> &#39;hlinum)
+(hlinum-activate)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Realçar parêntesis</span>
+<span class="co">;;</span>
+(show-paren-mode)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Esconde barra de rolamento ##</span>
+<span class="co">;;</span>
+(scroll-bar-mode -<span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Ativa smartparens</span>
+<span class="co">;;(show-smartparens-global-mode t)</span>
+<span class="co">;;(add-hook &#39;prog-mode-hook &#39;turn-on-smartparens-strict-mode)</span>
+<span class="co">;(add-hook &#39;markdown-mode-hook &#39;turn-on-smartparens-strict-mode)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Salva estado atual ao sair</span>
+<span class="co">;;</span>
+(<span class="kw">require</span> &#39;saveplace)
+(setq-default save-place <span class="kw">t</span>)
+(<span class="kw">setq</span> save-place-file (expand-file-name <span class="st">&quot;.places&quot;</span> user-emacs-directory))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Desabilita buffer de mensagem inicial</span>
+<span class="co">;;</span>
+(<span class="kw">setq</span> initial-buffer-choice
+    <span class="kw">t</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Troca mensagem do buffer de rascunho</span>
+<span class="co">;;</span>
+(<span class="kw">setq</span> initial-scratch-message
+    <span class="st">&quot;;; Nada neste buffer será salvo. Use:</span>\n<span class="st">;; Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.</span>\n<span class="st">&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Realça frame ativo</span>
+<span class="co">;;</span>
+(<span class="kw">require</span> &#39;hiwin)
 (hiwin-activate)
-(set-face-background &#39;hiwin-face &quot;black&quot;)</code></pre>
-<p>Para facilitar a visualização, o frame ativo fica com o fundo do tema escolhido. Os outros com um fundo preto. Se você escolher um tema com um fundo claro, pode ser mais interessante trocar o preto (<em>black</em>) por uma cor mais clara.</p>
-<h2 id="configura-powerline">Configura powerline</h2>
-<pre><code>(powerline-center-theme)
-(setq powerline-default-separator
-      &#39;wave)</code></pre>
-<p>Modifica a barra de status do Emacs deixando-a mais atraente e permite diversas configurações. Por exemplo, temos como arrow, chamfer, curve, etc.</p>
-<h2 id="ido-no-modo-grade">ido no modo grade</h2>
-<pre><code>(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode t)
-(ido-grid-mode t)</code></pre>
-<p>Formata as informações do IDO (InterativelyDoThings) em forma de grade e não linhas. Quando você vai abrir um arquivo (<em>Ctrl+X Ctrl+F</em>), os arquivos são mostrados em colunas. Basicamente irá maximizar a visualização dos itens. Existem diversos complementos para o pacote. Outros concorrentes para a função são o <strong>helm</strong> e <strong>ivy</strong>. Por enquanto o <strong>ido</strong> está de bom tamanho para o meu uso. Se você quiser saber um pouco mais sobre o <em>ido</em>, pode dar uma olhada em <a href="https://www.masteringemacs.org/article/introduction-to-ido-mode">Introduction to Ido Mode</a>.</p>
-<div class="figure">
-<img src="images/ido.jpg" alt="ido" />
-<p class="caption">ido</p>
-</div>
-<p>Se o usuário digitar <em>Ctrl+x Ctrl+f</em> para abrir um arquivo, aparecerá um frame igual ao da imagem. É possível selecionar o arquivo utilizando as setas ou digitando-se o nome. Neste caso, os que não coincidirem com a pesquisa será escondidos facilitando a localização. Não é necessário digitar o inicio. Se digitar <em>yaml</em> salta direto para o arquivo com a extensão informada.</p>
-<h2 id="configura-atalho-ctrl.-para-imenu-anywhere">Configura atalho <em>Ctrl+.</em> para imenu-anywhere</h2>
-<pre><code>(global-set-key (kbd &quot;C-.&quot;) &#39;imenu-anywhere)</code></pre>
-<p>Procura no buffer atual procedimentos e funções (no caso de programas) ou títulos/capítulos/parágrafos e monta uma espécie de tabela de conteúdo, facilitando a movimentação pelo arquivo. Utiliza um frame do <em>ido</em> e está sujeito as mesmas funcionalidades.</p>
-<h2 id="configura-atalhos-altx-e-altx-para-smex">Configura atalhos <em>Alt+x</em> e <em>Alt+X</em> para smex</h2>
-<pre><code>(global-set-key (kbd &quot;M-x&quot;) &#39;smex)
-(global-set-key (kbd &quot;M-X&quot;) &#39;smex-major-mode-commands)</code></pre>
-<p>Atribui atalhos para a utilização do <em>smex</em>. Faz com que <em>Alt+X</em> mostre as opções em uma interface <em>ido</em> podendo compartilhar de todas as funcionalidades. Se o usuário procurar por <em>find-file</em> e executa, terá o mesmo funcionamento de <em>Ctrl+X Ctrl+F</em>. Também pode ser interessante para os curiosos descobrirem novos comandos. O que é uma coisa boa.</p>
-<h2 id="configura-o-autocomplete">Configura o autocomplete</h2>
-<pre><code>(ac-config-default)
-(ac-linum-workaround)</code></pre>
-<p>Bom para programadores pois irá completando automaticamente ou melhor, mostra um menu com as possibilidades mais prováveis, agilizando a digitação do programa. Possui diversos módulos para diversas linguagens. Muitos possuem ainda uma ajuda para a função. Como foi definida a numeração automática de linha em todos os buffers, a segunda linha evita que o menu seja numerado automaticamente. Por exemplo, em elisp:</p>
-<div class="figure">
-<img src="images/autocomplete.jpg" alt="Auto complete" />
-<p class="caption">Auto complete</p>
-</div>
-<h2 id="configura-o-markdown">Configura o markdown</h2>
-<pre><code>(autoload &#39;markdown-mode &quot;markdown-mode&quot;
-  &quot;Major mode for editing Markdown files&quot; t)
-(add-to-list &#39;auto-mode-alist &#39;(&quot;\\.text\\&#39;&quot; . markdown-mode))
-(add-to-list &#39;auto-mode-alist &#39;(&quot;\\.markdown\\&#39;&quot; . markdown-mode))
-(add-to-list &#39;auto-mode-alist &#39;(&quot;\\.md\\&#39;&quot; . markdown-mode))</code></pre>
-<p>Markdown é um arquivo de marcação e é o que está sendo utilizado para escrever este documento. Sempre que o usuário abrir um arquivo com a extensão <em>text</em>, <em>markdown</em> ou <em>md</em>, o Emacs associa o mode automaticamente. Isso faz com que a sintaxe seja salientada de acordo com o conteúdo do arquivo bem como, neste caso, cria um menu específico com o nome <strong>Markdown</strong> que o usuário pode acessar para efetuar diversas tarefas relativas ao formato como marcar como <em>itálico</em>, <strong>bold</strong>, <em>títulos</em>, etc.. Posteriormente o arquivo poderá gerar um <em>.html</em> sem muito esforço (é necessário que o programa <em>markdown</em> para seu ambiente esteja instalado). Com outros utilitários (veremos o <em>pandoc</em> adiante) é possível mais proezas ainda a um custo bastante baixo.</p>
-<h2 id="configura-pandoc">Configura pandoc</h2>
-<pre><code>(load &quot;pandoc-mode&quot;)
-(add-hook &#39;markdown-mode-hook &#39;pandoc-mode)</code></pre>
-<p>Agora a coisa ficou mais legal. Apesar da documentação meio sofrível, o <em>pandoc</em> é um bom programa para lidar com formatos de documentos permitindo a conversão entre eles bem como a geração de formatos específicos. Para alguns formatos, utiliza programas complementares. Para gerar <em>html</em> utiliza o markdown, para o <em>pdf</em> o latex, etc.. Este texto, por exemplo, está sendo digitado em markdown <em>README.md</em>. Será utilizado diretamente no <a href="https://github.com/guaracy/emacs/tree/master/config">github</a> e irá gerar um <em>pdf</em>, um <em>docx</em>, um <em>epub</em>, um <em>html</em> e um <em>odt</em> com o mesmo conteúdo. Até poderiam ser gerados outros, provavelmente sem muita utilidade para o usuário. Não chega a ser uma panaceia mas facilita bastante o trabalho de quem precisa entregar documentos diversos. Neste caso específico, criei um arquivo auxiliar (<em>title.yaml</em> que pode ser visto abaixo) para formatar uma capa e um script com linhas do tipo <code>pandoc -S --toc -o README.pdf title.yaml README.md</code> para gerar os diversos formatos.</p>
-<pre><code>---
-title: Emacs em 30 segundos
-author: Guaracy Monteiro
-date: Jan/16
-rights:  Creative Commons Non-Commercial Share Alike 3.0
-language: pt-BR
-...</code></pre>
-<p>Para a produção de um livro mais sofisticado é necessário que o usuário utilize alguns arquivos/programas de suporte. O livro <a href="https://progit.org/">Pro Git</a>, por exemplo, foi feito utilizando <em>markdown</em> e diversos utilitários. Para produzir a versão em <em>pdf</em>, foi utilizado o <em>pandoc</em> para gerar o LaTeX. Você pode ver/baixar os <a href="https://github.com/progit/progit">fontes</a> no GitHub e adaptar para o seu projeto.</p>
-<h2 id="configura-theme-looper">Configura theme-looper</h2>
-<pre><code>theme-looper-set-theme-set &#39;(adwaita
-                             deeper-blue
-                             dichromacy
-                             misterioso
-                             tango-dark
-                             tango
-                             tsdh-dark
-                             wheatgrass
-                             wombat))
+(set-face-background &#39;hiwin-face <span class="st">&quot;black&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Configura powerline</span>
+<span class="co">;;</span>
+(powerline-center-theme)
+(<span class="kw">setq</span> powerline-default-separator
+      &#39;wave)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## ido no modo grade</span>
+<span class="co">;;</span>
+(<span class="kw">setq</span> ido-enable-flex-matching <span class="kw">t</span>)
+(<span class="kw">setq</span> ido-everywhere <span class="kw">t</span>)
+(ido-mode <span class="kw">t</span>)
+(ido-grid-mode <span class="kw">t</span>)
+(global-set-key (kbd <span class="st">&quot;C-x o&quot;</span>) &#39;ido-select-window)
+(global-set-key (kbd <span class="st">&quot;&lt;f4&gt;&quot;</span>) &#39;ido-select-window)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Configura atalho *Ctrl+.* para imenu-anywhere</span>
+<span class="co">;;</span>
+(global-set-key (kbd <span class="st">&quot;C-.&quot;</span>) &#39;imenu-anywhere)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Configura atalhos *Alt+x* e *Alt+X* para smex</span>
+<span class="co">;;</span>
+(global-set-key (kbd <span class="st">&quot;M-x&quot;</span>) &#39;smex)
+(global-set-key (kbd <span class="st">&quot;M-X&quot;</span>) &#39;smex-major-mode-commands)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Configura o autocomplete</span>
+<span class="co">;;</span>
+(ac-config-default)
+(ac-linum-workaround)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Configura o markdown</span>
+<span class="co">;;</span>
+<span class="co">;;(autoload &#39;markdown-mode &quot;markdown-mode&quot;</span>
+<span class="co">;;  &quot;Major mode for editing Markdown files&quot; t)</span>
+<span class="co">;;(add-to-list &#39;auto-mode-alist &#39;(&quot;\\.text\\&#39;&quot; . markdown-mode))</span>
+<span class="co">;;(add-to-list &#39;auto-mode-alist &#39;(&quot;\\.markdown\\&#39;&quot; . markdown-mode))</span>
+<span class="co">;;(add-to-list &#39;auto-mode-alist &#39;(&quot;\\.md\\&#39;&quot; . markdown-mode))</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Configura pandoc</span>
+<span class="co">;;(load &quot;pandoc-mode&quot;)</span>
+<span class="co">;;(add-hook &#39;org-mode-hook &#39;pandoc-mode)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Indent guide</span>
+<span class="co">;;</span>
+(indent-guide-global-mode)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Configura theme-looper</span>
+<span class="co">;;</span>
+(theme-looper-set-theme-set &#39;(adwaita
+                              deeper-blue
+                              dichromacy
+                              misterioso
+                              tango-dark
+                  tango
+                  tsdh-dark
+                              wheatgrass
+                              wombat))
+
 (theme-looper-set-customizations &#39;powerline-reset)
-(global-set-key (kbd &quot;C-\&quot;&quot;) &#39;theme-looper-enable-next-theme)</code></pre>
-<p>Apenas para facilitar a visualização dos temas para ver qual fica melhor ou lhe agrada mais. Se você incluir um novo tema, deverá colocá-lo manualmente na lista para que seja reconhecido. Foi atribuído o atalho *Ctrl+“* para alternar entre os temas.</p>
-<h2 id="arquivos-recentes">Arquivos recentes</h2>
-<pre><code>(require &#39;recentf)
-(recentf-mode t)
-(setq recentf-max-menu-items 25)
-(defun recentf-ido-find-file ()
-  &quot;Find a recent file using Ido.&quot;
+(global-set-key (kbd <span class="st">&quot;C-</span>\&quot;<span class="st">&quot;</span>) &#39;theme-looper-enable-next-theme)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Configura goto last change</span>
+<span class="co">;;</span>
+(global-set-key (kbd <span class="st">&quot;C-x .&quot;</span>) &#39;goto-last-change)
+(global-set-key (kbd <span class="st">&quot;C-x ,&quot;</span>) &#39;goto-last-change-reverse)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; ## Ctrl+x Ctrl+r abre lista de arquivos recentes</span>
+<span class="co">;;</span>
+(<span class="kw">require</span> &#39;recentf)
+(recentf-mode <span class="kw">t</span>)
+(<span class="kw">setq</span> recentf-max-menu-items <span class="dv">25</span>)
+(<span class="kw">defun</span><span class="fu"> recentf-ido-find-file </span>()
+  <span class="st">&quot;Find a recent file using Ido.&quot;</span>
   (interactive)
-  (let ((file (ido-completing-read &quot;Choose recent file: &quot; recentf-list nil t)))
-    (when file
+  (<span class="kw">let</span> ((file (ido-completing-read <span class="st">&quot;Choose recent file: &quot;</span> recentf-list <span class="kw">nil</span> <span class="kw">t</span>)))
+    (<span class="kw">when</span> file
       (find-file file))))
-(global-set-key (kbd &quot;C-x C-r&quot;) &#39;recentf-ido-find-file)</code></pre>
-<p>Aqui dizemos ao Emacs para lembra-se dos últimos 25 arquivos abertos (poderia ser outro número). Os arquivos ficarão acessíveis no menu <strong>File/Open Recent</strong> ou pelo atalho <em>Ctrl+x Ctrl+r</em> onde abrirá um frame do <em>ido</em> colocando o nome dos arquivos, facilitando a reabertura de qualquer um deles.</p>
-<h2 id="cancela-alterações-no-buffer">Cancela alterações no buffer</h2>
-<pre><code>(defun  revert-buffer-preserve-modes  ()
-  (interactive)
-  (revert-buffer  t  nil  t))
-(global-set-key (kbd &quot;&lt;f5&gt;&quot;) &#39;revert-buffer-preserve-modes )</code></pre>
-<p>Algumas vezes efetuamos alterações em algum arquivo e desistimos. Pressionando <em>F5</em> fará com que o Emacs reabra a última versão salva.</p>
-<h2 id="finalmente">Finalmente</h2>
-<p>Ao término, o Emacs pode ter ficado com uma aparência assim (ou mais ao seu gosto).</p>
-<div class="figure">
-<img src="images/emacs2.jpg" alt="Emacs final" />
-<p class="caption">Emacs final</p>
-</div>
-<h1 id="considerações-finais">Considerações finais</h1>
-<p>O que vem a seguir não é referente ao arquivo de configuração <em>.emacs</em>.</p>
-<h2 id="atalhos">Atalhos</h2>
-<p>Apesar do CUA facilitar a memorização de alguns atalhos para quem vem de outros editores, outros ainda podem causar confusão. Vejamos alguns atalhos (entre dezenas de milhares mas não se preocupe pois ninguém sabe todos) úteis ou que podem ser utilizados para outras finalidades.</p>
-<ol style="list-style-type: decimal">
-<li><strong>Ctrl+s</strong> é utilizado para pesquisar (<em>Search</em>) no Emacs e não para salvar um arquivo. Pressionando <em>Ctrl+s</em> novamente, o cursor irá para a próxima ocorrência. Para gravar o arquivo é utilizado <em>Ctrl+x Ctrl+s</em>. Nada impede que você defina <em>Ctrl+s</em> para gravar, <em>Ctrl+f</em> para pesquisar e <em>Ctrl+r</em> para pesquisar e trocar. Mas você deverá ter cuidado com os conflitos.</li>
-<li><strong>Ctrl+g</strong> é a salvação para todos os males. Se alguma coisa der errado, pressione a sequencia até que se normalize. Algumas vezes não basta pressionar apenas uma vez. Digitou <em>Ctrl+s</em> para gravar e iniciou uma pesquisa? <em>Ctrl+g</em>. ;-)</li>
-<li><strong>Ctrl+x Ctrl+c</strong> para fechar o programa. Se algum programa foi alterado, você será questionado se deseja gravar, ignorar ou cancelar. Ou …. <em>Ctrl+g</em> é claro.</li>
-<li><strong>Ctrl+2</strong> divide verticalmente o buffer onde está o cursor em dois frames.</li>
-<li><strong>Ctrl+3</strong> divide horizontalmente o buffer onde o cursor se encontra.</li>
-<li><strong>Ctrl+1</strong> faz com que o buffer onde está o cursor ocupe toda a janela.</li>
-<li><strong>Ctrl+0</strong> o buffer atual cederá espaço para os outros frames.</li>
-<li><strong>Ctrl+x b</strong> abre um frame (<em>ido</em>) para que o usuário selecione outro buffer.</li>
-<li><strong>Ctrl+x k</strong> fecha o buffer atual. Se o arquivo foi alterado, o usuário será perguntado se deseja salvar/etc. ou <strong>Ctrl+g</strong>.</li>
-<li><strong>Home</strong> e <strong>End</strong> servem para ir ao início ou final da linha, precedidos de <strong>Ctrl</strong> para o início ou final do arquivo, precedidos de <strong>Shift</strong> da posição atual até o início ou final da linha ou do arquivo se o <strong>Ctrl</strong> também for pressionado.</li>
-</ol>
-<h2 id="comandos">comandos</h2>
-<h3 id="altx-occur"><em>Alt+x occur</em></h3>
-<p>Permite que você informe um texto (pode ser expressão regular) e será aberto um frame informando todas as ocorrência no seu arquivo para que você tenha acesso rápido aos diversos pontos. Na realidade, acabei de usar aqui. Reestruturei os diretórios e precisava incluir <em>images/</em> antes de todas as imagens. Como eram poucas imagens, foi mais fácil <em>Alt+x occurs</em>, procurar as ocorrencias de <em>jpg</em> e incluir/copiar <em>images/</em>. Sim, poderia fazer uma pesquisa e substituição usando expressões regulares.</p>
-<div class="figure">
-<img src="images/occur.jpg" alt="Alt+x occur" />
-<p class="caption">Alt+x occur</p>
-</div>
-<!--  LocalWords:  http-equiv Content-Type content text html charset
- -->
-<!--  LocalWords:  utf Emacs TL emacs Options spacemacs super-emacs
- -->
-<!--  LocalWords:  CUA shift frames Windows AppData Rooming home epub
- -->
-<!--  LocalWords:  README docx pdf rtf odt alt jpg pacman apt-get not
- -->
-<!--  LocalWords:  link runemacs custom-set-variables cua-mode Save
- -->
-<!--  LocalWords:  cua-base custom-enabled-themes deeper-blue Common
- -->
-<!--  LocalWords:  indicate-empty-lines show-paren-mode tool-bar-mode
- -->
-<!--  LocalWords:  User Access Crtl Ctrl Custom Themes Line package
- -->
-<!--  LocalWords:  Indicators add-to-list package-archives melpa when
- -->
-<!--  LocalWords:  package-initialize package-archive-contents ELPA
- -->
-<!--  LocalWords:  package-refresh-contents defvar powerline hlinum
- -->
-<!--  LocalWords:  gbm-required-packages hiwin ido-grid-mode smex and
- -->
-<!--  LocalWords:  imenu-anywhere markdown-mode pandoc-mode mapc setq
- -->
-<!--  LocalWords:  auto-complete smartparens theme-looper width lines
- -->
-<!--  LocalWords:  package-install initial-frame-alist characters kbd
- -->
-<!--  LocalWords:  height wide windmove-default-keybindings frame M-x
- -->
-<!--  LocalWords:  global-linum-mode buffer Alt-x line-mode ensure md
- -->
-<!--  LocalWords:  global-hl-line-mode hlinum-activate use-package
- -->
-<!--  LocalWords:  smartparens-config config progn add-hook Pairs let
- -->
-<!--  LocalWords:  show-smartparens-global-mode prog-mode-hook Bottom
- -->
-<!--  LocalWords:  turn-on-smartparens-strict-mode markdown-mode-hook
- -->
-<!--  LocalWords:  scroll-bar-mode saveplace setq-default save-place
- -->
-<!--  LocalWords:  save-place-file initial-buffer-choice elisp black
- -->
-<!--  LocalWords:  initial-scratch-message hiwin-activate hiwin-face
- -->
-<!--  LocalWords:  set-face-background powerline-center-theme wave
- -->
-<!--  LocalWords:  powerline-default-separator ido-everywhere mode
- -->
-<!--  LocalWords:  ido-enable-flex-matching ido-mode global-set-key
- -->
-<!--  LocalWords:  smex-major-mode-commands markdown autoload editing
- -->
-<!--  LocalWords:  auto-mode-alist ac-config-default pandoc load Find
- -->
-<!--  LocalWords:  ac-linum-workaround theme-looper-set-theme-set C-x
- -->
-<!--  LocalWords:  adwaita dichromacy tango-dark tsdh-dark wheatgrass
- -->
-<!--  LocalWords:  wombat theme-looper-set-customizations recentf C-r
- -->
-<!--  LocalWords:  powerline-reset theme-looper-enable-next-theme ivy
- -->
-<!--  LocalWords:  recentf-mode recentf-max-menu-items defun recent
- -->
-<!--  LocalWords:  recentf-ido-find-file using interactive Choose
- -->
-<!--  LocalWords:  ido-completing-read recentf-list find-file arrow
- -->
-<!--  LocalWords:  revert-buffer-preserve-modes revert-buffer chamfer
- -->
-<!--  LocalWords:  InterativelyDoThings helm Introduction yaml bold
- -->
-<!--  LocalWords:  buffers latex github title script toc author Jan
- -->
-<!--  LocalWords:  Guaracy rights Creative Commons Non-Commercial Git
- -->
-<!--  LocalWords:  Share Alike language pt-BR LaTeX GitHub Open End
- -->
-<!--  LocalWords:  Search occur
- -->
+(global-set-key (kbd <span class="st">&quot;C-x C-r&quot;</span>) &#39;recentf-ido-find-file)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; Se o arquivo .myemacs existe, carregar</span>
+<span class="co">;; configurações do usuário</span>
+<span class="co">;;</span>
+(<span class="kw">setq</span> myconfig <span class="st">&quot;~/.myemacs&quot;</span>)
+(<span class="kw">if</span> (file-exists-p myconfig)
+    (load-file myconfig))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; Define F3 para pesquisar e Shift+F3 para pesquisar próxima</span>
+(global-set-key (kbd <span class="st">&quot;S-&lt;f3&gt;&quot;</span>) &#39;isearch-backward)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;-----------------------------------------</span>
+<span class="co">;; Define F3 para iniciar busca</span>
+<span class="co">;; F3 novamente para próxima ocorrência</span>
+<span class="co">;; Shift+F3 para ocorrência anterior</span>
+(global-set-key (kbd <span class="st">&quot;&lt;f3&gt;&quot;</span>) &#39;isearch-forward)
+(define-key isearch-mode-map (kbd <span class="st">&quot;&lt;f3&gt;&quot;</span>) &#39;isearch-repeat-forward)
+(define-key isearch-mode-map (kbd <span class="st">&quot;S-&lt;f3&gt;&quot;</span>) &#39;isearch-repeat-backward)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp"><span class="co">;;------------------------------------------</span>
+<span class="co">;; ## Movimentação entre frames</span>
+<span class="co">;;</span>
+(windmove-default-keybindings) <span class="co">;; &#39;meta);</span>
+<span class="co">;; Make windmove work in org-mode:</span>
+(add-hook &#39;org-shiftup-final-hook &#39;windmove-up)
+(add-hook &#39;org-shiftleft-final-hook &#39;windmove-left)
+(add-hook &#39;org-shiftdown-final-hook &#39;windmove-down)
+(add-hook &#39;org-shiftright-final-hook &#39;windmove-right)
+
+(<span class="kw">setq</span> org-CUA-compatible <span class="kw">t</span>)
+(<span class="kw">setq</span> org-support-shift-select <span class="kw">t</span>)
+(<span class="kw">setq</span> org-src-fontify-natively <span class="kw">t</span>)
+(<span class="kw">setq</span> org-startup-truncated <span class="kw">nil</span>)</code></pre></div>
+<p>;;—————————————– ;; FIM DO ARQUIVO .emacs ;;—————————————–</p>
+<h1 id="arquivo-.myemacs">Arquivo .myemacs</h1>
