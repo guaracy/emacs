@@ -46,16 +46,15 @@
     powerline
     hlinum
     hiwin
+    htmlize
     ido-grid-mode
     ido-select-window
     imenu-anywhere
     smex
-    ;markdown-mode
     pandoc-mode
+    ox-pandoc
     org-cua-dwim
-    org-pandoc
     auto-complete
-    smartparens
     goto-chg
     indent-guide
     theme-looper))
@@ -66,7 +65,6 @@
 (mapc (lambda (p)
         (package-install p))
       gbm-required-packages)
-
 
 ;;-----------------------------------------
 ;; # Configuração da aparência e pacotes
@@ -117,11 +115,10 @@
 ;;
 (scroll-bar-mode -1)
 
-
 ;;-----------------------------------------
 ;; ## Ativa smartparens
-(show-smartparens-global-mode t)
-(add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
+;;(show-smartparens-global-mode t)
+;;(add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
 ;(add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
 
 ;;-----------------------------------------
@@ -196,11 +193,6 @@
 ;;(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;;-----------------------------------------
-;; ## Configura pandoc
-;;(load "pandoc-mode")
-;;(add-hook 'org-mode-hook 'pandoc-mode)
-
-;;-----------------------------------------
 ;; ## Indent guide
 ;;
 (indent-guide-global-mode)
@@ -266,17 +258,25 @@
 ;;------------------------------------------
 ;; ## Movimentação entre frames
 ;;
-(windmove-default-keybindings) ;; 'meta);
+;;(windmove-default-keybindings 'meta);
 ;; Make windmove work in org-mode:
-(add-hook 'org-shiftup-final-hook 'windmove-up)
-(add-hook 'org-shiftleft-final-hook 'windmove-left)
-(add-hook 'org-shiftdown-final-hook 'windmove-down)
-(add-hook 'org-shiftright-final-hook 'windmove-right)
+;;(add-hook 'org-shiftup-final-hook 'windmove-up)
+;;(add-hook 'org-shiftleft-final-hook 'windmove-left)
+;;(add-hook 'org-shiftdown-final-hook 'windmove-down)
+;;(add-hook 'org-shiftright-final-hook 'windmove-right)
+
+;;(org-babel-do-load-languages
+;; 'org-babel-load-languages
+;; '((emacs-lisp . t)
+;;   (sh . t)))
+;;(setq org-confirm-babel-evaluate nil)
 
 (setq org-CUA-compatible t)
 (setq org-support-shift-select t)
 (setq org-src-fontify-natively t)
 (setq org-startup-truncated nil)
+
+(delete-other-windows)
 
 ;;-----------------------------------------
 ;; FIM DO ARQUIVO .emacs
