@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt_br" xml:lang="pt_br">
 <head>
-<!-- 2016-01-15 Sex 12:31 -->
+<!-- 2016-01-15 Sex 14:38 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs em 30 Segundos</title>
@@ -170,59 +170,67 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline4">1. Emacs em 30 segundos</a>
+<li><a href="#orgheadline5">1. Emacs em 30 segundos</a>
 <ul>
-<li><a href="#orgheadline1">1.1. Alternativas</a></li>
-<li><a href="#orgheadline2">1.2. Características do projeto</a></li>
-<li><a href="#orgheadline3">1.3. org-mode</a></li>
+<li><a href="#orgheadline2">1.1. Alternativas</a></li>
+<li><a href="#orgheadline3">1.2. Características do projeto</a></li>
+<li><a href="#orgheadline4">1.3. org-mode</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline34">2. Arquivo .emacs</a>
+<li><a href="#orgheadline35">2. Arquivo .emacs</a>
 <ul>
-<li><a href="#orgheadline5">2.1. Configurações iniciais</a></li>
-<li><a href="#orgheadline9">2.2. Pacotes</a>
+<li><a href="#orgheadline6">2.1. Configurações iniciais</a></li>
+<li><a href="#orgheadline10">2.2. Pacotes</a>
 <ul>
-<li><a href="#orgheadline6">2.2.1. Alterações das opções iniciais</a></li>
-<li><a href="#orgheadline7">2.2.2. Inclusão e atualização de fonte de pacotes</a></li>
-<li><a href="#orgheadline8">2.2.3. Seleção e instalação dos pacotes pelo Emacs30</a></li>
+<li><a href="#orgheadline7">2.2.1. Alterações das opções iniciais</a></li>
+<li><a href="#orgheadline8">2.2.2. Inclusão e atualização de fonte de pacotes</a></li>
+<li><a href="#orgheadline9">2.2.3. Seleção e instalação dos pacotes pelo Emacs30</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline33">2.3. Configurações da aparência e dos pacotes</a>
+<li><a href="#orgheadline34">2.3. Configurações da aparência e dos pacotes</a>
 <ul>
-<li><a href="#orgheadline10">2.3.1. Tamanho da janela</a></li>
-<li><a href="#orgheadline11">2.3.2. Which key</a></li>
-<li><a href="#orgheadline12">2.3.3. Numeração das linhas</a></li>
-<li><a href="#orgheadline13">2.3.4. Realça linha do cursor</a></li>
-<li><a href="#orgheadline14">2.3.5. Realça numeração da linha do cursor</a></li>
-<li><a href="#orgheadline15">2.3.6. Realçar parêntesis</a></li>
-<li><a href="#orgheadline16">2.3.7. Esconde barra de rolamento ##</a></li>
-<li><a href="#orgheadline17">2.3.8. Salva estado atual ao sair</a></li>
-<li><a href="#orgheadline18">2.3.9. Desabilita buffer de mensagem inicial</a></li>
-<li><a href="#orgheadline19">2.3.10. Troca mensagem do buffer de rascunho</a></li>
-<li><a href="#orgheadline20">2.3.11. Realça frame ativo</a></li>
-<li><a href="#orgheadline21">2.3.12. Configura powerline</a></li>
-<li><a href="#orgheadline22">2.3.13. ido no modo grade</a></li>
-<li><a href="#orgheadline23">2.3.14. Configura atalho <b>Ctrl+.</b> para imenu-anywhere</a></li>
-<li><a href="#orgheadline24">2.3.15. Configura atalhos <b>Alt+x</b> e <b>Alt+X</b> para smex</a></li>
-<li><a href="#orgheadline25">2.3.16. Configura o autocomplete</a></li>
-<li><a href="#orgheadline26">2.3.17. Indent guide</a></li>
-<li><a href="#orgheadline27">2.3.18. Configura theme-looper</a></li>
-<li><a href="#orgheadline28">2.3.19. Configura goto last change</a></li>
-<li><a href="#orgheadline29">2.3.20. Ctrl+x Ctrl+r abre lista de arquivos recentes</a></li>
-<li><a href="#orgheadline30">2.3.21. Carrega arquivo .myemacs</a></li>
-<li><a href="#orgheadline31">2.3.22. Define F3 para pesquisar e Shift+F3 para pesquisar próxima</a></li>
-<li><a href="#orgheadline32">2.3.23. <span class="todo nilTODO">TODO</span> Alterar</a></li>
+<li><a href="#orgheadline11">2.3.1. Tamanho da janela</a></li>
+<li><a href="#orgheadline12">2.3.2. Which key</a></li>
+<li><a href="#orgheadline13">2.3.3. Numeração das linhas</a></li>
+<li><a href="#orgheadline14">2.3.4. Realça linha do cursor</a></li>
+<li><a href="#orgheadline15">2.3.5. Realça numeração da linha do cursor</a></li>
+<li><a href="#orgheadline16">2.3.6. Realçar parêntesis</a></li>
+<li><a href="#orgheadline17">2.3.7. Esconde barra de rolamento ##</a></li>
+<li><a href="#orgheadline18">2.3.8. Salva estado atual ao sair</a></li>
+<li><a href="#orgheadline19">2.3.9. Desabilita buffer de mensagem inicial</a></li>
+<li><a href="#orgheadline20">2.3.10. Troca mensagem do buffer de rascunho</a></li>
+<li><a href="#orgheadline21">2.3.11. Realça frame ativo</a></li>
+<li><a href="#orgheadline22">2.3.12. Configura powerline</a></li>
+<li><a href="#orgheadline23">2.3.13. ido no modo grade</a></li>
+<li><a href="#orgheadline24">2.3.14. Configura atalho <b>Ctrl+.</b> para imenu-anywhere</a></li>
+<li><a href="#orgheadline25">2.3.15. Configura atalhos <b>Alt+x</b> e <b>Alt+X</b> para smex</a></li>
+<li><a href="#orgheadline26">2.3.16. Configura o autocomplete</a></li>
+<li><a href="#orgheadline27">2.3.17. Indent guide</a></li>
+<li><a href="#orgheadline28">2.3.18. Configura theme-looper</a></li>
+<li><a href="#orgheadline29">2.3.19. Configura goto last change</a></li>
+<li><a href="#orgheadline30">2.3.20. Ctrl+x Ctrl+r abre lista de arquivos recentes</a></li>
+<li><a href="#orgheadline31">2.3.21. Carrega arquivo .myemacs</a></li>
+<li><a href="#orgheadline32">2.3.22. Define F3 para pesquisar e Shift+F3 para pesquisar próxima</a></li>
+<li><a href="#orgheadline33">2.3.23. <span class="todo nilTODO">TODO</span> Alterar</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline36">3. Arquivo .myemacs</a>
+<li><a href="#orgheadline41">3. Arquivo .myemacs</a>
 <ul>
-<li>
+<li><a href="#orgheadline36">3.1. Instalação de outros pacotes</a></li>
+<li><a href="#orgheadline40">3.2. Funções úteis</a>
 <ul>
-<li><a href="#orgheadline35">3.0.1. <span class="todo nilTODO">TODO</span> Fazer</a></li>
+<li><a href="#orgheadline37">3.2.1. Rotacionar janelas</a></li>
+<li><a href="#orgheadline38">3.2.2. Renomeia buffer e arquivo</a></li>
+<li><a href="#orgheadline39">3.2.3. insere linha em branco</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#orgheadline43">4. Conclusão</a>
+<ul>
+<li><a href="#orgheadline42">4.1. makedoc</a></li>
 </ul>
 </li>
 </ul>
@@ -232,6 +240,7 @@ for the JavaScript code in this tag.
 \pagebreak
 </p>
 
+<ol class="org-ol"><li><a id="orgheadline1"></a><span class="todo TODO">TODO</span> - Revisar<br  /><div class="outline-text-7" id="text-0-0-0-0-0-1">
 <hr  />
 
 <p>
@@ -252,17 +261,18 @@ Arquivo de configuração para ser utilizado em uma instalação nova do Emacs o
 <p>
 \pagebreak
 </p>
+</div></li>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4"><span class="section-number-2">1</span> Emacs em 30 segundos</h2>
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5"><span class="section-number-2">1</span> Emacs em 30 segundos</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A ideia base deste projeto é a possível dificuldade de instalação e configuração do Emacs por parte dos usuários. A instalação é simples mas, conforme o programa sai de <i>fábrica</i>, muitas pessoas encontram uma pequena dificuldade inicial e, como pensam: "- <i>Ah, é só mais um editor de textos. Vou continuar com o que eu já conheço</i>.", e perdem uma ferramenta das mais poderosas que poderiam usar. Apesar de ser possível efetuar algumas alterações pelo menu, muitas necessitam que o usuário edite um arquivo de configuração (<b>.emacs</b>). A instalação de novos pacotes, por exemplo, já foi uma tarefa bem mais complicada. 
 </p>
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Alternativas</h3>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.1</span> Alternativas</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Existem algumas opções que possuem um Emacs configurado para o usuário final. É possível citar:
@@ -296,8 +306,8 @@ ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Características do projeto</h3>
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.2</span> Características do projeto</h3>
 <div class="outline-text-3" id="text-1-2">
 <ol class="org-ol">
 <li>Habilitação do CUA-mode para que o usuário não precise aprender que <i>Alt+w</i> é usada para copiar um texto, por exemplo.</li>
@@ -309,8 +319,8 @@ ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-3">
-<h3 id="orgheadline3"><span class="section-number-3">1.3</span> org-mode</h3>
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">1.3</span> org-mode</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Inicialmente estava previsto a instalação do pacote <b>markdown</b> para facilitar a criação e transformação de textos em uma linguagem de marcação simples para outros documentos mais complexos. Como o Emacs já vem com o org-mode e muitos usuários utilizam o Emacs basicamente pelo pacote, nada melhor do que utilizá-lo.
@@ -326,23 +336,23 @@ Inicialmente estava previsto a instalação do pacote <b>markdown</b> para facil
 </div>
 </div>
 
-<div id="outline-container-orgheadline34" class="outline-2">
-<h2 id="orgheadline34"><span class="section-number-2">2</span> Arquivo .emacs</h2>
+<div id="outline-container-orgheadline35" class="outline-2">
+<h2 id="orgheadline35"><span class="section-number-2">2</span> Arquivo .emacs</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5"><span class="section-number-3">2.1</span> Configurações iniciais</h3>
+</div><div id="outline-container-orgheadline6" class="outline-3">
+<h3 id="orgheadline6"><span class="section-number-3">2.1</span> Configurações iniciais</h3>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9"><span class="section-number-3">2.2</span> Pacotes</h3>
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">2.2</span> Pacotes</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 É onde tudo acontece. Achei que seria melhor explicar com mais detalhes tudo o que acontece durante a execução do arquivo para que o usuário possa efetuar alterações básicas para deixar o Emacs mais ao seu gosto. As linhas que iniciam com ponto e vírgula indicam que são comentários e não serão interpretadas. Para um entendimento melhor, seria interessante que o usuário aprendesse um pouco sobre a linguagem <b>emacs-lisp</b> (uma variação de lisp) de onde vem toda a flexibilidade do Emacs.
 </p>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-4">
-<h4 id="orgheadline6"><span class="section-number-4">2.2.1</span> Alterações das opções iniciais</h4>
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7"><span class="section-number-4">2.2.1</span> Alterações das opções iniciais</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 Deixei estas alterações no início pois, se for feita alguma alteração utilizando o menu <b>Options</b> e o usuário selecionar <b>Options/Save Options</b>, esta parte do arquivo <b>.emacs</b> será alterada. Ficando no início é mais fácil de visualizar e não causa tanta confusão.
@@ -365,8 +375,8 @@ Ativamos o CUA-mode <a href="#coderef-cua"class="coderef" onmouseover="CodeHighl
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7"><span class="section-number-4">2.2.2</span> Inclusão e atualização de fonte de pacotes</h4>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">2.2.2</span> Inclusão e atualização de fonte de pacotes</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <div class="org-src-container">
 
@@ -395,12 +405,12 @@ Atualiza o conteúdo das fontes de pacotes se não existe. Para você atualizar 
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8"><span class="section-number-4">2.2.3</span> Seleção e instalação dos pacotes pelo Emacs30</h4>
+<div id="outline-container-orgheadline9" class="outline-4">
+<h4 id="orgheadline9"><span class="section-number-4">2.2.3</span> Seleção e instalação dos pacotes pelo Emacs30</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #ffad29; font-weight: bold;">defvar</span> <span style="color: #dbdb95;">gbm-required-packages</span>
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">defvar</span> <span style="color: #dbdb95;">gbm-required-packages</span>
   '(which-key
     hl-line+
     powerline
@@ -427,7 +437,7 @@ Não inclua nenhum pacote neste ponto. Utilize o arquivo <b>.myemacs</b> se dese
 
 <div class="org-src-container">
 
-<pre class="src src-lisp">(mapc (<span style="color: #ffad29; font-weight: bold;">lambda</span> (p)
+<pre class="src src-emacs-lisp">(mapc (<span style="color: #ffad29; font-weight: bold;">lambda</span> (p)
         (package-install p))
       gbm-required-packages)
 </pre>
@@ -436,18 +446,18 @@ Não inclua nenhum pacote neste ponto. Utilize o arquivo <b>.myemacs</b> se dese
 </div>
 </div>
 
-<div id="outline-container-orgheadline33" class="outline-3">
-<h3 id="orgheadline33"><span class="section-number-3">2.3</span> Configurações da aparência e dos pacotes</h3>
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34"><span class="section-number-3">2.3</span> Configurações da aparência e dos pacotes</h3>
 <div class="outline-text-3" id="text-2-3">
-</div><div id="outline-container-orgheadline10" class="outline-4">
-<h4 id="orgheadline10"><span class="section-number-4">2.3.1</span> Tamanho da janela</h4>
+</div><div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11"><span class="section-number-4">2.3.1</span> Tamanho da janela</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(setq initial-frame-alist
+<pre class="src src-emacs-lisp">(setq initial-frame-alist
       '(
-        (width . 130) <span style="color: #74af68;">; characters</span>
-        (height . 40) <span style="color: #74af68;">; lines</span>
+        (width . 130) <span style="color: #74af68;">; </span><span style="color: #74af68;">characters</span>
+        (height . 40) <span style="color: #74af68;">; </span><span style="color: #74af68;">lines</span>
         ))
 </pre>
 </div>
@@ -458,12 +468,12 @@ Especifica uma altura/largura maior do que os valores padrões. Em muitos casos,
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-4">
-<h4 id="orgheadline11"><span class="section-number-4">2.3.2</span> Which key</h4>
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">2.3.2</span> Which key</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(which-key-mode)
+<pre class="src src-emacs-lisp">(which-key-mode)
 (which-key-setup-minibuffer)
 (setq max-mini-window-height 10)
 (setq which-key-idle-delay 0.5)
@@ -477,12 +487,12 @@ Quando o usuário utilizar um atalho como <i>Ctrl+c</i> ou <i>Ctrl+h</i>, por ex
 </div>
 </div>
 
-<div id="outline-container-orgheadline12" class="outline-4">
-<h4 id="orgheadline12"><span class="section-number-4">2.3.3</span> Numeração das linhas</h4>
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">2.3.3</span> Numeração das linhas</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(global-linum-mode t)
+<pre class="src src-emacs-lisp">(global-linum-mode t)
 </pre>
 </div>
 
@@ -492,12 +502,12 @@ Indica para numerar as linhas em todos os buffers. A qualquer momento o usuário
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-4">
-<h4 id="orgheadline13"><span class="section-number-4">2.3.4</span> Realça linha do cursor</h4>
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">2.3.4</span> Realça linha do cursor</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(hl-line-mode t)
+<pre class="src src-emacs-lisp">(hl-line-mode t)
 (toggle-hl-line-when-idle)
 (set-face-attribute hl-line-face nil <span style="color: #23d7d7;">:background</span> <span style="color: #e67128;">"Grey25"</span>)
 (set-cursor-color <span style="color: #e67128;">"yellow"</span>)
@@ -510,12 +520,12 @@ Irá realçar a linha onde encontra-se o cursor apenas quando o usuário não es
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-4">
-<h4 id="orgheadline14"><span class="section-number-4">2.3.5</span> Realça numeração da linha do cursor</h4>
+<div id="outline-container-orgheadline15" class="outline-4">
+<h4 id="orgheadline15"><span class="section-number-4">2.3.5</span> Realça numeração da linha do cursor</h4>
 <div class="outline-text-4" id="text-2-3-5">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">hlinum</span>)
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">hlinum</span>)
 (hlinum-activate)
 </pre>
 </div>
@@ -526,12 +536,12 @@ O realce de linha não realça a numeração da linha. A função do <i>hlinum</
 </div>
 </div>
 
-<div id="outline-container-orgheadline15" class="outline-4">
-<h4 id="orgheadline15"><span class="section-number-4">2.3.6</span> Realçar parêntesis</h4>
+<div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">2.3.6</span> Realçar parêntesis</h4>
 <div class="outline-text-4" id="text-2-3-6">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(show-paren-mode)
+<pre class="src src-emacs-lisp">(show-paren-mode)
 </pre>
 </div>
 
@@ -541,12 +551,12 @@ Realça os respectivos pares de parêntesis, chaves ou colchetes.
 </div>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-4">
-<h4 id="orgheadline16"><span class="section-number-4">2.3.7</span> Esconde barra de rolamento ##</h4>
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">2.3.7</span> Esconde barra de rolamento ##</h4>
 <div class="outline-text-4" id="text-2-3-7">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(scroll-bar-mode -1)
+<pre class="src src-emacs-lisp">(scroll-bar-mode -1)
 </pre>
 </div>
 
@@ -556,12 +566,12 @@ Esconde a barra de rolamento do frame. A barra de status já possui informaçõe
 </div>
 </div>
 
-<div id="outline-container-orgheadline17" class="outline-4">
-<h4 id="orgheadline17"><span class="section-number-4">2.3.8</span> Salva estado atual ao sair</h4>
+<div id="outline-container-orgheadline18" class="outline-4">
+<h4 id="orgheadline18"><span class="section-number-4">2.3.8</span> Salva estado atual ao sair</h4>
 <div class="outline-text-4" id="text-2-3-8">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">saveplace</span>)
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">saveplace</span>)
 (setq-default save-place t)
 (setq save-place-file (expand-file-name <span style="color: #e67128;">".places"</span> user-emacs-directory))
 </pre>
@@ -573,12 +583,12 @@ Salva a posição atual do cursor no arquivo. Na próxima vez que for aberto, se
 </div>
 </div>
 
-<div id="outline-container-orgheadline18" class="outline-4">
-<h4 id="orgheadline18"><span class="section-number-4">2.3.9</span> Desabilita buffer de mensagem inicial</h4>
+<div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19"><span class="section-number-4">2.3.9</span> Desabilita buffer de mensagem inicial</h4>
 <div class="outline-text-4" id="text-2-3-9">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(setq initial-buffer-choice
+<pre class="src src-emacs-lisp">(setq initial-buffer-choice
     t)
 </pre>
 </div>
@@ -589,12 +599,12 @@ Desabilita a tela de abertura que contém diversas informações desnecessárias
 </div>
 </div>
 
-<div id="outline-container-orgheadline19" class="outline-4">
-<h4 id="orgheadline19"><span class="section-number-4">2.3.10</span> Troca mensagem do buffer de rascunho</h4>
+<div id="outline-container-orgheadline20" class="outline-4">
+<h4 id="orgheadline20"><span class="section-number-4">2.3.10</span> Troca mensagem do buffer de rascunho</h4>
 <div class="outline-text-4" id="text-2-3-10">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(setq initial-scratch-message
+<pre class="src src-emacs-lisp">(setq initial-scratch-message
     <span style="color: #e67128;">";; Nada neste buffer ser&#225; salvo. Use:\n;;</span>
 <span style="color: #e67128;">    Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.\n"</span>)
 </pre>
@@ -606,12 +616,12 @@ Alterei a mensagem do buffer de rascunho. Nada do que for escrito nele será sal
 </div>
 </div>
 
-<div id="outline-container-orgheadline20" class="outline-4">
-<h4 id="orgheadline20"><span class="section-number-4">2.3.11</span> Realça frame ativo</h4>
+<div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">2.3.11</span> Realça frame ativo</h4>
 <div class="outline-text-4" id="text-2-3-11">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">hiwin</span>)
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">hiwin</span>)
 (hiwin-activate)
 (set-face-background 'hiwin-face <span style="color: #e67128;">"black"</span>)
 </pre>
@@ -623,12 +633,12 @@ Todos os frames visíveis ficarão com o fundo preto, menos o que estiver ativo.
 </div>
 </div>
 
-<div id="outline-container-orgheadline21" class="outline-4">
-<h4 id="orgheadline21"><span class="section-number-4">2.3.12</span> Configura powerline</h4>
+<div id="outline-container-orgheadline22" class="outline-4">
+<h4 id="orgheadline22"><span class="section-number-4">2.3.12</span> Configura powerline</h4>
 <div class="outline-text-4" id="text-2-3-12">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(powerline-center-theme)
+<pre class="src src-emacs-lisp">(powerline-center-theme)
 (setq powerline-default-separator
       'wave)
 </pre>
@@ -640,12 +650,12 @@ Confere uma apresentação melhor para a linha de status.
 </div>
 </div>
 
-<div id="outline-container-orgheadline22" class="outline-4">
-<h4 id="orgheadline22"><span class="section-number-4">2.3.13</span> ido no modo grade</h4>
+<div id="outline-container-orgheadline23" class="outline-4">
+<h4 id="orgheadline23"><span class="section-number-4">2.3.13</span> ido no modo grade</h4>
 <div class="outline-text-4" id="text-2-3-13">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(setq ido-enable-flex-matching t)
+<pre class="src src-emacs-lisp">(setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode t)
 (ido-grid-mode t)
@@ -660,12 +670,12 @@ IDO (InteractivelyDoThings) mostra as opções disponíveis no minibuffer facili
 </div>
 </div>
 
-<div id="outline-container-orgheadline23" class="outline-4">
-<h4 id="orgheadline23"><span class="section-number-4">2.3.14</span> Configura atalho <b>Ctrl+.</b> para imenu-anywhere</h4>
+<div id="outline-container-orgheadline24" class="outline-4">
+<h4 id="orgheadline24"><span class="section-number-4">2.3.14</span> Configura atalho <b>Ctrl+.</b> para imenu-anywhere</h4>
 <div class="outline-text-4" id="text-2-3-14">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(global-set-key (kbd <span style="color: #e67128;">"C-."</span>) 'imenu-anywhere)
+<pre class="src src-emacs-lisp">(global-set-key (kbd <span style="color: #e67128;">"C-."</span>) 'imenu-anywhere)
 </pre>
 </div>
 
@@ -675,12 +685,12 @@ Mostra no minibuffer, via IDO, o que o programa acha que é interessante para qu
 </div>
 </div>
 
-<div id="outline-container-orgheadline24" class="outline-4">
-<h4 id="orgheadline24"><span class="section-number-4">2.3.15</span> Configura atalhos <b>Alt+x</b> e <b>Alt+X</b> para smex</h4>
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25"><span class="section-number-4">2.3.15</span> Configura atalhos <b>Alt+x</b> e <b>Alt+X</b> para smex</h4>
 <div class="outline-text-4" id="text-2-3-15">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(global-set-key (kbd <span style="color: #e67128;">"M-x"</span>) 'smex)
+<pre class="src src-emacs-lisp">(global-set-key (kbd <span style="color: #e67128;">"M-x"</span>) 'smex)
 (global-set-key (kbd <span style="color: #e67128;">"M-X"</span>) 'smex-major-mode-commands)
 </pre>
 </div>
@@ -691,12 +701,12 @@ Se o usuário digitar <i>Alt+x</i>, será apresentado no minibuffer via IDO, uma
 </div>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-4">
-<h4 id="orgheadline25"><span class="section-number-4">2.3.16</span> Configura o autocomplete</h4>
+<div id="outline-container-orgheadline26" class="outline-4">
+<h4 id="orgheadline26"><span class="section-number-4">2.3.16</span> Configura o autocomplete</h4>
 <div class="outline-text-4" id="text-2-3-16">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(ac-config-default)
+<pre class="src src-emacs-lisp">(ac-config-default)
 (ac-linum-workaround)
 </pre>
 </div>
@@ -707,12 +717,12 @@ Apresenta um menu para completar automaticamente a digitação de funções e pr
 </div>
 </div>
 
-<div id="outline-container-orgheadline26" class="outline-4">
-<h4 id="orgheadline26"><span class="section-number-4">2.3.17</span> Indent guide</h4>
+<div id="outline-container-orgheadline27" class="outline-4">
+<h4 id="orgheadline27"><span class="section-number-4">2.3.17</span> Indent guide</h4>
 <div class="outline-text-4" id="text-2-3-17">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(indent-guide-global-mode)
+<pre class="src src-emacs-lisp">(indent-guide-global-mode)
 </pre>
 </div>
 
@@ -722,12 +732,12 @@ Mostra barras verticais para mostras a endentação em programas.
 </div>
 </div>
 
-<div id="outline-container-orgheadline27" class="outline-4">
-<h4 id="orgheadline27"><span class="section-number-4">2.3.18</span> Configura theme-looper</h4>
+<div id="outline-container-orgheadline28" class="outline-4">
+<h4 id="orgheadline28"><span class="section-number-4">2.3.18</span> Configura theme-looper</h4>
 <div class="outline-text-4" id="text-2-3-18">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(theme-looper-set-theme-set '(adwaita
+<pre class="src src-emacs-lisp">(theme-looper-set-theme-set '(adwaita
                               deeper-blue
                               dichromacy
                               misterioso
@@ -748,12 +758,12 @@ Permite que o usuário passeie pelos temas especificado para verificar algum que
 </div>
 </div>
 
-<div id="outline-container-orgheadline28" class="outline-4">
-<h4 id="orgheadline28"><span class="section-number-4">2.3.19</span> Configura goto last change</h4>
+<div id="outline-container-orgheadline29" class="outline-4">
+<h4 id="orgheadline29"><span class="section-number-4">2.3.19</span> Configura goto last change</h4>
 <div class="outline-text-4" id="text-2-3-19">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(global-set-key (kbd <span style="color: #e67128;">"C-x ."</span>) 'goto-last-change)
+<pre class="src src-emacs-lisp">(global-set-key (kbd <span style="color: #e67128;">"C-x ."</span>) 'goto-last-change)
 (global-set-key (kbd <span style="color: #e67128;">"C-x ,"</span>) 'goto-last-change-reverse)
 </pre>
 </div>
@@ -764,12 +774,12 @@ Permite que o usuário pule nas últimas alterações Pressionando a combinmaç�
 </div>
 </div>
 
-<div id="outline-container-orgheadline29" class="outline-4">
-<h4 id="orgheadline29"><span class="section-number-4">2.3.20</span> Ctrl+x Ctrl+r abre lista de arquivos recentes</h4>
+<div id="outline-container-orgheadline30" class="outline-4">
+<h4 id="orgheadline30"><span class="section-number-4">2.3.20</span> Ctrl+x Ctrl+r abre lista de arquivos recentes</h4>
 <div class="outline-text-4" id="text-2-3-20">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">recentf</span>)
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">recentf</span>)
 (recentf-mode t)
 (setq recentf-max-menu-items 25)
 (<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">recentf-ido-find-file</span> ()
@@ -788,12 +798,12 @@ Utilizando <i>Ctrl+x Ctrl+r</i> permite que o usuário abra um minibuffer para e
 </div>
 </div>
 
-<div id="outline-container-orgheadline30" class="outline-4">
-<h4 id="orgheadline30"><span class="section-number-4">2.3.21</span> Carrega arquivo .myemacs</h4>
+<div id="outline-container-orgheadline31" class="outline-4">
+<h4 id="orgheadline31"><span class="section-number-4">2.3.21</span> Carrega arquivo .myemacs</h4>
 <div class="outline-text-4" id="text-2-3-21">
 <div class="org-src-container">
 
-<pre class="src src-lisp">(setq myconfig <span style="color: #e67128;">"~/.myemacs"</span>)
+<pre class="src src-emacs-lisp">(setq myconfig <span style="color: #e67128;">"~/.myemacs"</span>)
 (<span style="color: #ffad29; font-weight: bold;">if</span> (file-exists-p myconfig)
     (load-file myconfig))
 </pre>
@@ -806,12 +816,12 @@ Informa para ler o conteúdo do arquivo <b>.myemacs</b> se ele existir. Deverá 
 </div>
 
 
-<div id="outline-container-orgheadline31" class="outline-4">
-<h4 id="orgheadline31"><span class="section-number-4">2.3.22</span> Define F3 para pesquisar e Shift+F3 para pesquisar próxima</h4>
+<div id="outline-container-orgheadline32" class="outline-4">
+<h4 id="orgheadline32"><span class="section-number-4">2.3.22</span> Define F3 para pesquisar e Shift+F3 para pesquisar próxima</h4>
 <div class="outline-text-4" id="text-2-3-22">
 <div class="org-src-container">
 
-<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
+<pre class="src src-emacs-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">-----------------------------------------</span>
 <span style="color: #74af68;">;; </span><span style="color: #74af68;">Define F3 para iniciar busca</span>
 <span style="color: #74af68;">;; </span><span style="color: #74af68;">F3 novamente para pr&#243;xima ocorr&#234;ncia</span>
 <span style="color: #74af68;">;; </span><span style="color: #74af68;">Shift+F3 para ocorr&#234;ncia anterior</span>
@@ -827,12 +837,12 @@ Permite que o usuário digite <i>Ctrl+f</i> para efetuar uma pesquisa ou invés 
 </div>
 </div>
 
-<div id="outline-container-orgheadline32" class="outline-4">
-<h4 id="orgheadline32"><span class="section-number-4">2.3.23</span> <span class="todo TODO">TODO</span> Alterar</h4>
+<div id="outline-container-orgheadline33" class="outline-4">
+<h4 id="orgheadline33"><span class="section-number-4">2.3.23</span> <span class="todo TODO">TODO</span> Alterar</h4>
 <div class="outline-text-4" id="text-2-3-23">
 <div class="org-src-container">
 
-<pre class="src src-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">------------------------------------------</span>
+<pre class="src src-emacs-lisp"><span style="color: #74af68;">;;</span><span style="color: #74af68;">------------------------------------------</span>
 <span style="color: #74af68;">;; </span><span style="color: #74af68;">## Movimenta&#231;&#227;o entre frames</span>
 <span style="color: #74af68;">;;</span>
 (windmove-default-keybindings) <span style="color: #74af68;">;; </span><span style="color: #74af68;">'meta);</span>
@@ -853,17 +863,165 @@ Permite que o usuário digite <i>Ctrl+f</i> para efetuar uma pesquisa ou invés 
 </div>
 </div>
 
-<div id="outline-container-orgheadline36" class="outline-2">
-<h2 id="orgheadline36"><span class="section-number-2">3</span> Arquivo .myemacs</h2>
+<div id="outline-container-orgheadline41" class="outline-2">
+<h2 id="orgheadline41"><span class="section-number-2">3</span> Arquivo .myemacs</h2>
 <div class="outline-text-2" id="text-3">
-</div><div id="outline-container-orgheadline35" class="outline-4">
-<h4 id="orgheadline35"><span class="section-number-4">3.0.1</span> <span class="todo TODO">TODO</span> Fazer</h4>
+<p>
+É aconselhável que toda as alterações efetuadas pelo usuário estejam neste arquivo e não no <b>.emacs</b>. Facilita a vida do usuário em caso de atualização do arquivo <b>.emacs</b>. Abaixo um exemplo de conteúdo.
+</p>
+</div>
+
+<div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36"><span class="section-number-3">3.1</span> Instalação de outros pacotes</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(package-refresh-contents)
+(mapc (<span style="color: #ffad29; font-weight: bold;">lambda</span> (p)
+        (package-install p))
+      '(magit
+        paradox
+        ))
+(global-set-key (kbd <span style="color: #e67128;">"C-x g"</span>) 'magit-status)
+</pre>
+</div>
+
+<p>
+Exemplo de instalação de outros pacotes que o usuário deseja. Aqui instalamos o <i>magit</i> para facilitar o trabalho com o git e o <i>paradox</i> que é um gerenciador de pacotes melhorado. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline40" class="outline-3">
+<h3 id="orgheadline40"><span class="section-number-3">3.2</span> Funções úteis</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Ou, pelo menos, que o usuário considere úteis para o seu trabalho. 
+</p>
+</div>
+
+<div id="outline-container-orgheadline37" class="outline-4">
+<h4 id="orgheadline37"><span class="section-number-4">3.2.1</span> Rotacionar janelas</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">rotate-windows</span> ()
+  <span style="color: #e67128;">"Rotate your windows"</span>
+  (interactive)
+  (other-window -1)
+  (<span style="color: #ffad29; font-weight: bold;">cond</span> ((not (&gt; (count-windows)1))
+         (message <span style="color: #e67128;">"You can't rotate a single window!"</span>))
+        (t
+         (setq i 1)
+         (setq numWindows (count-windows))
+         (<span style="color: #ffad29; font-weight: bold;">while</span>  (&lt; i numWindows)
+           (<span style="color: #ffad29; font-weight: bold;">let*</span> (
+                  (w1 (elt (window-list) i))
+                  (w2 (elt (window-list) (+ (% i numWindows) 1)))
+
+                  (b1 (window-buffer w1))
+                  (b2 (window-buffer w2))
+
+                  (s1 (window-start w1))
+                  (s2 (window-start w2))
+                  )
+             (set-window-buffer w1  b2)
+             (set-window-buffer w2 b1)
+             (set-window-start w1 s2)
+             (set-window-start w2 s1)
+             (setq i (1+ i)))))))
+(global-set-key (kbd <span style="color: #e67128;">"&lt;f6&gt;"</span>) 'rotate-windows)
+</pre>
+</div>
+
+<p>
+Rotaciona os frames no sentido anti-horário. Mantém o foco no frame onde o usuário está trabalhando.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline38" class="outline-4">
+<h4 id="orgheadline38"><span class="section-number-4">3.2.2</span> Renomeia buffer e arquivo</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">rename-current-buffer-file</span> ()
+  <span style="color: #e67128;">"Renames current buffer and file it is visiting."</span>
+  (interactive)
+  (<span style="color: #ffad29; font-weight: bold;">let</span> ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (<span style="color: #ffad29; font-weight: bold;">if</span> (not (and filename (file-exists-p filename)))
+        (<span style="color: #ff4242; font-weight: bold;">error</span> <span style="color: #e67128;">"Buffer '%s' is not visiting a file!"</span> name)
+      (<span style="color: #ffad29; font-weight: bold;">let</span> ((new-name (read-file-name <span style="color: #e67128;">"New name: "</span> filename)))
+        (<span style="color: #ffad29; font-weight: bold;">if</span> (get-buffer new-name)
+            (<span style="color: #ff4242; font-weight: bold;">error</span> <span style="color: #e67128;">"A buffer named '%s' already exists!"</span> new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message <span style="color: #e67128;">"File '%s' successfully renamed to '%s'"</span>
+                   name (file-name-nondirectory new-name)))))))
+(global-set-key (kbd <span style="color: #e67128;">"C-x r C-f"</span>) 'rename-current-buffer-file)
+</pre>
+</div>
+
+<p>
+Altera o nome do buffer e do arquivo em disco. Como se o usuário gravasse o arquivo, renomeasse no disco e abrisse novamente.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline39" class="outline-4">
+<h4 id="orgheadline39"><span class="section-number-4">3.2.3</span> insere linha em branco</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">open-line-below</span> ()
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">open-line-above</span> ()
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+(global-set-key (kbd <span style="color: #e67128;">"C-x C-&lt;down&gt;"</span>) 'open-line-below)
+(global-set-key (kbd <span style="color: #e67128;">"C-x C-&lt;up&gt;"</span>) 'open-line-above)
+</pre>
+</div>
+
+<p>
+Insere uma linha em branco acima ou abaixo da linha onde está o cursor. O cursor pode estar em qualquer posição na linha.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline43" class="outline-2">
+<h2 id="orgheadline43"><span class="section-number-2">4</span> Conclusão</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+O presente trabalho encontra-se em fase de testes. Espero que seja útil para quem deseja iniciar com o Emacs ou para quem deseja incrementar e automatizar a sua instalação.
+</p>
+</div>
+
+<div id="outline-container-orgheadline42" class="outline-3">
+<h3 id="orgheadline42"><span class="section-number-3">4.1</span> makedoc</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+A documentação de <a href="./docs">./docs</a> foi gerada pelo script <b>makedoc</b>. Antes da geração é necessário que o usuário gere um arquivo <i>.html</i> pelo org-mode <i>Ctrl+c Ctrl+e h h</i> (exporta em formato html para o disco). Utiliza o <b>pandoc</b> para gerar os formatos <i>docx epub odt</i>. Para a geração do pdf, primeiro é gerado um arquivo .tex, depois o <i>sed</i> efetual algumas alterações que achei interessantes e, finalmente, gera o .pdf pelo .tex via <i>pdflatex</i>. Roda no Linux. Não sei os equivalentes para Windows.
+</p>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Guaracy Monteiro</p>
-<p class="date">Created: 2016-01-15 Sex 12:31</p>
+<p class="date">Created: 2016-01-15 Sex 14:38</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

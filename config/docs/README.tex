@@ -194,10 +194,22 @@ Inicialmente o Emacs possui uma tela assim:
 \caption{Tela inicial do Emacs}
 \end{figure}
 
-ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve
+Ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve
 período de uso você vai achar melhor os atalhos do que tirar a mão do
 teclado, pegar o mouse e clicar em um botão) e uma tela inicial com
-muita informação. Mas tudo isto irá mudar.
+muita informação, um \emph{C-x} indicando que o usuário pressionou a
+sequencia \emph{Ctrl+x}. Ficará assim:
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{./images/emacs2.jpg}
+\caption{Tela final do Emacs}
+\end{figure}
+
+Uma tela mais limpa (o esquema de cores dependerá do escolhido pelo
+usuário), uma linha de status mais agradável e, se pressionar
+\emph{Ctrl+x} uma relação das alternativas possíveis para complementar o
+comando.
 
 \subsection{Características do
 projeto}\label{caracteruxedsticas-do-projeto}
@@ -245,6 +257,23 @@ pacote, nada melhor do que utilizá-lo.
   Por último mas não menos importante, o GitHub aceita diretamente um
   arquivo README.org como o README.md.
 \end{enumerate}
+
+\subsection{Instalação}\label{instalauxe7uxe3o}
+
+Copiar o arquivo
+\href{https://raw.githubusercontent.com/guaracy/emacs/master/config/.emacs}{.emacs}
+e
+\href{https://raw.githubusercontent.com/guaracy/emacs/master/config/.myemacs}{.myemacs}
+para o diretório home (Linux : \textbf{\textasciitilde{}/} ou
+\textbf{/home/usuário}; Windows: *c:\\
+Usuários\\
+usuário\\
+AppData\\
+Rooming\\
+) do usuário (caso já exista uma arquivo \textbf{.emacs} e/ou
+\textbf{.myemacs}, faça um backup por garantia). Apague o diretório
+\textbf{.emacs.d} (também faça backup se for o caso). Depois é só
+executar o Emacs que os pacotes serão baixados e instalados.
 
 \section{Arquivo .emacs}\label{arquivo-.emacs}
 
@@ -374,8 +403,8 @@ pacotes}\label{configurauxe7uxf5es-da-aparuxeancia-e-dos-pacotes}
 \begin{Highlighting}[]
 \NormalTok{(}\KeywordTok{setq} \NormalTok{initial-frame-alist}
       \NormalTok{'(}
-        \NormalTok{(width . }\DecValTok{130}\NormalTok{) }\CommentTok{; characters}
-        \NormalTok{(height . }\DecValTok{40}\NormalTok{) }\CommentTok{; lines}
+        \NormalTok{(width . }\DecValTok{130}\NormalTok{)}
+        \NormalTok{(height . }\DecValTok{40}\NormalTok{)}
         \NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
@@ -392,7 +421,9 @@ frame e uma boa visibilidade de cada um.
 \NormalTok{(which-key-setup-minibuffer)}
 \NormalTok{(}\KeywordTok{setq} \NormalTok{max-mini-window-height }\DecValTok{10}\NormalTok{)}
 \NormalTok{(}\KeywordTok{setq} \NormalTok{which-key-idle-delay }\FloatTok{0.5}\NormalTok{)}
-\NormalTok{(set-face-attribute 'which-key-local-map-description-face }\KeywordTok{nil} \NormalTok{:weight 'bold)}
+\NormalTok{(set-face-attribute }
+  \NormalTok{'which-key-local-map-description-face }\KeywordTok{nil}
+  \NormalTok{:weight 'bold)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -454,8 +485,8 @@ independente do programa estar em espera.
 
 Realça os respectivos pares de parêntesis, chaves ou colchetes.
 
-\subsubsection{Esconde barra de rolamento
-\#\#}\label{esconde-barra-de-rolamento}
+\subsubsection{Esconde barra de
+rolamento}\label{esconde-barra-de-rolamento}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -476,7 +507,8 @@ sair}\label{salva-estado-atual-ao-sair}
 \begin{Highlighting}[]
 \NormalTok{(}\KeywordTok{require} \NormalTok{'saveplace)}
 \NormalTok{(setq-default save-place }\KeywordTok{t}\NormalTok{)}
-\NormalTok{(}\KeywordTok{setq} \NormalTok{save-place-file (expand-file-name }\StringTok{".places"} \NormalTok{user-emacs-directory))}
+\NormalTok{(}\KeywordTok{setq} \NormalTok{save-place-file (expand-file-name}
+  \StringTok{".places"} \NormalTok{user-emacs-directory))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -512,19 +544,6 @@ será salvo automaticamente ao sair. Buffers contendo arquivos, se forem
 alterados e ainda não foram salvos ao encerrar o programa, será mostrada
 uma mensagem informando que os dados não foram salvos e se o usuário
 deseja sair, salvar ou cancelar.
-
-\subsubsection{Realça frame ativo}\label{realuxe7a-frame-ativo}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{(}\KeywordTok{require} \NormalTok{'hiwin)}
-\NormalTok{(hiwin-activate)}
-\NormalTok{(set-face-background 'hiwin-face }\StringTok{"black"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Todos os frames visíveis ficarão com o fundo preto, menos o que estiver
-ativo.
 
 \subsubsection{Configura powerline}\label{configura-powerline}
 
@@ -619,16 +638,6 @@ Mostra barras verticais para mostras a endentação em programas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(theme-looper-set-theme-set '(adwaita}
-                              \NormalTok{deeper-blue}
-                              \NormalTok{dichromacy}
-                              \NormalTok{misterioso}
-                              \NormalTok{tango-dark}
-                  \NormalTok{tango}
-                  \NormalTok{tsdh-dark}
-                              \NormalTok{wheatgrass}
-                              \NormalTok{wombat))}
-
 \NormalTok{(theme-looper-set-customizations 'powerline-reset)}
 \NormalTok{(global-set-key (kbd }\StringTok{"C-}\NormalTok{\textbackslash{}"}\StringTok{"}\NormalTok{) 'theme-looper-enable-next-theme)}
 \end{Highlighting}
@@ -662,7 +671,8 @@ recentes}\label{ctrlx-ctrlr-abre-lista-de-arquivos-recentes}
 \NormalTok{(}\KeywordTok{defun}\FunctionTok{ recentf-ido-find-file }\NormalTok{()}
   \StringTok{"Find a recent file using Ido."}
   \NormalTok{(interactive)}
-  \NormalTok{(}\KeywordTok{let} \NormalTok{((file (ido-completing-read }\StringTok{"Choose recent file: "} \NormalTok{recentf-list }\KeywordTok{nil} \KeywordTok{t}\NormalTok{)))}
+  \NormalTok{(}\KeywordTok{let} \NormalTok{((file (ido-completing-read }\StringTok{"Choose recent file: "}
+    \NormalTok{recentf-list }\KeywordTok{nil} \KeywordTok{t}\NormalTok{)))}
     \NormalTok{(}\KeywordTok{when} \NormalTok{file}
       \NormalTok{(find-file file))))}
 \NormalTok{(global-set-key (kbd }\StringTok{"C-x C-r"}\NormalTok{) 'recentf-ido-find-file)}
@@ -691,13 +701,11 @@ próxima}\label{define-f3-para-pesquisar-e-shiftf3-para-pesquisar-pruxf3xima}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{;;-----------------------------------------}
-\CommentTok{;; Define F3 para iniciar busca}
-\CommentTok{;; F3 novamente para próxima ocorrência}
-\CommentTok{;; Shift+F3 para ocorrência anterior}
 \NormalTok{(global-set-key (kbd }\StringTok{"C-f"}\NormalTok{) 'isearch-forward)}
-\NormalTok{(define-key isearch-mode-map (kbd }\StringTok{"<f3>"}\NormalTok{) 'isearch-repeat-forward)}
-\NormalTok{(define-key isearch-mode-map (kbd }\StringTok{"S-<f3>"}\NormalTok{) 'isearch-repeat-backward)}
+\NormalTok{(define-key isearch-mode-map (kbd }\StringTok{"<f3>"}\NormalTok{)}
+  \NormalTok{'isearch-repeat-forward)}
+\NormalTok{(define-key isearch-mode-map (kbd }\StringTok{"S-<f3>"}\NormalTok{)}
+  \NormalTok{'isearch-repeat-backward)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -706,29 +714,169 @@ invés de \emph{Ctrl+s} que é o padrão do Emacs. Pressionando \emph{F3}
 vai para a próxima ocorrência e \emph{Shift+F3} para a ocorrência
 anterior.
 
-\subsubsection{TODO Alterar}\label{todo-alterar}
+\subsubsection{Configurar o org-mode}\label{configurar-o-org-mode}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{;;------------------------------------------}
-\CommentTok{;; ## Movimentação entre frames}
-\CommentTok{;;}
-\NormalTok{(windmove-default-keybindings) }\CommentTok{;; 'meta);}
-\CommentTok{;; Make windmove work in org-mode:}
-\NormalTok{(add-hook 'org-shiftup-final-hook 'windmove-up)}
-\NormalTok{(add-hook 'org-shiftleft-final-hook 'windmove-left)}
-\NormalTok{(add-hook 'org-shiftdown-final-hook 'windmove-down)}
-\NormalTok{(add-hook 'org-shiftright-final-hook 'windmove-right)}
-
 \NormalTok{(}\KeywordTok{setq} \NormalTok{org-CUA-compatible }\KeywordTok{t}\NormalTok{)}
 \NormalTok{(}\KeywordTok{setq} \NormalTok{org-support-shift-select }\KeywordTok{t}\NormalTok{)}
 \NormalTok{(}\KeywordTok{setq} \NormalTok{org-src-fontify-natively }\KeywordTok{t}\NormalTok{)}
 \NormalTok{(}\KeywordTok{setq} \NormalTok{org-startup-truncated }\KeywordTok{nil}\NormalTok{)}
+\NormalTok{(}\KeywordTok{setq} \NormalTok{org-use-speed-commands }\KeywordTok{t}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
+Apenas algumas configurações (existem muitas outras disponíveis). Uma
+melhor compatibilização do org-mode com o CUA-mode (shift setas para
+selecionar, por exemplo). Quebra de linhas no final da janela para não
+ser necessário rolar para ver a continuação. Colorizar fontes (utiliza
+htmlize). Speed commands para facilitar o trabalho com o org-mode.
+Estando no inicio de um título, por exemplo, é possível pressionar
+apenas \textbf{j} para saltar para os diverso títulos, \textbf{n} ou
+\textbf{p} para saltar para o tópico seguinte ou anterior e mais
+diversas facilidades.
+
 \section{Arquivo .myemacs}\label{arquivo-.myemacs}
 
-\subsubsection{TODO Fazer}\label{todo-fazer}
+É aconselhável que toda as alterações efetuadas pelo usuário estejam
+neste arquivo e não no \textbf{.emacs}. Facilita a vida do usuário em
+caso de atualização do arquivo \textbf{.emacs}. Abaixo um exemplo de
+conteúdo.
+
+\subsection{Instalação de outros
+pacotes}\label{instalauxe7uxe3o-de-outros-pacotes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(package-refresh-contents)}
+\NormalTok{(}\KeywordTok{mapc} \NormalTok{(}\KeywordTok{lambda} \NormalTok{(p)}
+    \NormalTok{(package-install p))}
+      \NormalTok{'(magit}
+        \NormalTok{heroku-theme}
+    \NormalTok{gruvbox-theme}
+        \NormalTok{material-theme }
+    \NormalTok{spacemacs-theme}
+    \NormalTok{subatomic-theme}
+    \NormalTok{tangotango-theme}
+    \NormalTok{paradox}
+    \NormalTok{))}
+\NormalTok{(load-theme 'spacemacs-dark }\KeywordTok{t}\NormalTok{)}
+\NormalTok{(global-set-key (kbd }\StringTok{"C-x g"}\NormalTok{) 'magit-status)}
+\end{Highlighting}
+\end{Shaded}
+
+Exemplo de instalação de outros pacotes que o usuário deseja. Aqui
+instalamos o \emph{magit} para facilitar o trabalho com o git e o
+\emph{paradox} que é um gerenciador de pacotes melhorado. O tema pare
+ser utilizado é o \emph{spacemacs}.
+
+\subsection{Funções úteis}\label{funuxe7uxf5es-uxfateis}
+
+Ou, pelo menos, que o usuário considere úteis para o seu trabalho.
+
+\subsubsection{Rotacionar janelas}\label{rotacionar-janelas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\KeywordTok{defun}\FunctionTok{ rotate-windows }\NormalTok{()}
+  \StringTok{"Rotate your windows"}
+  \NormalTok{(interactive)}
+  \NormalTok{(other-window -}\DecValTok{1}\NormalTok{)}
+  \NormalTok{(}\KeywordTok{cond} \NormalTok{((}\KeywordTok{not} \NormalTok{(}\KeywordTok{>} \NormalTok{(count-windows)}\DecValTok{1}\NormalTok{))}
+         \NormalTok{(message }\StringTok{"You can't rotate a single window!"}\NormalTok{))}
+        \NormalTok{(}\KeywordTok{t}
+         \NormalTok{(}\KeywordTok{setq} \NormalTok{i }\DecValTok{1}\NormalTok{)}
+         \NormalTok{(}\KeywordTok{setq} \NormalTok{numWindows (count-windows))}
+         \NormalTok{(while  (}\KeywordTok{<} \NormalTok{i numWindows)}
+           \NormalTok{(}\KeywordTok{let*} \NormalTok{(}
+                  \NormalTok{(w1 (}\KeywordTok{elt} \NormalTok{(window-list) i))}
+                  \NormalTok{(w2 (}\KeywordTok{elt} \NormalTok{(window-list) (}\KeywordTok{+} \NormalTok{(% i numWindows) }\DecValTok{1}\NormalTok{)))}
+
+                  \NormalTok{(b1 (window-buffer w1))}
+                  \NormalTok{(b2 (window-buffer w2))}
+
+                  \NormalTok{(s1 (window-start w1))}
+                  \NormalTok{(s2 (window-start w2))}
+                  \NormalTok{)}
+             \NormalTok{(set-window-buffer w1  b2)}
+             \NormalTok{(set-window-buffer w2 b1)}
+             \NormalTok{(set-window-start w1 s2)}
+             \NormalTok{(set-window-start w2 s1)}
+             \NormalTok{(}\KeywordTok{setq} \NormalTok{i (}\KeywordTok{1+} \NormalTok{i)))))))}
+\NormalTok{(global-set-key (kbd }\StringTok{"<f6>"}\NormalTok{) 'rotate-windows)}
+\end{Highlighting}
+\end{Shaded}
+
+Rotaciona os frames no sentido anti-horário. Mantém o foco no frame onde
+o usuário está trabalhando.
+
+\subsubsection{Renomeia buffer e
+arquivo}\label{renomeia-buffer-e-arquivo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\KeywordTok{defun}\FunctionTok{ rename-current-buffer-file }\NormalTok{()}
+  \StringTok{"Renames current buffer and file it is visiting."}
+  \NormalTok{(interactive)}
+  \NormalTok{(}\KeywordTok{let} \NormalTok{((name (buffer-name))}
+        \NormalTok{(filename (buffer-file-name)))}
+    \NormalTok{(}\KeywordTok{if} \NormalTok{(}\KeywordTok{not} \NormalTok{(}\KeywordTok{and} \NormalTok{filename (file-exists-p filename)))}
+        \NormalTok{(}\KeywordTok{error} \StringTok{"Buffer '%s' is not visiting a file!"} \NormalTok{name)}
+      \NormalTok{(}\KeywordTok{let} \NormalTok{((new-name (read-file-name }\StringTok{"New name: "} \NormalTok{filename)))}
+        \NormalTok{(}\KeywordTok{if} \NormalTok{(get-buffer new-name)}
+            \NormalTok{(}\KeywordTok{error} \StringTok{"A buffer named '%s' already exists!"} \NormalTok{new-name)}
+          \NormalTok{(}\KeywordTok{rename-file} \NormalTok{filename new-name }\DecValTok{1}\NormalTok{)}
+          \NormalTok{(rename-buffer new-name)}
+          \NormalTok{(set-visited-file-name new-name)}
+          \NormalTok{(set-buffer-modified-p }\KeywordTok{nil}\NormalTok{)}
+          \NormalTok{(message }\StringTok{"File '%s' successfully renamed to '%s'"}
+                   \NormalTok{name (file-name-nondirectory new-name)))))))}
+\NormalTok{(global-set-key (kbd }\StringTok{"C-x r C-f"}\NormalTok{) 'rename-current-buffer-file)}
+\end{Highlighting}
+\end{Shaded}
+
+Altera o nome do buffer e do arquivo em disco. Como se o usuário
+gravasse o arquivo, renomeasse no disco e abrisse novamente.
+
+\subsubsection{insere linha em branco}\label{insere-linha-em-branco}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\KeywordTok{defun}\FunctionTok{ open-line-below }\NormalTok{()}
+  \NormalTok{(interactive)}
+  \NormalTok{(end-of-line)}
+  \NormalTok{(newline)}
+  \NormalTok{(indent-for-tab-command))}
+
+\NormalTok{(}\KeywordTok{defun}\FunctionTok{ open-line-above }\NormalTok{()}
+  \NormalTok{(interactive)}
+  \NormalTok{(beginning-of-line)}
+  \NormalTok{(newline)}
+  \NormalTok{(forward-line -}\DecValTok{1}\NormalTok{)}
+  \NormalTok{(indent-for-tab-command))}
+\NormalTok{(global-set-key (kbd }\StringTok{"C-x C-<down>"}\NormalTok{) 'open-line-below)}
+\NormalTok{(global-set-key (kbd }\StringTok{"C-x C-<up>"}\NormalTok{) 'open-line-above)}
+\end{Highlighting}
+\end{Shaded}
+
+Insere uma linha em branco acima ou abaixo da linha onde está o cursor.
+O cursor pode estar em qualquer posição na linha.
+
+\section{Conclusão}\label{conclusuxe3o}
+
+O presente trabalho encontra-se em fase de testes. Espero que seja útil
+para quem deseja iniciar com o Emacs ou para quem deseja incrementar e
+automatizar a sua instalação.
+
+\subsection{makedoc}\label{makedoc}
+
+A documentação de \url{./docs} foi gerada pelo script \textbf{makedoc}.
+Antes da geração é necessário que o usuário gere um arquivo \emph{.html}
+pelo org-mode \emph{Ctrl+c Ctrl+e h h} (exporta em formato html para o
+disco). Utiliza o \textbf{pandoc} para gerar os formatos \emph{docx epub
+odt}. Para a geração do pdf, primeiro é gerado um arquivo .tex, depois o
+\emph{sed} efetual algumas alterações que achei interessantes e,
+finalmente, gera o .pdf pelo .tex via \emph{pdflatex}. Roda no Linux.
+Não sei os equivalentes para Windows.
 
 \end{document}
