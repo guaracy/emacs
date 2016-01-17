@@ -16,7 +16,7 @@
 Arquivo de configuração para ser utilizado em uma instalação nova do Emacs ou substituir uma antiga (excluir *.emacs* e *.emacs.d*). Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado//melhorado facilmente. 
 
 1. Grave o arquivo [[https://raw.githubusercontent.com/guaracy/emacs/master/config/.emacs][.emacs]], no seu diretório *home*. Se desejar, grave também o arquivo [[https://raw.githubusercontent.com/guaracy/emacs/master/config/.myemacs][.myemacs]] no seu diretório *home*. Abra o Emacs e espere a configuração terminar.
-2. Baixe e leia a documentação *TBD* .
+2. Baixe e leia a documentação no formato desejado: [[https://raw.githubusercontent.com/guaracy/emacs/master/config/docs/README.pdf][README.pdf]], [[https://raw.githubusercontent.com/guaracy/emacs/master/config/docs/README.epub][README.epub]], [[https://raw.githubusercontent.com/guaracy/emacs/master/config/docs/README.docx][README.doc]], [[https://raw.githubusercontent.com/guaracy/emacs/master/config/docs/README.odt][README.odt]].
 
 ------
 
