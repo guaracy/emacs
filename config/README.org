@@ -43,7 +43,13 @@ Inicialmente o Emacs possui uma tela assim:
 #+NAME: fig:emacs1
 [[./images/emacs1.jpg]]
 
-ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período de uso você vai achar melhor os atalhos do que tirar a mão do teclado, pegar o mouse e clicar em um botão) e uma tela inicial com muita informação. Mas tudo isto irá mudar.
+Ou seja, uma barra de ferramentas de gosto duvidoso (depois de um breve período de uso você vai achar melhor os atalhos do que tirar a mão do teclado, pegar o mouse e clicar em um botão) e uma tela inicial com muita informação, um /C-x/ indicando que o usuário pressionou a sequencia /Ctrl+x/. Ficará assim:
+
+#+CAPTION: Tela final do Emacs
+#+NAME: fig:emacs2
+[[./images/emacs2.jpg]]
+
+Uma tela mais limpa (o esquema de cores dependerá do escolhido pelo usuário), uma linha de status mais agradável e, se pressionar /Ctrl+x/ uma relação das alternativas possíveis para complementar o comando. 
 
 ** Características do projeto
 
@@ -61,6 +67,10 @@ Inicialmente estava previsto a instalação do pacote *markdown* para facilitar 
 2. É possível utilizar como arquivo de entrada e exportar para diversos formatos.
 3. De brinde, o usuário ganha um poderoso organizador pessoal que permite até a sincronização dos dados com seu smartphone ou tablet.
 4. Por último mas não menos importante, o GitHub aceita diretamente um arquivo README.org como o README.md.
+
+** Instalação
+
+Copiar o arquivo [[https://raw.githubusercontent.com/guaracy/emacs/master/config/.emacs][.emacs]] e [[https://raw.githubusercontent.com/guaracy/emacs/master/config/.myemacs][.myemacs]] para o diretório home (Linux : *~/* ou */home/usuário*; Windows: *c:\\Usuários\\usuário\\AppData\\Rooming\\*) do usuário (caso já exista uma arquivo *.emacs* e/ou *.myemacs*, faça um backup por garantia). Apague o diretório *.emacs.d* (também faça backup se for o caso). Depois é só executar o Emacs que os pacotes serão baixados e instalados. 
 
 * Arquivo .emacs
 
@@ -106,7 +116,7 @@ Atualiza o conteúdo das fontes de pacotes se não existe. Para você atualizar 
 
 *** Seleção e instalação dos pacotes pelo Emacs30
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (defvar gbm-required-packages
   '(which-key
     hl-line+
@@ -129,7 +139,7 @@ Atualiza o conteúdo das fontes de pacotes se não existe. Para você atualizar 
 
 Não inclua nenhum pacote neste ponto. Utilize o arquivo *.myemacs* se deseja incluir outros pacotes. Para saber mais sobre cada pacote especificado, você pode ir no [[https://melpa.org/][MELPA]], digitar o nome do pacote e clicar no link da coluna /source/. Na grande maioria das vezes, você irá para uma página com informações do pacote. No gerenciador de pacotes do Emacs, *Options/Manage Emacs Packages*, também existem informações sobre a finalidade.
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (mapc (lambda (p)
         (package-install p))
       gbm-required-packages)
@@ -140,11 +150,11 @@ Não inclua nenhum pacote neste ponto. Utilize o arquivo *.myemacs* se deseja in
 
 *** Tamanho da janela
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (setq initial-frame-alist
       '(
-        (width . 130) ; characters
-        (height . 40) ; lines
+        (width . 130)
+        (height . 40)
         ))
 #+END_SRC
 
@@ -152,19 +162,21 @@ Especifica uma altura/largura maior do que os valores padrões. Em muitos casos,
 
 *** Which key
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (which-key-mode)
 (which-key-setup-minibuffer)
 (setq max-mini-window-height 10)
 (setq which-key-idle-delay 0.5)
-(set-face-attribute 'which-key-local-map-description-face nil :weight 'bold)
+(set-face-attribute 
+  'which-key-local-map-description-face nil
+  :weight 'bold)
 #+END_SRC
 
 Quando o usuário utilizar um atalho como /Ctrl+c/ ou /Ctrl+h/, por exemplo, e não digitar o complemento dentro de 0.5 segundos, o minibuffer irá mostrar as possibilidades existentes para completar o comando. Foi configurado que o minibuffer terá 10 linhas de altura, o tempo de espera é de 0,5 segundos e as combinações válidas para o buffer onde o usuário está trabalhando estarão em negrito.
 
 *** Numeração das linhas
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (global-linum-mode t)
 #+END_SRC
 
@@ -172,7 +184,7 @@ Indica para numerar as linhas em todos os buffers. A qualquer momento o usuário
 
 *** Realça linha do cursor
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (hl-line-mode t)
 (toggle-hl-line-when-idle)
 (set-face-attribute hl-line-face nil :background "Grey25")
@@ -183,7 +195,7 @@ Irá realçar a linha onde encontra-se o cursor apenas quando o usuário não es
 
 *** Realça numeração da linha do cursor
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (require 'hlinum)
 (hlinum-activate)
 #+END_SRC
@@ -192,15 +204,15 @@ O realce de linha não realça a numeração da linha. A função do /hlinum/ é
 
 *** Realçar parêntesis
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (show-paren-mode)
 #+END_SRC
 
 Realça os respectivos pares de parêntesis, chaves ou colchetes. 
 
-*** Esconde barra de rolamento ##
+*** Esconde barra de rolamento
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
 #+END_SRC
 
@@ -208,17 +220,18 @@ Esconde a barra de rolamento do frame. A barra de status já possui informaçõe
 
 *** Salva estado atual ao sair
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (require 'saveplace)
 (setq-default save-place t)
-(setq save-place-file (expand-file-name ".places" user-emacs-directory))
+(setq save-place-file (expand-file-name
+  ".places" user-emacs-directory))
 #+END_SRC
 
 Salva a posição atual do cursor no arquivo. Na próxima vez que for aberto, será posicionado na posição que estava antes de encerra.
 
 *** Desabilita buffer de mensagem inicial
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (setq initial-buffer-choice
     t)
 #+END_SRC
@@ -227,7 +240,7 @@ Desabilita a tela de abertura que contém diversas informações desnecessárias
 
 *** Troca mensagem do buffer de rascunho
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (setq initial-scratch-message
     ";; Nada neste buffer será salvo. Use:\n;;
     Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.\n")
@@ -235,19 +248,9 @@ Desabilita a tela de abertura que contém diversas informações desnecessárias
 
 Alterei a mensagem do buffer de rascunho. Nada do que for escrito nele será salvo automaticamente ao sair. Buffers contendo arquivos, se forem alterados e ainda não foram salvos ao encerrar o programa, será mostrada uma mensagem informando que os dados não foram salvos e se o usuário deseja sair, salvar ou cancelar.
 
-*** Realça frame ativo
-
-#+BEGIN_SRC lisp
-(require 'hiwin)
-(hiwin-activate)
-(set-face-background 'hiwin-face "black")
-#+END_SRC
-
-Todos os frames visíveis ficarão com o fundo preto, menos o que estiver ativo.
-
 *** Configura powerline
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (powerline-center-theme)
 (setq powerline-default-separator
       'wave)
@@ -257,7 +260,7 @@ Confere uma apresentação melhor para a linha de status.
 
 *** ido no modo grade
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode t)
@@ -269,7 +272,8 @@ Confere uma apresentação melhor para a linha de status.
 IDO (InteractivelyDoThings) mostra as opções disponíveis no minibuffer facilitando a escolha pelo usuário. Se for informado o comando para abrir um arquivo (/Ctrl+x Ctrl+f/) por exemplo, será aberto um frame com a relação dos arquivos e diretórios para que seja feita a escolha. A última escolha sempre aparecerá em primeiro lugar. O usuário poderá usar as setas e enter para selecionar o arquivo ou poderá ir digitando o nome do arquivo ficando visíveis apenas os que coincidirem com o digitado. Se o diretório tiver diversos arquivos com o nome /temp/ e extensões diferentes (supondo-se que nenhum inicie com o caractere /t/), basta digitar /t/ e parte da extensão: /ttex/ selecionará todos os arquivos que possuam a extensão iniciando com /tex'.
 
 *** Configura atalho *Ctrl+.* para imenu-anywhere
-#+BEGIN_SRC lisp
+
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-.") 'imenu-anywhere)
 #+END_SRC
 
@@ -277,7 +281,7 @@ Mostra no minibuffer, via IDO, o que o programa acha que é interessante para qu
 
 *** Configura atalhos *Alt+x* e *Alt+X* para smex
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 #+END_SRC
@@ -286,7 +290,7 @@ Se o usuário digitar /Alt+x/, será apresentado no minibuffer via IDO, uma sele
 
 *** Configura o autocomplete
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (ac-config-default)
 (ac-linum-workaround)
 #+END_SRC
@@ -295,7 +299,7 @@ Apresenta um menu para completar automaticamente a digitação de funções e pr
 
 *** Indent guide
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (indent-guide-global-mode)
 #+END_SRC
 
@@ -303,17 +307,7 @@ Mostra barras verticais para mostras a endentação em programas.
 
 *** Configura theme-looper
 
-#+BEGIN_SRC lisp
-(theme-looper-set-theme-set '(adwaita
-                              deeper-blue
-                              dichromacy
-                              misterioso
-                              tango-dark
-			      tango
-			      tsdh-dark
-                              wheatgrass
-                              wombat))
-
+#+BEGIN_SRC emacs-lisp
 (theme-looper-set-customizations 'powerline-reset)
 (global-set-key (kbd "C-\"") 'theme-looper-enable-next-theme)
 #+END_SRC
@@ -322,7 +316,7 @@ Permite que o usuário passeie pelos temas especificado para verificar algum que
 
 *** Configura goto last change
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x .") 'goto-last-change)
 (global-set-key (kbd "C-x ,") 'goto-last-change-reverse)
 #+END_SRC
@@ -331,14 +325,15 @@ Permite que o usuário pule nas últimas alterações Pressionando a combinmaç�
 
 *** Ctrl+x Ctrl+r abre lista de arquivos recentes
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-max-menu-items 25)
 (defun recentf-ido-find-file ()
   "Find a recent file using Ido."
   (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+  (let ((file (ido-completing-read "Choose recent file: "
+    recentf-list nil t)))
     (when file
       (find-file file))))
 (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
@@ -348,7 +343,7 @@ Utilizando /Ctrl+x Ctrl+r/ permite que o usuário abra um minibuffer para escolh
 
 *** Carrega arquivo .myemacs
 
-#+BEGIN_SRC lisp
+#+BEGIN_SRC emacs-lisp
 (setq myconfig "~/.myemacs")
 (if (file-exists-p myconfig)
     (load-file myconfig))
@@ -359,40 +354,144 @@ Informa para ler o conteúdo do arquivo *.myemacs* se ele existir. Deverá conte
 
 *** Define F3 para pesquisar e Shift+F3 para pesquisar próxima
 
-#+BEGIN_SRC lisp
-;;-----------------------------------------
-;; Define F3 para iniciar busca
-;; F3 novamente para próxima ocorrência
-;; Shift+F3 para ocorrência anterior
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-f") 'isearch-forward)
-(define-key isearch-mode-map (kbd "<f3>") 'isearch-repeat-forward)
-(define-key isearch-mode-map (kbd "S-<f3>") 'isearch-repeat-backward)
+(define-key isearch-mode-map (kbd "<f3>")
+  'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "S-<f3>")
+  'isearch-repeat-backward)
 #+END_SRC
 
 Permite que o usuário digite /Ctrl+f/ para efetuar uma pesquisa ou invés de /Ctrl+s/ que é o padrão do Emacs. Pressionando /F3/ vai para a próxima ocorrência e /Shift+F3/ para a ocorrência anterior.
 
-*** TODO Alterar
 
-#+BEGIN_SRC lisp
-;;------------------------------------------
-;; ## Movimentação entre frames
-;;
-(windmove-default-keybindings) ;; 'meta);
-;; Make windmove work in org-mode:
-(add-hook 'org-shiftup-final-hook 'windmove-up)
-(add-hook 'org-shiftleft-final-hook 'windmove-left)
-(add-hook 'org-shiftdown-final-hook 'windmove-down)
-(add-hook 'org-shiftright-final-hook 'windmove-right)
+*** Configurar o org-mode
 
+#+BEGIN_SRC emacs-lisp
 (setq org-CUA-compatible t)
 (setq org-support-shift-select t)
 (setq org-src-fontify-natively t)
 (setq org-startup-truncated nil)
+(setq org-use-speed-commands t)
 #+END_SRC
+
+Apenas algumas configurações (existem muitas outras disponíveis). Uma melhor compatibilização do org-mode com o CUA-mode (shift setas para selecionar, por exemplo). Quebra de linhas no final da janela para não ser necessário rolar para ver a continuação. Colorizar fontes (utiliza htmlize). Speed commands para facilitar o trabalho com o org-mode. Estando no inicio de um título, por exemplo, é possível pressionar apenas *j* para saltar para os diverso títulos, *n* ou *p* para saltar para o tópico seguinte ou anterior e mais diversas facilidades.
 
 * Arquivo .myemacs
 
-*** TODO Fazer
+É aconselhável que toda as alterações efetuadas pelo usuário estejam neste arquivo e não no *.emacs*. Facilita a vida do usuário em caso de atualização do arquivo *.emacs*. Abaixo um exemplo de conteúdo.
+
+** Instalação de outros pacotes
+
+#+BEGIN_SRC emacs-lisp
+(package-refresh-contents)
+(mapc (lambda (p)
+	(package-install p))
+      '(magit
+        heroku-theme
+	gruvbox-theme
+        material-theme 
+	spacemacs-theme
+	subatomic-theme
+	tangotango-theme
+	paradox
+	))
+(load-theme 'spacemacs-dark t)
+(global-set-key (kbd "C-x g") 'magit-status)
+#+END_SRC
+
+Exemplo de instalação de outros pacotes que o usuário deseja. Aqui instalamos o /magit/ para facilitar o trabalho com o git e o /paradox/ que é um gerenciador de pacotes melhorado. O tema pare ser utilizado é o /spacemacs/.
+
+** Funções úteis
+
+Ou, pelo menos, que o usuário considere úteis para o seu trabalho. 
+
+*** Rotacionar janelas
+
+#+BEGIN_SRC emacs-lisp
+(defun rotate-windows ()
+  "Rotate your windows"
+  (interactive)
+  (other-window -1)
+  (cond ((not (> (count-windows)1))
+         (message "You can't rotate a single window!"))
+        (t
+         (setq i 1)
+         (setq numWindows (count-windows))
+         (while  (< i numWindows)
+           (let* (
+                  (w1 (elt (window-list) i))
+                  (w2 (elt (window-list) (+ (% i numWindows) 1)))
+
+                  (b1 (window-buffer w1))
+                  (b2 (window-buffer w2))
+
+                  (s1 (window-start w1))
+                  (s2 (window-start w2))
+                  )
+             (set-window-buffer w1  b2)
+             (set-window-buffer w2 b1)
+             (set-window-start w1 s2)
+             (set-window-start w2 s1)
+             (setq i (1+ i)))))))
+(global-set-key (kbd "<f6>") 'rotate-windows)
+#+END_SRC
+
+Rotaciona os frames no sentido anti-horário. Mantém o foco no frame onde o usuário está trabalhando.
+
+*** Renomeia buffer e arquivo
+
+#+BEGIN_SRC emacs-lisp
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+(global-set-key (kbd "C-x r C-f") 'rename-current-buffer-file)
+#+END_SRC
+
+Altera o nome do buffer e do arquivo em disco. Como se o usuário gravasse o arquivo, renomeasse no disco e abrisse novamente.
+
+*** insere linha em branco
+
+#+BEGIN_SRC emacs-lisp
+(defun open-line-below ()
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(defun open-line-above ()
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+(global-set-key (kbd "C-x C-<down>") 'open-line-below)
+(global-set-key (kbd "C-x C-<up>") 'open-line-above)
+#+END_SRC
+
+Insere uma linha em branco acima ou abaixo da linha onde está o cursor. O cursor pode estar em qualquer posição na linha.
+
+* Conclusão
+
+O presente trabalho encontra-se em fase de testes. Espero que seja útil para quem deseja iniciar com o Emacs ou para quem deseja incrementar e automatizar a sua instalação.
+
+** makedoc
+
+A documentação de [[./docs][./docs]] foi gerada pelo script *makedoc*. Antes da geração é necessário que o usuário gere um arquivo /.html/ pelo org-mode /Ctrl+c Ctrl+e h h/ (exporta em formato html para o disco). Utiliza o *pandoc* para gerar os formatos /docx epub odt/. Para a geração do pdf, primeiro é gerado um arquivo .tex, depois o /sed/ efetual algumas alterações que achei interessantes e, finalmente, gera o .pdf pelo .tex via /pdflatex/. Roda no Linux. Não sei os equivalentes para Windows.
+
 
 
 #  LocalWords:  TITLE Emacs AUTHOR Guaracy TL emacs home myemacs TBD
@@ -403,14 +502,14 @@ Permite que o usuário digite /Ctrl+f/ para efetuar uma pesquisa ou invés de /C
 #  LocalWords:  pdf epub eBook MiKTeX texlive org-mode markdown org
 #  LocalWords:  smartphone tablet GitHub README md emacs-lisp lisp if
 #  LocalWords:  Options Save begin src custom-set-variables cua-mode
-#  LocalWords:  cua-base ref cua custom-enabled-themes theme empty
+#  LocalWords:  cua-base ref cua custom-enabled-themes theme empty it
 #  LocalWords:  indicate-empty-lines show-paren-mode paren tool end
-#  LocalWords:  tool-bar-mode package add-to-list package-archives
+#  LocalWords:  tool-bar-mode package add-to-list package-archives is
 #  LocalWords:  melpa package-initialize when not Manage Packages key
 #  LocalWords:  package-archive-contents package-refresh-contents kbd
 #  LocalWords:  defvar gbm-required-packages which-key hl-line hlinum
 #  LocalWords:  powerline hiwin ido-grid-mode ido-select-window smex
-#  LocalWords:  imenu-anywhere pandoc-mode org-cua-dwim org-pandoc
+#  LocalWords:  imenu-anywhere pandoc-mode org-cua-dwim org-pandoc up
 #  LocalWords:  auto-complete smartparens goto-chg indent-guide link
 #  LocalWords:  theme-looper source mapc package-install setq width
 #  LocalWords:  initial-frame-alist characters height lines frame C-x
@@ -441,9 +540,24 @@ Permite que o usuário digite /Ctrl+f/ para efetuar uma pesquisa ou invés de /C
 #  LocalWords:  load-file isearch-forward define-key isearch-mode-map
 #  LocalWords:  isearch-repeat-forward isearch-repeat-backward Make
 #  LocalWords:  windmove-default-keybindings windmove work add-hook
-#  LocalWords:  org-shiftup-final-hook windmove-up windmove-left
-#  LocalWords:  org-shiftleft-final-hook org-shiftdown-final-hook
-#  LocalWords:  windmove-down org-shiftright-final-hook
-#  LocalWords:  windmove-right org-CUA-compatible
-#  LocalWords:  org-support-shift-select org-src-fontify-natively
-#  LocalWords:  org-startup-truncated
+#  LocalWords:  org-shiftup-final-hook windmove-up windmove-left git
+#  LocalWords:  org-shiftleft-final-hook org-shiftdown-final-hook You
+#  LocalWords:  windmove-down org-shiftright-final-hook backup shift
+#  LocalWords:  windmove-right org-CUA-compatible htmlize Speed magit
+#  LocalWords:  org-support-shift-select org-src-fontify-natively elt
+#  LocalWords:  org-startup-truncated org-use-speed-commands commands
+#  LocalWords:  heroku-theme gruvbox-theme material-theme paradox and
+#  LocalWords:  spacemacs-theme subatomic-theme tangotango-theme your
+#  LocalWords:  load-theme spacemacs-dark magit-status spacemacs cond
+#  LocalWords:  rotate-windows Rotate windows other-window message
+#  LocalWords:  count-windows can't rotate window numWindows while
+#  LocalWords:  window-list window-buffer window-start Renames name
+#  LocalWords:  set-window-buffer set-window-start current visiting
+#  LocalWords:  rename-current-buffer-file buffer-name filename New
+#  LocalWords:  buffer-file-name new-name read-file-name get-buffer
+#  LocalWords:  named already exists rename-file rename-buffer down
+#  LocalWords:  set-visited-file-name set-buffer-modified-p renamed
+#  LocalWords:  successfully file-name-nondirectory open-line-below
+#  LocalWords:  end-of-line newline indent-for-tab-command makedoc
+#  LocalWords:  open-line-above beginning-of-line forward-line script
+#  LocalWords:  html pandoc sed efetual pdflatex
