@@ -3,8 +3,6 @@
 # - script para linux
 # - bash script para gerar a documentação tendo
 #   como base o arquivo README.org
-# - gostei mais do html gerado pelo orgmode
-#   então apenas movi para ./docs
 # - o .pdf foi gerado tendo como base o .tex
 #   pelo pandoc com algumas modificações
 
@@ -15,8 +13,6 @@ echo "Gerando epub"
 pandoc -S --toc -o docs/README.epub README.org
 echo "Gerando odt"
 pandoc -S --toc -o docs/README.odt README.org
-echo "Copiando html"
-mv -f README.html ./docs
 echo "Gerando tex"
 pandoc -S --toc --standalone -o docs/README.tex README.org
 echo "Reconfigurando tex"
