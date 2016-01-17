@@ -16,7 +16,6 @@
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (misterioso)))
  '(indicate-empty-lines t)
- '(paradox-github-token t)
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
@@ -84,7 +83,9 @@
 (which-key-setup-minibuffer)
 (setq max-mini-window-height 10)
 (setq which-key-idle-delay 0.5)
-(set-face-attribute 'which-key-local-map-description-face nil :weight 'bold)
+(set-face-attribute 
+ 'which-key-local-map-description-face nil 
+ :weight 'bold)
 
 ;;------------------------------------------
 ;; ## Numeração de linhas
@@ -116,17 +117,12 @@
 (scroll-bar-mode -1)
 
 ;;-----------------------------------------
-;; ## Ativa smartparens
-;;(show-smartparens-global-mode t)
-;;(add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
-;(add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
-
-;;-----------------------------------------
 ;; ## Salva estado atual ao sair
 ;;
 (require 'saveplace)
 (setq-default save-place t)
-(setq save-place-file (expand-file-name ".places" user-emacs-directory))
+(setq save-place-file (expand-file-name 
+		       ".places" user-emacs-directory))
 
 ;;-----------------------------------------
 ;; ## Desabilita buffer de mensagem inicial
@@ -138,14 +134,15 @@
 ;; ## Troca mensagem do buffer de rascunho
 ;;
 (setq initial-scratch-message
-    ";; Nada neste buffer será salvo. Use:\n;; Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.\n")
+      ";; Nada neste buffer será salvo. Use:\n;; 
+       Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.\n")
 
 ;;-----------------------------------------
 ;; ## Realça frame ativo
 ;;
-(require 'hiwin)
-(hiwin-activate)
-(set-face-background 'hiwin-face "black")
+;(require 'hiwin)
+;(hiwin-activate)
+;(set-face-background 'hiwin-face "black")
 
 
 ;;-----------------------------------------
@@ -184,15 +181,6 @@
 (ac-linum-workaround)
 
 ;;-----------------------------------------
-;; ## Configura o markdown
-;;
-;;(autoload 'markdown-mode "markdown-mode"
-;;  "Major mode for editing Markdown files" t)
-;;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-;;(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-;;(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;;-----------------------------------------
 ;; ## Indent guide
 ;;
 (indent-guide-global-mode)
@@ -200,16 +188,6 @@
 ;;-----------------------------------------
 ;; ## Configura theme-looper
 ;;
-(theme-looper-set-theme-set '(adwaita
-                              deeper-blue
-                              dichromacy
-                              misterioso
-                              tango-dark
-			      tango
-			      tsdh-dark
-                              wheatgrass
-                              wombat))
-
 (theme-looper-set-customizations 'powerline-reset)
 (global-set-key (kbd "C-\"") 'theme-looper-enable-next-theme)
 
@@ -242,40 +220,24 @@
 (if (file-exists-p myconfig)
     (load-file myconfig))
 
-
-;;-----------------------------------------
-;; Define F3 para pesquisar e Shift+F3 para pesquisar próxima
-(global-set-key (kbd "S-<f3>") 'isearch-backward)
-
 ;;-----------------------------------------
 ;; Define F3 para iniciar busca
 ;; F3 novamente para próxima ocorrência
 ;; Shift+F3 para ocorrência anterior
-(global-set-key (kbd "<f3>") 'isearch-forward)
-(define-key isearch-mode-map (kbd "<f3>") 'isearch-repeat-forward)
-(define-key isearch-mode-map (kbd "S-<f3>") 'isearch-repeat-backward)
+(global-set-key (kbd "C-f") 'isearch-forward)
+(define-key isearch-mode-map (kbd "<f3>")
+  'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "S-<f3>")
+  'isearch-repeat-backward)
 
 ;;------------------------------------------
-;; ## Movimentação entre frames
+;; ## Cunfiguração org-mode
 ;;
-;;(windmove-default-keybindings 'meta);
-;; Make windmove work in org-mode:
-;;(add-hook 'org-shiftup-final-hook 'windmove-up)
-;;(add-hook 'org-shiftleft-final-hook 'windmove-left)
-;;(add-hook 'org-shiftdown-final-hook 'windmove-down)
-;;(add-hook 'org-shiftright-final-hook 'windmove-right)
-
-;;(org-babel-do-load-languages
-;; 'org-babel-load-languages
-;; '((emacs-lisp . t)
-;;   (sh . t)))
-;;(setq org-confirm-babel-evaluate nil)
-
 (setq org-CUA-compatible t)
 (setq org-support-shift-select t)
 (setq org-src-fontify-natively t)
 (setq org-startup-truncated nil)
-
+(setq org-use-speed-commands t)
 
 (delete-other-windows)
 
@@ -283,3 +245,9 @@
 ;; FIM DO ARQUIVO .emacs
 ;;-----------------------------------------
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

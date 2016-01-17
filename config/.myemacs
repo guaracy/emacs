@@ -2,14 +2,30 @@
 ;; ## Instalação/atualização de pacotes
 ;;
 
+
+;;-----------------------------------------
+;; novos modulos
+;;
 (package-refresh-contents)
 (mapc (lambda (p)
 	(package-install p))
       '(magit
+        heroku-theme
+	gruvbox-theme
+        material-theme 
+	spacemacs-theme
+	subatomic-theme
+	tangotango-theme
 	paradox
 	))
-(global-set-key (kbd "C-x g") 'magit-status)
 
+;;-----------------------------------------
+;; troca tema ativo
+(load-theme 'spacemacs-dark t)
+
+;;-----------------------------------------
+;; Ctrl+x v -> magit-status
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;;;-----------------------------------------
 ;;; FUNÇÕES ÚTEIS
