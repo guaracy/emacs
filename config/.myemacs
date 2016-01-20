@@ -1,10 +1,5 @@
 ;;-----------------------------------------
-;; ## Instalação/atualização de pacotes
-;;
-
-
-;;-----------------------------------------
-;; novos modulos
+;; Instalação/atualização de novoc pacotes
 ;;
 (package-refresh-contents)
 (mapc (lambda (p)
@@ -102,6 +97,30 @@
 (global-set-key (kbd "C-x C-<down>") 'open-line-below)
 (global-set-key (kbd "C-x C-<up>") 'open-line-above)
 
+
+;;-----------------------------------------
+;; usa hydra e atalho F2 para para
+;; aumentar/diminuir/restaura texto e
+;; maximizar frame
+;;
+(defhydra hydra-file (global-map "<f2>")
+  "file"
+  ("o" find-file nil)
+  ("s" save-buffer nil)
+  ("w" write-file nil)
+  ("r" recentf-ido-find-file nil)
+  ("t" rename-current-buffer-file nil)
+  ("q" nil "quit" :color blue))
+
+
 ;;-----------------------------------------
 ;; FIM DO ARQUIVO .myemacs
 ;;-----------------------------------------
+
+;;-----------------------------------------
+;; r3
+(add-to-list 'load-path "~/.emacs.d/vendor")
+(autoload 'r3-mode "r3-mode.el" "Major mode for REBOL3 development" t)
+(add-to-list 'auto-mode-alist
+	     '("\\.r$" . r3-mode)) ;; *.r files will be opened in r3-mode
+(require 'red)

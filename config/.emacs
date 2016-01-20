@@ -23,7 +23,7 @@
 ;; # Pacotes
 ;;------------------------------------------
 ;; ## Inclusão de repositório para pacotes
-;; 
+;;
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/")
@@ -42,11 +42,13 @@
 (defvar gbm-required-packages
   '(which-key
     hl-line+
-    powerline
+    ;;powerline
+    smart-mode-line
     hlinum
     hiwin
     htmlize
     ido-grid-mode
+    ido-vertical-mode
     ido-select-window
     imenu-anywhere
     smex
@@ -83,8 +85,8 @@
 (which-key-setup-minibuffer)
 (setq max-mini-window-height 10)
 (setq which-key-idle-delay 0.5)
-(set-face-attribute 
- 'which-key-local-map-description-face nil 
+(set-face-attribute
+ 'which-key-local-map-description-face nil
  :weight 'bold)
 
 ;;------------------------------------------
@@ -121,7 +123,7 @@
 ;;
 (require 'saveplace)
 (setq-default save-place t)
-(setq save-place-file (expand-file-name 
+(setq save-place-file (expand-file-name
 		       ".places" user-emacs-directory))
 
 ;;-----------------------------------------
@@ -134,8 +136,8 @@
 ;; ## Troca mensagem do buffer de rascunho
 ;;
 (setq initial-scratch-message
-      ";; Nada neste buffer será salvo. Use:\n;; 
-       Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.\n")
+      ";; Nada neste buffer será salvo. Use:
+;; Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.\n")
 
 ;;-----------------------------------------
 ;; ## Realça frame ativo
@@ -148,9 +150,12 @@
 ;;-----------------------------------------
 ;; ## Configura powerline
 ;;
-(powerline-center-theme)
-(setq powerline-default-separator
-      'wave)
+;;(powerline-center-theme)
+;;(setq powerline-default-separator
+;;      'wave)
+
+(sml/setup)
+(setq sml/theme 'powerline)
 
 ;;-----------------------------------------
 ;; ## ido no modo grade
@@ -158,7 +163,8 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode t)
-(ido-grid-mode t)
+;;(ido-grid-mode t)
+(ido-vertical-mode t)
 (global-set-key (kbd "C-x o") 'ido-select-window)
 (global-set-key (kbd "<f4>") 'ido-select-window)
 
@@ -244,10 +250,3 @@
 ;;-----------------------------------------
 ;; FIM DO ARQUIVO .emacs
 ;;-----------------------------------------
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
