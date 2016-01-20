@@ -12,7 +12,7 @@
 ------
 
 *TL;DR*
-
+6
 Arquivo de configuração para ser utilizado em uma instalação nova do Emacs ou substituir uma antiga (excluir *.emacs* e *.emacs.d*). Automaticamente instala alguns pacotes definidos e configura o ambiente e os pacotes. Tudo bem explicadinho para ser alterado//melhorado facilmente. 
 
 1. Grave o arquivo [[https://raw.githubusercontent.com/guaracy/emacs/master/config/.emacs][.emacs]], no seu diretório *home*. Se desejar, grave também o arquivo [[https://raw.githubusercontent.com/guaracy/emacs/master/config/.myemacs][.myemacs]] no seu diretório *home*. Abra o Emacs e espere a configuração terminar.
@@ -28,7 +28,7 @@ A ideia base deste projeto é a possível dificuldade de instalação e configur
 
 ** Alternativas
 
-Existem algumas opções que possuem um Emacs configurado para o usuário final. É possível citar:
+Existem algumas opções que possuem um Emacs configurado para o usuário final. Entre outras, podemos citar:
 
 1. [[https://github.com/syl20bnr/spacemacs][Spacemacs]] : É uma ótima alternativa e bastante indicada para usuários do Vim. Existem pessoas que tentaram usar o Emacs mas voltaram para o Vim. Depois de instalar o Spacemacs, estão usando é achando ótimo. Basicamente é uma cópia do diretório *.emacs.d* com toda a configuração automática. O usuário precisará ler a documentação se desejar fazer alguma alteração na configuração.
 2. [[https://github.com/myTerminal/super-emacs][super-emacs]] : Também é uma cópia do diretório *.emacs.d* porém com uma configuração mais simples que o Spacemacs. 
@@ -120,7 +120,8 @@ Atualiza o conteúdo das fontes de pacotes se não existe. Para você atualizar 
 (defvar gbm-required-packages
   '(which-key
     hl-line+
-    powerline
+    smart-mode-line-powerline-theme
+    smart-mode-line
     hlinum
     hiwin
     ido-grid-mode
@@ -202,16 +203,16 @@ Irá realçar a linha onde encontra-se o cursor apenas quando o usuário não es
 
 O realce de linha não realça a numeração da linha. A função do /hlinum/ é para realçar o número da linha. Sempre será realçada, independente do programa estar em espera.
 
-*** Realçar parêntesis
+*** Realçar parêntesis e raimbow-delimiters
 
 #+BEGIN_SRC emacs-lisp
 (show-paren-mode)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 #+END_SRC
 
-Realça os respectivos pares de parêntesis, chaves ou colchetes. 
+O /show-paren-mode/ realça os respectivos pares de parêntesis, chaves ou colchetes. O /rainbow-delimiter/ coloca cores diferentes conforme o grau dos delimitadores, facilitando a visualização dos blocos. Se você fechar algum colchete, etc., sem a respectiva abertura, ele ficará vermelho com um sublinhado em cima (depende do tema). No exemplo, foi ativado para a maioria dos modos de programação. Se você trabalha muito com parêntesis, é aconselhável ver com calma o [[ https://github.com/Fuco1/smartparens][smartparen]]. Deixa você com 40 dedos. 
 
 *** Esconde barra de rolamento
-
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
 #+END_SRC
@@ -248,15 +249,15 @@ Desabilita a tela de abertura que contém diversas informações desnecessárias
 
 Alterei a mensagem do buffer de rascunho. Nada do que for escrito nele será salvo automaticamente ao sair. Buffers contendo arquivos, se forem alterados e ainda não foram salvos ao encerrar o programa, será mostrada uma mensagem informando que os dados não foram salvos e se o usuário deseja sair, salvar ou cancelar.
 
-*** Configura powerline
+*** Configura Smart line
 
 #+BEGIN_SRC emacs-lisp
-(powerline-center-theme)
-(setq powerline-default-separator
-      'wave)
+(setq sml/no-confirm-load-theme t)
+(setq sml/theme 'powerline)
+(sml/setup)
 #+END_SRC
 
-Confere uma apresentação melhor para a linha de status.
+Confere uma apresentação melhor para a linha de status. A primeira linha evita que o usuário tenha que confirmar a utilização do tema e a segunda linha especifica o tema (/dark/, /light/, etc.). Ambas devem estar antes do /sml=/=setup/. Outro candidato pode ser o [[https://github.com/milkypostman/powerline][powerline]]. 
 
 *** ido no modo grade
 
@@ -269,7 +270,7 @@ Confere uma apresentação melhor para a linha de status.
 (global-set-key (kbd "<f4>") 'ido-select-window)
 #+END_SRC
 
-IDO (InteractivelyDoThings) mostra as opções disponíveis no minibuffer facilitando a escolha pelo usuário. Se for informado o comando para abrir um arquivo (/Ctrl+x Ctrl+f/) por exemplo, será aberto um frame com a relação dos arquivos e diretórios para que seja feita a escolha. A última escolha sempre aparecerá em primeiro lugar. O usuário poderá usar as setas e enter para selecionar o arquivo ou poderá ir digitando o nome do arquivo ficando visíveis apenas os que coincidirem com o digitado. Se o diretório tiver diversos arquivos com o nome /temp/ e extensões diferentes (supondo-se que nenhum inicie com o caractere /t/), basta digitar /t/ e parte da extensão: /ttex/ selecionará todos os arquivos que possuam a extensão iniciando com /tex'.
+IDO (InteractivelyDoThings) mostra as opções disponíveis no minibuffer facilitando a escolha pelo usuário. Se for informado o comando para abrir um arquivo (/Ctrl+x Ctrl+f/) por exemplo, será aberto um frame com a relação dos arquivos e diretórios para que seja feita a escolha. A última escolha sempre aparecerá em primeiro lugar. O usuário poderá usar as setas e enter para selecionar o arquivo ou poderá ir digitando o nome do arquivo ficando visíveis apenas os que coincidirem com o digitado. Se o diretório tiver diversos arquivos com o nome /temp/ e extensões diferentes (supondo-se que nenhum inicie com o caractere /t/), basta digitar /t/ e parte da extensão: /ttex/ selecionará todos os arquivos que possuam a extensão iniciando com /tex'. Outro candidato pode ser o [[https://github.com/emacs-helm/helm][helm]].
 
 *** Configura atalho *Ctrl+.* para imenu-anywhere
 
@@ -400,7 +401,7 @@ Apenas algumas configurações (existem muitas outras disponíveis). Uma melhor 
 (global-set-key (kbd "C-x g") 'magit-status)
 #+END_SRC
 
-Exemplo de instalação de outros pacotes que o usuário deseja. Aqui instalamos o /magit/ para facilitar o trabalho com o git e o /paradox/ que é um gerenciador de pacotes melhorado. O tema pare ser utilizado é o /spacemacs/.
+Exemplo de instalação de outros pacotes que o usuário deseja. Aqui instalamos o /magit/ para facilitar o trabalho com o git e o /paradox/ que é um gerenciador de pacotes melhorado. O tema pare ser utilizado é o /spacemacs/. Você pode ver outros temas em [[https://emacsthemes.com/index/1.html][Emacs Themes]] (nem todos estão disponíveis no *MELPA* o que significa que você deverá instalar manualmente. 
 
 ** Funções úteis
 
@@ -484,6 +485,20 @@ Altera o nome do buffer e do arquivo em disco. Como se o usuário gravasse o arq
 
 Insere uma linha em branco acima ou abaixo da linha onde está o cursor. O cursor pode estar em qualquer posição na linha.
 
+*** hydra
+
+O pacote /hydra/ é instalado como dependência do pacote /pandoc-mode/ e podemos utilizar suas funcionalidades para facilitar inúmeras tarefas. 
+
+#+BEGIN_SRC 
+(defhydra hydra-zoom (global-map "<f2>")
+  "zoom"
+  ("=" text-scale-increase "in")
+  ("-" text-scale-decrease "out")
+  ("0" (text-scale-adjust 0) "reset")
+  ("z" (delete-other-windows) "maximize frame")
+  ("q" nil "quit" :color blue))
+#+END_SRC
+
 * Conclusão
 
 O presente trabalho encontra-se em fase de testes. Espero que seja útil para quem deseja iniciar com o Emacs ou para quem deseja incrementar e automatizar a sua instalação.
@@ -560,4 +575,11 @@ A documentação de [[./docs][./docs]] foi gerada pelo script *makedoc*. Antes d
 #  LocalWords:  successfully file-name-nondirectory open-line-below
 #  LocalWords:  end-of-line newline indent-for-tab-command makedoc
 #  LocalWords:  open-line-above beginning-of-line forward-line script
-#  LocalWords:  html pandoc sed efetual pdflatex
+#  LocalWords:  html pandoc sed efetual pdflatex doc AppData Rooming
+#  LocalWords:  smart-mode-line-powerline-theme smart-mode-line Smart
+#  LocalWords:  raimbow-delimiters prog-mode-hook rainbow-delimiter
+#  LocalWords:  rainbow-delimiters-mode smartparen line sml setup
+#  LocalWords:  no-confirm-load-theme dark helm hydra defhydra reset
+#  LocalWords:  hydra-zoom global-map text-scale-increase quit blue
+#  LocalWords:  text-scale-decrease text-scale-adjust
+#  LocalWords:  delete-other-windows
