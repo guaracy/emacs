@@ -110,13 +110,11 @@
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-\textbf{TL;DR}
-
-Arquivo de configuração para ser utilizado em uma instalação nova do
-Emacs ou substituir uma antiga (excluir \textbf{.emacs} e
-\textbf{.emacs.d}). Automaticamente instala alguns pacotes definidos e
-configura o ambiente e os pacotes. Tudo bem explicadinho para ser
-alterado//melhorado facilmente.
+\textbf{TL;DR} 6 Arquivo de configuração para ser utilizado em uma
+instalação nova do Emacs ou substituir uma antiga (excluir
+\textbf{.emacs} e \textbf{.emacs.d}). Automaticamente instala alguns
+pacotes definidos e configura o ambiente e os pacotes. Tudo bem
+explicadinho para ser alterado//melhorado facilmente.
 
 \begin{enumerate}
 \tightlist
@@ -154,7 +152,7 @@ de novos pacotes, por exemplo, já foi uma tarefa bem mais complicada.
 \subsection{Alternativas}\label{alternativas}
 
 Existem algumas opções que possuem um Emacs configurado para o usuário
-final. É possível citar:
+final. Entre outras, podemos citar:
 
 \begin{enumerate}
 \tightlist
@@ -363,7 +361,8 @@ Emacs30}\label{seleuxe7uxe3o-e-instalauxe7uxe3o-dos-pacotes-pelo-emacs30}
 \NormalTok{(}\KeywordTok{defvar}\FunctionTok{ gbm-required-packages}
   \NormalTok{'(which-key}
     \NormalTok{hl-line+}
-    \NormalTok{powerline}
+    \NormalTok{smart-mode-line-powerline-theme}
+    \NormalTok{smart-mode-line}
     \NormalTok{hlinum}
     \NormalTok{hiwin}
     \NormalTok{ido-grid-mode}
@@ -479,15 +478,24 @@ O realce de linha não realça a numeração da linha. A função do
 \emph{hlinum} é para realçar o número da linha. Sempre será realçada,
 independente do programa estar em espera.
 
-\subsubsection{Realçar parêntesis}\label{realuxe7ar-paruxeantesis}
+\subsubsection{Realçar parêntesis e
+raimbow-delimiters}\label{realuxe7ar-paruxeantesis-e-raimbow-delimiters}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{(show-paren-mode)}
+\NormalTok{(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)}
 \end{Highlighting}
 \end{Shaded}
 
-Realça os respectivos pares de parêntesis, chaves ou colchetes.
+O \emph{show-paren-mode} realça os respectivos pares de parêntesis,
+chaves ou colchetes. O \emph{rainbow-delimiter} coloca cores diferentes
+conforme o grau dos delimitadores, facilitando a visualização dos
+blocos. Se você fechar algum colchete, etc., sem a respectiva abertura,
+ele ficará vermelho com um sublinhado em cima (depende do tema). No
+exemplo, foi ativado para a maioria dos modos de programação. Se você
+trabalha muito com parêntesis, é aconselhável ver com calma o
+\emph{smartparen}. Deixa você com 40 dedos.
 
 \subsubsection{Esconde barra de
 rolamento}\label{esconde-barra-de-rolamento}
@@ -549,17 +557,21 @@ alterados e ainda não foram salvos ao encerrar o programa, será mostrada
 uma mensagem informando que os dados não foram salvos e se o usuário
 deseja sair, salvar ou cancelar.
 
-\subsubsection{Configura powerline}\label{configura-powerline}
+\subsubsection{Configura Smart line}\label{configura-smart-line}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(powerline-center-theme)}
-\NormalTok{(}\KeywordTok{setq} \NormalTok{powerline-default-separator}
-      \NormalTok{'wave)}
+\NormalTok{(}\KeywordTok{setq} \NormalTok{sml/no-confirm-load-theme }\KeywordTok{t}\NormalTok{)}
+\NormalTok{(}\KeywordTok{setq} \NormalTok{sml/theme 'powerline)}
+\NormalTok{(sml/setup)}
 \end{Highlighting}
 \end{Shaded}
 
-Confere uma apresentação melhor para a linha de status.
+Confere uma apresentação melhor para a linha de status. A primeira linha
+evita que o usuário tenha que confirmar a utilização do tema e a segunda
+linha especifica o tema (\emph{dark}, \emph{light}, etc.). Ambas devem
+estar antes do \emph{sml=/=setup}. Outro candidato pode ser o
+\href{https://github.com/milkypostman/powerline}{powerline}.
 
 \subsubsection{ido no modo grade}\label{ido-no-modo-grade}
 
@@ -585,7 +597,8 @@ com o digitado. Se o diretório tiver diversos arquivos com o nome
 \emph{temp} e extensões diferentes (supondo-se que nenhum inicie com o
 caractere \emph{t}), basta digitar \emph{t} e parte da extensão:
 \emph{ttex} selecionará todos os arquivos que possuam a extensão
-iniciando com /tex'.
+iniciando com /tex'. Outro candidato pode ser o
+\href{https://github.com/emacs-helm/helm}{helm}.
 
 \subsubsection{\texorpdfstring{Configura atalho \textbf{Ctrl+.} para
 imenu-anywhere}{Configura atalho Ctrl+. para imenu-anywhere}}\label{configura-atalho-ctrl.-para-imenu-anywhere}
@@ -772,7 +785,10 @@ pacotes}\label{instalauxe7uxe3o-de-outros-pacotes}
 Exemplo de instalação de outros pacotes que o usuário deseja. Aqui
 instalamos o \emph{magit} para facilitar o trabalho com o git e o
 \emph{paradox} que é um gerenciador de pacotes melhorado. O tema pare
-ser utilizado é o \emph{spacemacs}.
+ser utilizado é o \emph{spacemacs}. Você pode ver outros temas em
+\href{https://emacsthemes.com/index/1.html}{Emacs Themes} (nem todos
+estão disponíveis no \textbf{MELPA} o que significa que você deverá
+instalar manualmente.
 
 \subsection{Funções úteis}\label{funuxe7uxf5es-uxfateis}
 
@@ -865,6 +881,22 @@ gravasse o arquivo, renomeasse no disco e abrisse novamente.
 
 Insere uma linha em branco acima ou abaixo da linha onde está o cursor.
 O cursor pode estar em qualquer posição na linha.
+
+\subsubsection{hydra}\label{hydra}
+
+O pacote \emph{hydra} é instalado como dependência do pacote
+\emph{pandoc-mode} e podemos utilizar suas funcionalidades para
+facilitar inúmeras tarefas.
+
+\begin{verbatim}
+(defhydra hydra-zoom (global-map "<f2>")
+  "zoom"
+  ("=" text-scale-increase "in")
+  ("-" text-scale-decrease "out")
+  ("0" (text-scale-adjust 0) "reset")
+  ("z" (delete-other-windows) "maximize frame")
+  ("q" nil "quit" :color blue))
+\end{verbatim}
 
 \section{Conclusão}\label{conclusuxe3o}
 
