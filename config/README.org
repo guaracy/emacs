@@ -28,7 +28,7 @@ A ideia base deste projeto é a possível dificuldade de instalação e configur
 
 ** Alternativas
 
-Existem algumas opções que possuem um Emacs configurado para o usuário final. Entre outras, podemos citar:
+Existem algumas opções que possuem um Emacs configurado para o usuário final. Não vi todas mas, entre [[http://www.emacswiki.org/emacs/StarterKits][outras]], posso citar:
 
 1. [[https://github.com/syl20bnr/spacemacs][Spacemacs]] : É uma ótima alternativa e bastante indicada para usuários do Vim. Existem pessoas que tentaram usar o Emacs mas voltaram para o Vim. Depois de instalar o Spacemacs, estão usando é achando ótimo. Basicamente é uma cópia do diretório *.emacs.d* com toda a configuração automática. O usuário precisará ler a documentação se desejar fazer alguma alteração na configuração.
 2. [[https://github.com/myTerminal/super-emacs][super-emacs]] : Também é uma cópia do diretório *.emacs.d* porém com uma configuração mais simples que o Spacemacs. 
@@ -120,6 +120,7 @@ Atualiza o conteúdo das fontes de pacotes se não existe. Para você atualizar 
 (defvar gbm-required-packages
   '(which-key
     hl-line+
+    smooth-scrolling
     smart-mode-line-powerline-theme
     smart-mode-line
     hlinum
@@ -193,6 +194,14 @@ Indica para numerar as linhas em todos os buffers. A qualquer momento o usuário
 #+END_SRC
 
 Irá realçar a linha onde encontra-se o cursor apenas quando o usuário não estiver fazendo nada. Escolhi /Grey25/ como cor de fundo e /yellow/ para a cor do cursor. Para ver as cores, suas combinações bem como o nome, basta entrar com /Alt+x list-colors-display/
+
+*** Rolamento suave
+
+#+BEGIN_SRC 
+(setq smooth-scroll-margin 5)
+#+END_SRC
+
+Não espera que o cursor chegue na última linha para rolar diversas linhas e mostrar mais do arquivo (causando um pouco de confusão). No caso, 5 linhas antes do inicio ou final do frame, o arquivo começa a mostrar uma linha por vez.
 
 *** Realça numeração da linha do cursor
 
