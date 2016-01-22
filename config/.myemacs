@@ -116,11 +116,3 @@
 ;;-----------------------------------------
 ;; FIM DO ARQUIVO .myemacs
 ;;-----------------------------------------
-
-;;-----------------------------------------
-;; r3
-(add-to-list 'load-path "~/.emacs.d/vendor")
-(autoload 'r3-mode "r3-mode.el" "Major mode for REBOL3 development" t)
-(add-to-list 'auto-mode-alist
-	     '("\\.r$" . r3-mode)) ;; *.r files will be opened in r3-mode
-(require 'red)

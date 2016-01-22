@@ -42,9 +42,11 @@
 (defvar gbm-required-packages
   '(which-key
     hl-line+
-    ;;powerline
+    smooth-scrolling
+    smart-mode-line-powerline-theme
     smart-mode-line
     hlinum
+    rainbow-delimiters
     hiwin
     htmlize
     ido-grid-mode
@@ -103,6 +105,11 @@
 (set-cursor-color "yellow")
 
 ;;-----------------------------------------
+;; ## Smooth-scrolling
+;;
+(setq smooth-scroll-margin 5)
+
+;;-----------------------------------------
 ;; ## Realça numeração da linha do cursor
 ;;
 (require 'hlinum)
@@ -112,6 +119,10 @@
 ;; ## Realçar parêntesis
 ;;
 (show-paren-mode)
+
+;;-----------------------------------------
+;; ## rainbow-delimiters
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;;-----------------------------------------
 ;; ## Esconde barra de rolamento ##
@@ -148,14 +159,11 @@
 
 
 ;;-----------------------------------------
-;; ## Configura powerline
+;; ## Configura smartline
 ;;
-;;(powerline-center-theme)
-;;(setq powerline-default-separator
-;;      'wave)
-
+(setq sml/no-confirm-load-theme t)
+(setq sml/theme 'dark)
 (sml/setup)
-(setq sml/theme 'powerline)
 
 ;;-----------------------------------------
 ;; ## ido no modo grade
@@ -163,8 +171,8 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode t)
-;;(ido-grid-mode t)
-(ido-vertical-mode t)
+(ido-grid-mode t)
+;;(ido-vertical-mode t)
 (global-set-key (kbd "C-x o") 'ido-select-window)
 (global-set-key (kbd "<f4>") 'ido-select-window)
 
