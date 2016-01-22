@@ -45,21 +45,20 @@
     smooth-scrolling
     smart-mode-line-powerline-theme
     smart-mode-line
-    hlinum
     rainbow-delimiters
+    hlinum
     hiwin
-    htmlize
     ido-grid-mode
-    ido-vertical-mode
     ido-select-window
     imenu-anywhere
     smex
     pandoc-mode
-    ox-pandoc
     org-cua-dwim
+    org-pandoc
     auto-complete
+    smartparens
     goto-chg
-    indent-guide
+    indent-guide  
     theme-looper))
 
 ;;-----------------------------------------
@@ -76,8 +75,8 @@
 ;;
 (setq initial-frame-alist
       '(
-        (width . 130) ; characters
-        (height . 40) ; lines
+        (width . 130) 
+        (height . 40)
         ))
 
 ;;-----------------------------------------
@@ -105,8 +104,7 @@
 (set-cursor-color "yellow")
 
 ;;-----------------------------------------
-;; ## Smooth-scrolling
-;;
+;; ## Rolamento suave
 (setq smooth-scroll-margin 5)
 
 ;;-----------------------------------------
@@ -119,9 +117,6 @@
 ;; ## Realçar parêntesis
 ;;
 (show-paren-mode)
-
-;;-----------------------------------------
-;; ## rainbow-delimiters
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;;-----------------------------------------
@@ -151,18 +146,10 @@
 ;; Ctrl+x Ctrl+r / Ctrl+x Ctrl+f para ler um arquivo.\n")
 
 ;;-----------------------------------------
-;; ## Realça frame ativo
-;;
-;(require 'hiwin)
-;(hiwin-activate)
-;(set-face-background 'hiwin-face "black")
-
-
-;;-----------------------------------------
-;; ## Configura smartline
+;; ## Configura Smart line
 ;;
 (setq sml/no-confirm-load-theme t)
-(setq sml/theme 'dark)
+(setq sml/theme 'powerline)
 (sml/setup)
 
 ;;-----------------------------------------
@@ -172,7 +159,6 @@
 (setq ido-everywhere t)
 (ido-mode t)
 (ido-grid-mode t)
-;;(ido-vertical-mode t)
 (global-set-key (kbd "C-x o") 'ido-select-window)
 (global-set-key (kbd "<f4>") 'ido-select-window)
 
