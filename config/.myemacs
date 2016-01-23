@@ -5,19 +5,15 @@
 (mapc (lambda (p)
 	(package-install p))
       '(magit
-        heroku-theme
-	gruvbox-theme
         material-theme 
 	spacemacs-theme
-	subatomic-theme
 	tangotango-theme
-	base16-theme
 	paradox
 	))
 
 ;;-----------------------------------------
 ;; troca tema ativo
- (load-theme 'base16-brewer-dark t)
+ (load-theme 'misterioso t)
 
 
 
