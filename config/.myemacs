@@ -11,12 +11,15 @@
 	spacemacs-theme
 	subatomic-theme
 	tangotango-theme
+	base16-theme
 	paradox
 	))
 
 ;;-----------------------------------------
 ;; troca tema ativo
-(load-theme 'spacemacs-dark t)
+ (load-theme 'base16-brewer-dark t)
+
+
 
 ;;-----------------------------------------
 ;; Ctrl+x v -> magit-status
