@@ -13,7 +13,7 @@
 
 ;;-----------------------------------------
 ;; troca tema ativo
- (load-theme 'misterioso t)
+ (load-theme 'material t)
 
 
 
