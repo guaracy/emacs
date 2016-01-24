@@ -8,12 +8,13 @@
         material-theme 
 	spacemacs-theme
 	tangotango-theme
+	base16-theme
 	paradox
 	))
 
 ;;-----------------------------------------
 ;; troca tema ativo
- (load-theme 'material t)
+ (load-theme 'base16-atelierdune-dark t)
 
 
 
